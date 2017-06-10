@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <title>Suthep</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<?php include 'header.php' ?>
 </head>
 <body>
     <div class="container">
-cream
+
     </div>
-</body
+</body>
 </html>
