@@ -9,8 +9,8 @@
   <div class="row">
 <form class="form-inline">
   <div class="form-group">
-    <label for="prod_name">ชื่อสินค้า</label>
-    <input type="text" class="form-control" id="prod_name" placeholder="product">
+    <label for="cust_name">ชื่อลูกค้า</label>
+    <input type="text" class="form-control" id="cust_name" placeholder="customer">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
   <button type="submit" class="btn btn-success">Add</button>
@@ -25,19 +25,22 @@
       ลำดับ
     </td>
     <td align='center'>
-      รูปภาพ
+      รหัสลูกค้า
     </td>
     <td align='center'>
-      รหัสสินค้า
+      ชื่อลูกค้า
     </td>
     <td align='center'>
-      รายละเอียดสินค้า
+      ที่อยู่
     </td>
     <td align='center'>
-      ราคา/ชิ้น
+      เบอร์โทร
     </td>
     <td align='center'>
-      น้ำหนัก
+      เบอร์แฟ๊กซ์
+    </td>
+    <td align='center'>
+      E-mail
     </td>
     <td align='center'>
       หมายเหตุ
@@ -69,31 +72,6 @@
       5555
     </td>
     <td>
-       <button type="button" class="btn btn-default btn-sm">Edit</button>
-       <button type="button" class="btn btn-default btn-sm">Detail</button>
-       <button type="button" class="btn btn-danger btn-sm">Delete</button>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      5555
-    </td>
-    <td>
-      5555
-    </td>
-    <td>
-      5555
-    </td>
-    <td>
-      5555
-    </td>
-    <td>
-      5555
-    </td>
-    <td>
-      5555
-    </td>
-    <td>
       5555
     </td>
     <td>
@@ -101,8 +79,6 @@
        <button type="button" class="btn btn-default btn-sm">Detail</button>
        <button type="button" class="btn btn-danger btn-sm">Delete</button>
     </td>
-  </tr>
-
 
 </table>
 </body>
