@@ -11,4 +11,9 @@ $conn = mysqli_connect($servername, $username, $password, $suthep);
 if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
+
+if (!mysqli_select_db($conn, $dbname)) {
+    die("Uh oh, couldn't select database $dbname");
+}
+
 ?>
