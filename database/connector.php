@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "root";
 $dbname = "suthep";
 
 // create connection.
@@ -19,4 +19,5 @@ if (!mysqli_select_db($conn, $dbname)) {
 if (!mysqli_set_charset($conn, "utf8")) {
     printf("Error loading character set utf8: %s\n", mysqli_error($conn));
 }
+
 ?>

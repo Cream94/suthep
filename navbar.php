@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION["login_id"])) {
+    echo "<script> location.href='index.php'; </script>";
+    exit;
+}
+ ?>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
