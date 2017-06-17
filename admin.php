@@ -3,6 +3,7 @@
   $sql = "SELECT * FROM admin";
   $query = mysqli_query($conn, $sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -16,35 +16,33 @@
       <ul class="nav navbar-nav">
         <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Sysadmin <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> User Management <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Admin</a></li>
+            <li><a href="admin.php">Admin</a></li>
             <li><a href="#">User</a></li>
             <li><a href="#">Customer</a></li>
           </ul>
         </li>
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Management <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Assets Management <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="#">Product</a></li>
-            <li><a href="#">Customer</a></li>
-            <li><a href="#">Supplier</a></li>
+            <li><a href="product.php">Product</a></li>
+            <li><a href="customer.php">Customer</a></li>
+            <li><a href="supplier.php">Supplier</a></li>
+            <li><a href="material.php">Material</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Material</a></li>
+            <li><a href="stock.php">Stock</a></li>
           </ul>
         </li>
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Working <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PO & SO <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="#">Purchase Order</a></li>
             <li><a href="#">Sale Order</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Account</a></li>
-            <li><a href="#">Stock</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Logout</a></li>
           </ul>
         </li>
       </ul>
