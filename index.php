@@ -5,7 +5,8 @@
 <?php include 'header.php' ?>
 </head>
 <body>
-    <div class="container-fluid">
+  <br/>
+  <br/>
       <div class="row">
         <div class="col-md-4 col-md-offset-4">
           <form class="form-horizontal" action="action/login.php" method="post">

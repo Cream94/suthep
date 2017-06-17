@@ -4,6 +4,7 @@ if (!isset($_SESSION["login_id"])) {
     echo "<script> location.href='index.php'; </script>";
     exit;
 }
+
  ?>
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -25,9 +26,12 @@ if (!isset($_SESSION["login_id"])) {
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> User Management <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="admin.php">Admin</a></li>
-            <li><a href="#">User</a></li>
-            <li><a href="#">Customer</a></li>
+            <?php
+              if ($_SESSION["login_super_admin"] == 1) {
+                echo '<li><a href="admin.php">Super Admin</a></li>';
+              }
+            ?>
+            <li><a href="user.php">User</a></li>
           </ul>
         </li>
 

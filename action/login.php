@@ -14,10 +14,10 @@ if ($user != null || $pass != null) {
         $_SESSION["login_id"] = $id;
         $_SESSION["login_name"] = $name;
         $_SESSION["login_super_admin"] = $super_admin;
-        header("Location: http://localhost:8888/suthep/admin.php");
+        header("Location: http://localhost/suthep/product.php");
         die();
     } else {
-        header("Location: http://localhost:8888/suthep/index.php");
+        header("Location: http://localhost/suthep/index.php");
         die();
     }
 }

@@ -1,6 +1,6 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT * FROM admin";
+  $sql = "SELECT * FROM admin WHERE super_admin = 1";
   $query = mysqli_query($conn, $sql);
 ?>
 

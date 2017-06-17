@@ -1,6 +1,6 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT * FROM customer";
+  $sql = "SELECT * FROM admin WHERE super_admin = 0";
   $query = mysqli_query($conn, $sql);
 ?>
 
@@ -17,26 +17,26 @@
   <div class="row">
 <form class="form-inline">
   <div class="form-group">
-    <label for="cust_name">ชื่อลูกค้า</label>
-    <input type="text" class="form-control" id="cust_name" placeholder="customer">
+    <label for="admin_name">ชื่อผู้ใช้</label>
+    <input type="text" class="form-control" id="admin_name" placeholder="admin">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
-  <a href="addcustomer.php" class="btn btn-success">Add</a>
+  <button type="submit" class="btn btn-success">Add</button>
 </form>
 </center>
 
   <label>
   </label>
 <table class="table table-striped table-bordered">
-  <tr  class="warning" style="font-weight: bold;">
+  <tr  class="warning">
     <td align='center'>
       ลำดับ
     </td>
     <td align='center'>
-      รหัสลูกค้า
+      รหัสผูู้ใช้
     </td>
     <td align='center'>
-      ชื่อลูกค้า
+      ชื่อผู้ใช้
     </td>
     <td align='center'>
       ที่อยู่
@@ -63,24 +63,16 @@
     while ($row = mysqli_fetch_array($query)) {
       echo '<tr>';
       echo '<td align="center">'.$count.'</td>';
-      echo '<td align="center">'.$row["cust_id"].'</td>';
-      echo '<td>'.$row["cust_name"].'</td>';
-      echo '<td>'.$row["cust_address"].'</td>';
-      echo '<td>'.$row["cust_tel"].'</td>';
-      echo '<td>'.$row["cust_fax"].'</td>';
+      echo '<td align="center">'.$row["admin_id"].'</td>';
+      echo '<td>'.$row["admin_name"].'</td>';
+      echo '<td>'.$row["admin_address"].'</td>';
+      echo '<td>'.$row["admin_tel"].'</td>';
+      echo '<td>'.$row["admin_fax"].'</td>';
       echo '<td>'.$row["email"].'</td>';
       echo '<td align="center">-</td>';
-      $id = $row["cust_id"];
-      if ($_SESSION["login_super_admin"] == 1) {
-      echo '<td align="center"><a href="editcustomer.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+      echo '<td align="center"><button type="button" class="btn btn-default btn-sm">Edit</button>
                 <button type="button" class="btn btn-default btn-sm">Detail</button>
-                <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>'
-                ;
-      } else {
-        echo '<td align="center"><a href="editcustomer.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
-                  <button type="button" class="btn btn-default btn-sm">Detail</button></td>'
-                  ;
-      }
+                <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
       echo '</tr>';
       $count++; // $count = $count + 1;
     }
