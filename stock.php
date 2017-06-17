@@ -1,6 +1,6 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT * FROM material, supplier WHERE material.sup_id = supplier.sup_id";
+  $sql = "SELECT * FROM `stock` , supplier, material WHERE stock.mat_id = material.mat_id and material.sup_id = supplier.sup_id";
   $query = mysqli_query($conn, $sql);
 ?>
 
@@ -39,19 +39,13 @@
       ชื่อวัตถุดิบ
     </td>
     <td align='center'>
-      ชื่อบริษัท
+      จำนวน
     </td>
     <td align='center'>
-      ที่อยู่
+      บริษัทผู้ผลิต
     </td>
     <td align='center'>
-      เบอร์โทร
-    </td>
-    <td align='center'>
-      เบอร์แฟ๊กซ์
-    </td>
-    <td align='center'>
-      E-mail
+      อัพเดตล่าสุด
     </td>
     <td align='center'>
       Action
@@ -65,11 +59,9 @@
         echo '<td align="center">'.$count.'</td>';
         echo '<td align="center">'.$row["mat_id"].'</td>';
         echo '<td>'.$row["mat_name"].'</td>';
+        echo '<td>'.$row["number"].'</td>';
         echo '<td>'.$row["sup_name"].'</td>';
-        echo '<td>'.$row["sup_address"].'</td>';
-        echo '<td>'.$row["sup_tel"].'</td>';
-        echo '<td>'.$row["sup_fax"].'</td>';
-        echo '<td>'.$row["email"].'</td>';
+        echo '<td>'.$row["date_time"].'</td>';
         echo '<td align="center"><button type="button" class="btn btn-default btn-sm">Edit</button>
                   <button type="button" class="btn btn-default btn-sm">Detail</button>
                   <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
