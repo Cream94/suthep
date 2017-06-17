@@ -5,6 +5,8 @@
 <?php include 'header.php' ?>
 </head>
 <body>
+  <?php include 'navbar.php' ?>
+    <div class="container-fluid">
   <center>
   <div class="row">
 <form class="form-inline">
