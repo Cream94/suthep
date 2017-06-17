@@ -1,6 +1,6 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT * FROM product";
+  $sql = "SELECT * FROM `stock` , supplier, material WHERE stock.mat_id = material.mat_id and material.sup_id = supplier.sup_id";
   $query = mysqli_query($conn, $sql);
 ?>
 
@@ -17,8 +17,8 @@
   <div class="row">
 <form class="form-inline">
   <div class="form-group">
-    <label for="prod_name">ชื่อสินค้า</label>
-    <input type="text" class="form-control" id="prod_name" placeholder="product">
+    <label for="mat_name">ชื่อวัตถุดิบ</label>
+    <input type="text" class="form-control" id="mat_name" placeholder="material">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
   <button type="submit" class="btn btn-success">Add</button>
@@ -33,22 +33,19 @@
       ลำดับ
     </td>
     <td align='center'>
-      รูปภาพ
+      รหัสวัตถุดิบ
     </td>
     <td align='center'>
-      รหัสสินค้า
+      ชื่อวัตถุดิบ
     </td>
     <td align='center'>
-      รายละเอียดสินค้า
+      จำนวน
     </td>
     <td align='center'>
-      ราคา/ชิ้น
+      บริษัทผู้ผลิต
     </td>
     <td align='center'>
-      น้ำหนัก
-    </td>
-    <td align='center'>
-      หมายเหตุ
+      อัพเดตล่าสุด
     </td>
     <td align='center'>
       Action
@@ -60,12 +57,11 @@
       while ($row = mysqli_fetch_array($query)) {
         echo '<tr>';
         echo '<td align="center">'.$count.'</td>';
-        echo '<td align="center">รูปภาพ</td>';
-        echo '<td align="center">'.$row["prod_id"].'</td>';
-        echo '<td>'.$row["prod_detail"].'</td>';
-        echo '<td>'.$row["price"].'</td>';
-        echo '<td>'.$row["weight"].'</td>';
-        echo '<td align="center">-</td>';
+        echo '<td align="center">'.$row["mat_id"].'</td>';
+        echo '<td>'.$row["mat_name"].'</td>';
+        echo '<td>'.$row["number"].'</td>';
+        echo '<td>'.$row["sup_name"].'</td>';
+        echo '<td>'.$row["date_time"].'</td>';
         echo '<td align="center"><button type="button" class="btn btn-default btn-sm">Edit</button>
                   <button type="button" class="btn btn-default btn-sm">Detail</button>
                   <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';

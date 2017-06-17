@@ -1,3 +1,9 @@
+<?php
+  require_once 'database/connector.php';
+  $sql = "SELECT * FROM supplier";
+  $query = mysqli_query($conn, $sql);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +11,8 @@
 <?php include 'header.php' ?>
 </head>
 <body>
+  <?php include 'navbar.php' ?>
+    <div class="container-fluid">
   <center>
   <div class="row">
 <form class="form-inline">
@@ -49,36 +57,26 @@
       Action
     </td>
   </tr>
-  <tr>
-    <td>
-      5555
-    </td>
-    <td>
-      5555
-    </td>
-    <td>
-      5555
-    </td>
-    <td>
-      5555
-    </td>
-    <td>
-      5555
-    </td>
-    <td>
-      5555
-    </td>
-    <td>
-      5555
-    </td>
-    <td>
-      5555
-    </td>
-    <td>
-       <button type="button" class="btn btn-default btn-sm">Edit</button>
-       <button type="button" class="btn btn-default btn-sm">Detail</button>
-       <button type="button" class="btn btn-danger btn-sm">Delete</button>
-    </td>
+
+  <?php
+    $count = 1;
+    while ($row = mysqli_fetch_array($query)) {
+      echo '<tr>';
+      echo '<td align="center">'.$count.'</td>';
+      echo '<td align="center">'.$row["sup_id"].'</td>';
+      echo '<td>'.$row["sup_name"].'</td>';
+      echo '<td>'.$row["sup_address"].'</td>';
+      echo '<td>'.$row["sup_tel"].'</td>';
+      echo '<td>'.$row["sup_fax"].'</td>';
+      echo '<td>'.$row["email"].'</td>';
+      echo '<td align="center">-</td>';
+      echo '<td align="center"><button type="button" class="btn btn-default btn-sm">Edit</button>
+                <button type="button" class="btn btn-default btn-sm">Detail</button>
+                <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
+      echo '</tr>';
+      $count++; // $count = $count + 1;
+    }
+  ?>
 
 </table>
 </body>

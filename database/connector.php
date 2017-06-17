@@ -1,11 +1,11 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "root";
+$password = "";
 $dbname = "suthep";
 
 // create connection.
-$conn = mysqli_connect($servername, $username, $password, $suthep);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
 // check connection.
 if (!$conn) {
@@ -16,4 +16,7 @@ if (!mysqli_select_db($conn, $dbname)) {
     die("Uh oh, couldn't select database $dbname");
 }
 
+if (!mysqli_set_charset($conn, "utf8")) {
+    printf("Error loading character set utf8: %s\n", mysqli_error($conn));
+}
 ?>
