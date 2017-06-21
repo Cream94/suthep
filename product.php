@@ -21,7 +21,7 @@
     <input type="text" class="form-control" id="prod_name" placeholder="product">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
-  <button type="submit" class="btn btn-success">Add</button>
+  <a href="addproduct.php" class="btn btn-success">Add</a>
 </form>
 </center>
 
@@ -66,7 +66,8 @@
         echo '<td>'.$row["price"].'</td>';
         echo '<td>'.$row["weight"].'</td>';
         echo '<td align="center">-</td>';
-        echo '<td align="center"><button type="button" class="btn btn-default btn-sm">Edit</button>
+        echo '<td align="center">
+                  <a href="editproduct.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                   <button type="button" class="btn btn-default btn-sm">Detail</button>
                   <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
         echo '</tr>';

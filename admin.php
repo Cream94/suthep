@@ -17,11 +17,11 @@
   <div class="row">
 <form class="form-inline">
   <div class="form-group">
-    <label for="admin_name">ชื่อผู้ใช้</label>
+    <label for="admin_name">ชื่อผู้ดูแล</label>
     <input type="text" class="form-control" id="admin_name" placeholder="admin">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
-  <button type="submit" class="btn btn-success">Add</button>
+  <a href="addadmin.php" class="btn btn-success">Add</a>
 </form>
 </center>
 

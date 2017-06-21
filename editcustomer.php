@@ -16,9 +16,9 @@
     <div class="container-fluid">
 
       <center>
-            <h4 style="font-weight: bold;">Edit Form</h4>
         <div class="row">
-          <div class="col-md-6 col-md-offset-3">
+          <div class="col-md-6 col-md-offset-3 jumbotron well">
+            <h4 style="font-weight: bold;">Edit Form</h4> <br/>
             <form class="form-horizontal" action="action/customer_edit.php?id=<?php echo $id;?>" method="post">
             <div class="form-group">
             <label for="cust_name" class="col-sm-2 control-label">ชื่อลูกค้า</label>
