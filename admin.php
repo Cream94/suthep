@@ -70,7 +70,8 @@
       echo '<td>'.$row["admin_fax"].'</td>';
       echo '<td>'.$row["email"].'</td>';
       echo '<td align="center">-</td>';
-      echo '<td align="center"><button type="button" class="btn btn-default btn-sm">Edit</button>
+      $id = $row["admin_id"];
+      echo '<td align="center"><a href="editadmin.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                 <button type="button" class="btn btn-default btn-sm">Detail</button>
                 <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
       echo '</tr>';

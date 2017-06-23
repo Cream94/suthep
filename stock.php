@@ -21,7 +21,7 @@
     <input type="text" class="form-control" id="mat_name" placeholder="material">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
-  <button type="submit" class="btn btn-success">Add</button>
+  <a href="addstock.php" class="btn btn-success">Add</a>
 </form>
 </center>
 
@@ -62,7 +62,8 @@
         echo '<td>'.$row["number"].'</td>';
         echo '<td>'.$row["sup_name"].'</td>';
         echo '<td>'.$row["date_time"].'</td>';
-        echo '<td align="center"><button type="button" class="btn btn-default btn-sm">Edit</button>
+        $id = $row["stock_id"];
+        echo '<td align="center"><a href="editstock.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                   <button type="button" class="btn btn-default btn-sm">Detail</button>
                   <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
         echo '</tr>';

@@ -13,7 +13,7 @@
         <div class="row">
           <div class="col-md-6 col-md-offset-3 jumbotron well">
             <h4 style="font-weight: bold;">Add Form</h4> <br/>
-            <form class="form-horizontal" action="action/admin_add.php" method="post">
+            <form class="form-horizontal" action="action/stock_add.php" method="post">
             <div class="form-group">
             <label for="admin_name" class="col-sm-2 control-label">ชื่อผู้ดูแล</label>
             <div class="col-sm-10">

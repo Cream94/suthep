@@ -1,6 +1,6 @@
 <?php
 require_once '../database/connector.php';
-$prod_id = isset($_GET["prod_id"]) ? $_GET["prod_id"] : null; // short if.
+$prod_id = isset($_GET["id"]) ? $_GET["id"] : null; // short if.
 $prod_detail = isset($_POST["prod_detail"]) ? $_POST["prod_detail"] : null; // short if.
 $price = isset($_POST["price"]) ? $_POST["price"] : null; // short if.
 $weight = isset($_POST["weight"]) ? $_POST["weight"] : null; // short if.
