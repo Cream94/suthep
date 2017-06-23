@@ -21,7 +21,7 @@
     <input type="text" class="form-control" id="sup_name" placeholder="supplier">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
-  <button type="submit" class="btn btn-success">Add</button>
+  <a href="addsupplier.php" class="btn btn-success">Add</a>
 </form>
 </center>
 
@@ -70,7 +70,8 @@
       echo '<td>'.$row["sup_fax"].'</td>';
       echo '<td>'.$row["email"].'</td>';
       echo '<td align="center">-</td>';
-      echo '<td align="center"><button type="button" class="btn btn-default btn-sm">Edit</button>
+      $id = $row["sup_id"];
+      echo '<td align="center"><a href="editsupplier.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                 <button type="button" class="btn btn-default btn-sm">Detail</button>
                 <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
       echo '</tr>';

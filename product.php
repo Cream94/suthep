@@ -66,6 +66,7 @@
         echo '<td>'.$row["price"].'</td>';
         echo '<td>'.$row["weight"].'</td>';
         echo '<td align="center">-</td>';
+        $id = $row["prod_id"];
         echo '<td align="center">
                   <a href="editproduct.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                   <button type="button" class="btn btn-default btn-sm">Detail</button>
