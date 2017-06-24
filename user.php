@@ -9,6 +9,18 @@
 <head>
 <title>Suthep</title>
 <?php include 'header.php' ?>
+<script type="text/javascript">
+function func_delete(id) {
+
+  if(!confirm('Are you sure?')){
+    e.preventDefault();
+    return false;
+  }
+  window.location.href ="action/user_delete.php?admin_id=" + id;
+
+}
+
+</script>
 </head>
 <body>
   <?php include 'navbar.php' ?>
@@ -21,7 +33,7 @@
     <input type="text" class="form-control" id="admin_name" placeholder="admin">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
-  <button type="submit" class="btn btn-success">Add</button>
+  <a href="adduser.php" class="btn btn-success">Add</a>
 </form>
 </center>
 
@@ -70,9 +82,10 @@
       echo '<td>'.$row["admin_fax"].'</td>';
       echo '<td>'.$row["email"].'</td>';
       echo '<td align="center">-</td>';
-      echo '<td align="center"><button type="button" class="btn btn-default btn-sm">Edit</button>
+      $id = $row["admin_id"];
+      echo '<td align="center"><a href="edituser.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                 <button type="button" class="btn btn-default btn-sm">Detail</button>
-                <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
+                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["admin_id"].'\');" >Delete</button> </td>';
       echo '</tr>';
       $count++; // $count = $count + 1;
     }

@@ -9,6 +9,18 @@
 <head>
 <title>Suthep</title>
 <?php include 'header.php' ?>
+<script type="text/javascript">
+function func_delete(id) {
+
+  if(!confirm('Are you sure?')){
+    e.preventDefault();
+    return false;
+  }
+  window.location.href ="action/product_delete.php?prod_id=" + id;
+
+}
+
+</script>
 </head>
 <body>
   <?php include 'navbar.php' ?>
@@ -45,7 +57,7 @@
       ราคา/ชิ้น
     </td>
     <td align='center'>
-      น้ำหนัก
+      น้ำหนัก/กก.
     </td>
     <td align='center'>
       หมายเหตุ
@@ -70,7 +82,7 @@
         echo '<td align="center">
                   <a href="editproduct.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                   <button type="button" class="btn btn-default btn-sm">Detail</button>
-                  <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
+                  <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["prod_id"].'\');" >Delete</button> </td>';
         echo '</tr>';
         $count++; // $count = $count + 1;
       }

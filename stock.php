@@ -1,7 +1,12 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT * FROM `stock` , supplier, material WHERE stock.mat_id = material.mat_id and material.sup_id = supplier.sup_id";
+  $sql = "SELECT * FROM stock as s
+    left join material as m on m.mat_id = s.mat_id
+    left join supplier as su on m.sup_id = su.sup_id
+";
   $query = mysqli_query($conn, $sql);
+  $sql2 = "SELECT * FROM supplier";
+  $query2 = mysqli_query($conn, $sql2);
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +26,6 @@
     <input type="text" class="form-control" id="mat_name" placeholder="material">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
-  <a href="addstock.php" class="btn btn-success">Add</a>
 </form>
 </center>
 
@@ -63,7 +67,13 @@
         echo '<td>'.$row["sup_name"].'</td>';
         echo '<td>'.$row["date_time"].'</td>';
         $id = $row["stock_id"];
-        echo '<td align="center"><a href="editstock.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+
+        ?>
+        <td align="center">
+<button type="button" data-id="<?=$row["mat_id"];?>" class="btn open-AddBookDialog btn-primary btn-lg" data-toggle="modal" data-target="#myModal" name="Edit"></button>
+
+        <?php
+        echo '<a href="editstock.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                   <button type="button" class="btn btn-default btn-sm">Detail</button>
                   <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
         echo '</tr>';
@@ -76,3 +86,21 @@
 </table>
 </body>
 </html>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
+      </div>
+      <div class="modal-body">
+
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>

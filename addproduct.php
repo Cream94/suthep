@@ -31,13 +31,13 @@
             </div>
             </div>
             <div class="form-group">
-            <label for="price" class="col-sm-2 control-label">ราคา</label>
+            <label for="price" class="col-sm-2 control-label">ราคา/ชิ้น</label>
             <div class="col-sm-10">
             <input type="price" class="form-control" id="price" name="price" placeholder="ราคา">
             </div>
             </div>
             <div class="form-group">
-            <label for="weight" class="col-sm-2 control-label">น้ำหนัก</label>
+            <label for="weight" class="col-sm-2 control-label">น้ำหนัก/กก.</label>
             <div class="col-sm-10">
             <input type="weight" class="form-control" id="weight" name="weight" placeholder="น้ำหนัก">
             </div>

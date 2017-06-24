@@ -9,6 +9,18 @@
 <head>
 <title>Suthep</title>
 <?php include 'header.php' ?>
+<script type="text/javascript">
+function func_delete(id) {
+
+  if(!confirm('Are you sure?')){
+    e.preventDefault();
+    return false;
+  }
+  window.location.href ="action/customer_delete.php?cust_id=" + id;
+
+}
+
+</script>
 </head>
 <body>
   <?php include 'navbar.php' ?>
@@ -74,7 +86,7 @@
       if ($_SESSION["login_super_admin"] == 1) {
       echo '<td align="center"><a href="editcustomer.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                 <button type="button" class="btn btn-default btn-sm">Detail</button>
-                <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>'
+                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["cust_id"].'\');" >Delete</button> </td>';
                 ;
       } else {
         echo '<td align="center"><a href="editcustomer.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>

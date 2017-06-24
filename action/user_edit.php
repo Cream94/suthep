@@ -12,6 +12,6 @@ if ($admin_name != null || $admin_address != null || $admin_tel != null || $admi
     $sql = "UPDATE admin SET admin_name = '$admin_name', admin_address = '$admin_address', admin_tel = '$admin_tel',
             admin_fax = '$admin_fax', email = '$email', username = '$username', password = '$password' WHERE admin_id = $admin_id";
     $query = mysqli_query($conn, $sql) or die('Die query => ' . mysqli_error($conn));
-    header("Location: http://localhost/suthep/admin.php");
+    header("Location: http://localhost/suthep/user.php");
     die();
 }

@@ -1,6 +1,8 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT * FROM material, supplier WHERE material.sup_id = supplier.sup_id";
+  $sql = "SELECT * FROM material as m
+  left join supplier as s on s.sup_id = m.sup_id
+    order by mat_name ";
   $query = mysqli_query($conn, $sql);
 ?>
 
@@ -9,6 +11,18 @@
 <head>
 <title>Suthep</title>
 <?php include 'header.php' ?>
+<script type="text/javascript">
+function func_delete(id) {
+
+  if(!confirm('Are you sure?')){
+    e.preventDefault();
+    return false;
+  }
+  window.location.href ="action/material_delete.php?mat_id=" + id;
+
+}
+
+</script>
 </head>
 <body>
   <?php include 'navbar.php' ?>
@@ -73,9 +87,9 @@
         $id = $row["mat_id"];
         echo '<td align="center"><a href="editmaterial.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                   <button type="button" class="btn btn-default btn-sm">Detail</button>
-                  <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
+                  <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["mat_id"].'\');" >Delete</button> </td>';
         echo '</tr>';
-        $count++; // $count = $count + 1;
+        $count++; // $count = $count + 1;/
       }
     ?>
 

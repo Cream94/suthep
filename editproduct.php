@@ -1,7 +1,7 @@
 <?php
   require_once 'database/connector.php';
   $id = $_GET["id"];
-  $sql = "SELECT * FROM product WHERE prod_id = $id";
+  $sql = "SELECT * FROM product WHERE prod_id = '$id'";
   $query = mysqli_query($conn, $sql);
   $row = mysqli_fetch_assoc($query);
 ?>
@@ -38,13 +38,13 @@
             </div>
             </div>
             <div class="form-group">
-            <label for="price" class="col-sm-2 control-label">ราคา</label>
+            <label for="price" class="col-sm-2 control-label">ราคา/ชิ้น</label>
             <div class="col-sm-10">
             <input type="price" class="form-control" id="price" name="price" value="<?php echo $row["price"]; ?>" placeholder="ราคา">
             </div>
             </div>
             <div class="form-group">
-            <label for="weight" class="col-sm-2 control-label">น้ำหนัก</label>
+            <label for="weight" class="col-sm-2 control-label">น้ำหนัก/กก.</label>
             <div class="col-sm-10">
             <input type="weight" class="form-control" id="weight" name="weight" value="<?php echo $row["weight"]; ?>" placeholder="น้ำหนัก">
             </div>

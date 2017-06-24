@@ -9,6 +9,18 @@
 <head>
 <title>Suthep</title>
 <?php include 'header.php' ?>
+<script type="text/javascript">
+function func_delete(id) {
+
+  if(!confirm('Are you sure?')){
+    e.preventDefault();
+    return false;
+  }
+  window.location.href ="action/supplier_delete.php?sup_id=" + id;
+
+}
+
+</script>
 </head>
 <body>
   <?php include 'navbar.php' ?>
@@ -73,7 +85,7 @@
       $id = $row["sup_id"];
       echo '<td align="center"><a href="editsupplier.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                 <button type="button" class="btn btn-default btn-sm">Detail</button>
-                <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
+                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["sup_id"].'\');" >Delete</button> </td>';
       echo '</tr>';
       $count++; // $count = $count + 1;
     }

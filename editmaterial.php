@@ -3,7 +3,10 @@
   $id = $_GET["id"];
   $sql = "SELECT * FROM material WHERE mat_id = $id";
   $query = mysqli_query($conn, $sql);
-  $row = mysqli_fetch_assoc($query);
+  $row = mysqli_fetch_array($query);
+
+  $sql2 = "SELECT * FROM supplier";
+  $query2 = mysqli_query($conn, $sql2);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,8 +31,15 @@
             </div>
             <div class="form-group">
             <label for="sup_id" class="col-sm-2 control-label">รหัสผู้ผลิต</label>
-            <div class="col-sm-10">
-            <input type="detail" class="form-control" id="sup_id" name="sup_id" value="<?php echo $row["sup_id"]; ?>" placeholder="รหัสผู้ผลิต">
+            <div class="col-sm-7">
+              <select class="form-control" name="sup_id" >
+                <?php
+                  while ($row2 = mysqli_fetch_array($query2)) {
+                    echo '<option value="'.$row2["sup_id"].'">'.$row2["sup_name"].'</option>';
+                  }
+
+                 ?>
+              </select>
             </div>
             </div>
 

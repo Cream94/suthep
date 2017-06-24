@@ -13,11 +13,11 @@
         <div class="row">
           <div class="col-md-6 col-md-offset-3 jumbotron well">
             <h4 style="font-weight: bold;">Add Form</h4> <br/>
-            <form class="form-horizontal" action="action/admin_add.php" method="post">
+            <form class="form-horizontal" action="action/user_add.php" method="post">
             <div class="form-group">
-            <label for="admin_name" class="col-sm-2 control-label">ชื่อผู้ดูแล</label>
+            <label for="admin_name" class="col-sm-2 control-label">ชื่อผู้ใช้</label>
             <div class="col-sm-10">
-            <input type="id" class="form-control" id="admin_name" name="admin_name" placeholder="ชื่อผู้ดูแล">
+            <input type="id" class="form-control" id="admin_name" name="admin_name" placeholder="ชื่อผู้ใช้">
             </div>
             </div>
             <div class="form-group">
@@ -44,20 +44,10 @@
             <input type="weight" class="form-control" id="weight" name="email" placeholder="E-mail">
             </div>
             </div>
-            <div class="form-group">
-            <label for="super_admin" class="col-sm-2 control-label">ผู้ดูแล</label>
-            <div class="col-sm-10" align="left">
-            <label class="radio-inline">
-              <input type="radio" name="super_admin" id="inlineRadio1" value="1"> Yes
-            </label>
-            <label class="radio-inline">
-              <input type="radio" name="super_admin" id="inlineRadio2" value="0" checked> No
-            </label>
-          </div>
-          </div>
+          
 
         <button type="submit" class="btn btn-success">Save</button>
-        <a href="admin.php" class="btn btn-danger">Cancel</a>
+        <a href="user.php" class="btn btn-danger">Cancel</a>
 
       </form>
       </center>

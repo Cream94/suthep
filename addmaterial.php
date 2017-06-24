@@ -1,3 +1,10 @@
+<?php
+  require_once 'database/connector.php';
+  $sql = "SELECT * FROM supplier";
+  $querysupplier = mysqli_query($conn, $sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,11 +29,17 @@
             </div>
             <div class="form-group">
             <label for="sup_id" class="col-sm-2 control-label">รหัสผู้ผลิต</label>
-            <div class="col-sm-10">
-            <input type="detail" class="form-control" id="sup_id" name="sup_id" placeholder="รหัสผู้ผลิต">
-            </div>
-            </div>
+            <div class="col-sm-7">
+              <select class="form-control" name="sup_id" >
+                <?php
+                  while ($row = mysqli_fetch_array($querysupplier)) {
+                    echo '<option value="'.$row["sup_id"].'">'.$row["sup_name"].'</option>';
+                  }
 
+                 ?>
+              </select>
+            </div>
+            </div>
 
         <button type="submit" class="btn btn-success">Save</button>
         <a href="material.php" class="btn btn-danger">Cancel</a>
