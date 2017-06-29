@@ -83,10 +83,16 @@ function func_delete(id) {
       echo '<td>'.$row["email"].'</td>';
       echo '<td align="center">-</td>';
       $id = $row["sup_id"];
+      if ($_SESSION["login_super_admin"] == 1) {
       echo '<td align="center"><a href="editsupplier.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                 <button type="button" class="btn btn-default btn-sm">Detail</button>
                 <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["sup_id"].'\');" >Delete</button> </td>';
-      echo '</tr>';
+                ;
+          } else {
+          echo '<td align="center"><a href="editsupplier.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+                <button type="button" class="btn btn-default btn-sm">Detail</button>';
+          }
+          echo '</tr>';
       $count++; // $count = $count + 1;
     }
   ?>

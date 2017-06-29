@@ -53,6 +53,9 @@ function func_delete(id) {
       ชื่อวัตถุดิบ
     </td>
     <td align='center'>
+      ราคาวัตถุดิบ
+    </td>
+    <td align='center'>
       ชื่อบริษัท
     </td>
     <td align='center'>
@@ -79,6 +82,7 @@ function func_delete(id) {
         echo '<td align="center">'.$count.'</td>';
         echo '<td align="center">'.$row["mat_id"].'</td>';
         echo '<td>'.$row["mat_name"].'</td>';
+        echo '<td>'.$row["price"].'</td>';
         echo '<td>'.$row["sup_name"].'</td>';
         echo '<td>'.$row["sup_address"].'</td>';
         echo '<td>'.$row["sup_tel"].'</td>';

@@ -42,7 +42,6 @@ if (!isset($_SESSION["login_id"])) {
             <li><a href="customer.php">Customer</a></li>
             <li><a href="supplier.php">Supplier</a></li>
             <li><a href="material.php">Material</a></li>
-            <li role="separator" class="divider"></li>
             <li><a href="stock.php">Stock</a></li>
           </ul>
         </li>

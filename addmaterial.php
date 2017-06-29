@@ -28,6 +28,12 @@
             </div>
             </div>
             <div class="form-group">
+            <label for="price" class="col-sm-2 control-label">ราคาวัตถุดิบ</label>
+            <div class="col-sm-10">
+            <input type="id" class="form-control" id="price" name="price" placeholder="ราคาวัตถุดิบ">
+            </div>
+            </div>
+            <div class="form-group">
             <label for="sup_id" class="col-sm-2 control-label">รหัสผู้ผลิต</label>
             <div class="col-sm-7">
               <select class="form-control" name="sup_id" >
