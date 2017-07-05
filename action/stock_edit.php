@@ -20,7 +20,7 @@ if ($mat_name != null ) {
     $sql1 = "select number from stock WHERE stock_id = $stock_id and mat_id = $mat_id";
     $query1 = mysqli_query($conn, $sql1) or die('Die query => ' . mysqli_error($conn));
     $old_number = mysqli_fetch_assoc($query1);
-  
+
     if ($status==1) {
       $new_number = $old_number['number'] + $number ;
     }else{

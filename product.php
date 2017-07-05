@@ -79,16 +79,52 @@ function func_delete(id) {
         echo '<td>'.$row["weight"].'</td>';
         echo '<td align="center">-</td>';
         $id = $row["prod_id"];
-        echo '<td align="center">
-                  <a href="editproduct.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
-                  <button type="button" class="btn btn-default btn-sm">Detail</button>
-                  <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["prod_id"].'\');" >Delete</button> </td>';
+
+        ?>
+        <td align="center">
+
+        <?php
+        echo   '<button type="button" onclick="$(\'#prod_id\').val('.$row["prod_id"].')" class="btn btn-default open-AddBookDialog btn-sm">Edit</button>
+                <button type="button" class="btn btn-default btn-sm">Detail</button>
+                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["prod_id"].'\');" >Delete</button> </td>';
         echo '</tr>';
         $count++; // $count = $count + 1;
       }
     ?>
 
-
+    <script>
+      $(document).ready(function(){
+        $('.open-AddBookDialog').on('click', function(){
+          $.ajax({
+            url : "action/product_by_id.php",
+            type : "POST",
+            dataType : "JSON",
+            data : {
+              "id" : $('#prod_id').val()
+            },
+            success : function(data) {
+                var product = data.product;
+                $('#modal_mat_name').val(material.prod_name);
+                $('#modal_number').val(material.number);
+                var stockId = material.stock_id;
+                var supSeleted = material.sup_id;
+                var supList = $('#modal_sup_list');
+                for (var i = 0; i < supplier.length; i++) {
+                  var id = supplier[i].sup_id;
+                  var name = supplier[i].sup_name;
+                  if (supSeleted == id) {
+                    $('<option value="'+id+'" selected>'+name+'</option>').appendTo(supList);
+                  } else {
+                    $('<option value="'+id+'">'+name+'</option>').appendTo(supList);
+                  }
+                }
+                $('#formModal').attr('action', 'action/stock_edit.php?id=' + stockId);
+                $('#myModal').modal();
+            }
+          })
+        })
+      })
+    </script>
 
 </table>
 </body>
