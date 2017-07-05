@@ -75,16 +75,11 @@ function func_delete(id) {
         echo '<td align="center">รูปภาพ</td>';
         echo '<td align="center">'.$row["prod_id"].'</td>';
         echo '<td>'.$row["prod_detail"].'</td>';
-        echo '<td>'.$row["price"].'</td>';
-        echo '<td>'.$row["weight"].'</td>';
+        echo '<td align="right">'.$row["price"].'</td>';
+        echo '<td align="right">'.$row["weight"].'</td>';
         echo '<td align="center">-</td>';
         $id = $row["prod_id"];
-
-        ?>
-        <td align="center">
-
-        <?php
-        echo   '<button type="button" onclick="$(\'#prod_id\').val('.$row["prod_id"].')" class="btn btn-default open-AddBookDialog btn-sm">Edit</button>
+        echo   '<td align="center"><a href="editproduct.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                 <button type="button" class="btn btn-default btn-sm">Detail</button>
                 <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["prod_id"].'\');" >Delete</button> </td>';
         echo '</tr>';
@@ -104,21 +99,11 @@ function func_delete(id) {
             },
             success : function(data) {
                 var product = data.product;
-                $('#modal_mat_name').val(material.prod_name);
-                $('#modal_number').val(material.number);
-                var stockId = material.stock_id;
-                var supSeleted = material.sup_id;
-                var supList = $('#modal_sup_list');
-                for (var i = 0; i < supplier.length; i++) {
-                  var id = supplier[i].sup_id;
-                  var name = supplier[i].sup_name;
-                  if (supSeleted == id) {
-                    $('<option value="'+id+'" selected>'+name+'</option>').appendTo(supList);
-                  } else {
-                    $('<option value="'+id+'">'+name+'</option>').appendTo(supList);
-                  }
-                }
-                $('#formModal').attr('action', 'action/stock_edit.php?id=' + stockId);
+                $('#modal_mat_name').val(product.prod_name);
+                var productId = product.prod_id;
+                var prodList = $('#modal_prod_list');
+
+                $('#formModal').attr('action', 'action/product_edit.php?id=' + productId);
                 $('#myModal').modal();
             }
           })
@@ -129,3 +114,23 @@ function func_delete(id) {
 </table>
 </body>
 </html>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
+      </div>
+      <div class="modal-body">
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+      </div>
+</form>
+  </div>
+</div>

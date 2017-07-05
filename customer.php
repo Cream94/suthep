@@ -78,8 +78,8 @@ function func_delete(id) {
       echo '<td align="center">'.$row["cust_id"].'</td>';
       echo '<td>'.$row["cust_name"].'</td>';
       echo '<td>'.$row["cust_address"].'</td>';
-      echo '<td>'.$row["cust_tel"].'</td>';
-      echo '<td>'.$row["cust_fax"].'</td>';
+      echo '<td align="right">'.$row["cust_tel"].'</td>';
+      echo '<td align="right">'.$row["cust_fax"].'</td>';
       echo '<td>'.$row["email"].'</td>';
       echo '<td align="center">-</td>';
       $id = $row["cust_id"];

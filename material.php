@@ -82,11 +82,11 @@ function func_delete(id) {
         echo '<td align="center">'.$count.'</td>';
         echo '<td align="center">'.$row["mat_id"].'</td>';
         echo '<td>'.$row["mat_name"].'</td>';
-        echo '<td>'.$row["price"].'</td>';
+        echo '<td align="right">'.$row["price"].'</td>';
         echo '<td>'.$row["sup_name"].'</td>';
         echo '<td>'.$row["sup_address"].'</td>';
-        echo '<td>'.$row["sup_tel"].'</td>';
-        echo '<td>'.$row["sup_fax"].'</td>';
+        echo '<td align="right">'.$row["sup_tel"].'</td>';
+        echo '<td align="right">'.$row["sup_fax"].'</td>';
         echo '<td>'.$row["email"].'</td>';
         $id = $row["mat_id"];
         echo '<td align="center"><a href="editmaterial.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>

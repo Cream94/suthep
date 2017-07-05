@@ -78,8 +78,8 @@ function func_delete(id) {
       echo '<td align="center">'.$count.'</td>';
       echo '<td align="center">'.$row["sup_name"].'</td>';
       echo '<td>'.$row["mat_name"].'</td>';
-      echo '<td>'.$row["price"].'</td>';
-      echo '<td>'.$row["number"].'</td>';
+      echo '<td align="right">'.$row["price"].'</td>';
+      echo '<td align="right">'.$row["number"].'</td>';
       echo '<td>'.$row["date_time"].'</td>';
       $id = $row["po_id"];
       echo '<td align="center"><a href="editpurchase_order.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>

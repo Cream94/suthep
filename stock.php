@@ -14,6 +14,18 @@
 <head>
 <title>Suthep</title>
 <?php include 'header.php' ?>
+<script type="text/javascript">
+function func_delete(id) {
+
+  if(!confirm('Are you sure?')){
+    e.preventDefault();
+    return false;
+  }
+  window.location.href ="action/stock_delete.php?stock_id=" + id;
+
+}
+
+</script>
 </head>
 <body>
   <?php include 'navbar.php' ?>
@@ -63,7 +75,7 @@
         echo '<td align="center">'.$count.'</td>';
         echo '<td align="center">'.$row["mat_id"].'</td>';
         echo '<td>'.$row["mat_name"].'</td>';
-        echo '<td>'.$row["number"].'</td>';
+        echo '<td align="right">'.$row["number"].'</td>';
         echo '<td>'.$row["sup_name"].'</td>';
         echo '<td>'.$row["date_time"].'</td>';
         $id = $row["stock_id"];
@@ -73,8 +85,8 @@
 
         <?php
         echo '<button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].')" class="btn btn-default open-AddBookDialog btn-sm">Edit</button>
-                  <button type="button" class="btn btn-default btn-sm">Detail</button>
-                  <button type="button" class="btn btn-danger btn-sm">Delete</button> </td>';
+              <button type="button" class="btn btn-default btn-sm">Detail</button>
+              <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["stock_id"].'\');" >Delete</button> </td>';
         echo '</tr>';
         $count++; // $count = $count + 1;
       }
@@ -128,7 +140,6 @@
         <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
       </div>
       <div class="modal-body">
-        <h4 style="font-weight: bold;">Edit Form</h4> <br/>
         <form class="form-horizontal" id="formModal" action="" method="post">
           <input type="hidden" id="mat_id" name="mat_id" value="">
           <input type="hidden" id="admin_id" name="admin_id" value="">
