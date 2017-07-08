@@ -20,7 +20,7 @@
         <div class="row">
           <div class="col-md-10 col-md-offset-1 jumbotron well">
             <h4 style="font-weight: bold;">ใบสังซื้อสินค้า</h4> <br/>
-            <form class="form-horizontal" action="action/purchase_order_add.php" method="post">
+            <form class="form-horizontal" action="purchase_order_confirm.php" method="post">
               <label for="po_id" class="col-sm-2 control-label">เลขที่ใบสั่งซื้อ</label>
               <fieldset disabled>
               <div class="col-sm-2">
@@ -97,17 +97,23 @@
           var rank = 1;
           callProductName();
           $('#btnadd').on('click', function(){
+            var sup_id = $('#sup_list').find('option:selected').val();
             var sup_name = $('#sup_list').find('option:selected').text();
+            var mat_id = ($('#mat_list').find('option:selected').val()).split(":");
             var mat_name = $('#mat_list').find('option:selected').text();
             var number = $('#number').val();
             var total = parseInt(number) * parseInt($('#mat_price').val());
-            //alert(sup_name + " => " + mat_name + " => " + number + " => " + total);
+            //alert("mat_id: " + mat_id[0]);
             var tbody = $('#maincontent')
             var tr = $('<tr></tr>').appendTo(tbody);
+            $('<input name="sup_id[]" style="display: none" value="'+ (sup_id) +'">').appendTo(tr);
+            $('<input name="mat_id[]" style="display: none" value="'+ (mat_id[0]) +'">').appendTo(tr);
+            $('<input name="price[]" style="display: none" value="'+ (mat_id[1]) +'">').appendTo(tr);
+            $('<input name="name[]" style="display: none" value="'+ (mat_name) +'">').appendTo(tr);
             $('<td>'+ (rank++) +'</td>').appendTo(tr);
             $('<td>'+ (sup_name) +'</td>').appendTo(tr);
             $('<td>'+ (mat_name) +'</td>').appendTo(tr);
-            $('<td>'+ (addComma(number)) +'</td>').appendTo(tr);
+            $('<td><input name="number[]" value="'+ (number) +'"></td>').appendTo(tr);
             $('<td>'+ (addComma(total)) +'</td>').appendTo(tr);
             $('<td> <center> <button type="button" class="btn btn-warning btn-sm">Delete</button> <center> </td>').appendTo(tr);
           });
