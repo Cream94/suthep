@@ -1,6 +1,10 @@
 <?php
   require_once 'database/connector.php';
   $sql = "SELECT * FROM product";
+  $search = isset($_GET["search"]) ? $_GET["search"] : "";
+  if ($search != "") {
+    $sql .= " WHERE product.prod_id like '%$search%'";
+  }
   $query = mysqli_query($conn, $sql);
 ?>
 
@@ -29,8 +33,8 @@ function func_delete(id) {
   <div class="row">
 <form class="form-inline">
   <div class="form-group">
-    <label for="prod_name">ชื่อสินค้า</label>
-    <input type="text" class="form-control" id="prod_name" placeholder="product">
+    <label for="prod_id">รหัสสินค้า</label>
+    <input type="text" name="search" class="form-control" id="prod_id" placeholder="product" value="<?=$search;?>">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
   <a href="addproduct.php" class="btn btn-success">Add</a>

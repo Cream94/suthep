@@ -1,6 +1,10 @@
 <?php
   require_once 'database/connector.php';
   $sql = "SELECT * FROM admin WHERE super_admin = 0";
+  $search = isset($_GET["search"]) ? $_GET["search"] : "";
+  if ($search != "") {
+    $sql .= " and (admin.admin_name like '%$search%')";
+  }
   $query = mysqli_query($conn, $sql);
 ?>
 
@@ -30,7 +34,7 @@ function func_delete(id) {
 <form class="form-inline">
   <div class="form-group">
     <label for="admin_name">ชื่อผู้ใช้</label>
-    <input type="text" class="form-control" id="admin_name" placeholder="admin">
+    <input type="text" name="search" class="form-control" id="admin_name" placeholder="admin" value="<?=$search;?>">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
   <a href="adduser.php" class="btn btn-success">Add</a>

@@ -2,11 +2,16 @@
   require_once 'database/connector.php';
   $sql = "SELECT * FROM stock as s
     left join material as m on m.mat_id = s.mat_id
-    left join supplier as su on m.sup_id = su.sup_id
-";
+    left join supplier as su on m.sup_id = su.sup_id";
+    $search = isset($_GET["search"]) ? $_GET["search"] : "";
+    if ($search != "") {
+      $sql .= " WHERE m.mat_name like '%$search%'";
+    }
   $query = mysqli_query($conn, $sql);
+
   $sql2 = "SELECT * FROM supplier";
   $query2 = mysqli_query($conn, $sql2);
+
 ?>
 
 <!DOCTYPE html>
@@ -15,13 +20,13 @@
 <title>Suthep</title>
 <?php include 'header.php' ?>
 <script type="text/javascript">
-function func_delete(id) {
+function func_delete(id, mid) {
 
   if(!confirm('Are you sure?')){
     e.preventDefault();
     return false;
   }
-  window.location.href ="action/stock_delete.php?stock_id=" + id;
+  window.location.href ="action/stock_delete.php?stock_id=" + id + "&mat_id=" + mid;
 
 }
 
@@ -35,7 +40,7 @@ function func_delete(id) {
 <form class="form-inline">
   <div class="form-group">
     <label for="mat_name">ชื่อวัตถุดิบ</label>
-    <input type="text" class="form-control" id="mat_name" placeholder="material">
+    <input type="text" name="search" class="form-control" id="mat_name" placeholder="material" value="<?=$search;?>">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
 </form>
@@ -86,7 +91,7 @@ function func_delete(id) {
         <?php
         echo '<button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].')" class="btn btn-default open-AddBookDialog btn-sm">Edit</button>
               <button type="button" class="btn btn-default btn-sm">Detail</button>
-              <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["stock_id"].'\');" >Delete</button> </td>';
+              <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["stock_id"].'\', \''.$row["mat_id"].'\');" >Delete</button> </td>';
         echo '</tr>';
         $count++; // $count = $count + 1;
       }

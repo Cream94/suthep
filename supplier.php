@@ -1,6 +1,10 @@
 <?php
   require_once 'database/connector.php';
   $sql = "SELECT * FROM supplier";
+  $search = isset($_GET["search"]) ? $_GET["search"] : "";
+  if ($search != "") {
+    $sql .= " WHERE supplier.sup_name like '%$search%'";
+  }
   $query = mysqli_query($conn, $sql);
 ?>
 
@@ -30,7 +34,7 @@ function func_delete(id) {
 <form class="form-inline">
   <div class="form-group">
     <label for="sup_name">ชื่อผู้ผลิต</label>
-    <input type="text" class="form-control" id="sup_name" placeholder="supplier">
+    <input type="text" name="search" class="form-control" id="sup_name" placeholder="supplier" value="<?=$search;?>">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
   <a href="addsupplier.php" class="btn btn-success">Add</a>

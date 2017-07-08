@@ -1,8 +1,13 @@
 <?php
   require_once 'database/connector.php';
   $sql = "SELECT * FROM material as m
-  left join supplier as s on s.sup_id = m.sup_id
-    order by mat_name ";
+  left join supplier as s on s.sup_id = m.sup_id ";
+  $search = isset($_GET["search"]) ? $_GET["search"] : "";
+  if ($search != "") {
+    $sql .= " WHERE m.mat_name like '%$search%' or s.sup_name like '%$search%'";
+  }
+  $sql .= " order by mat_name";
+
   $query = mysqli_query($conn, $sql);
 ?>
 
@@ -29,10 +34,10 @@ function func_delete(id) {
     <div class="container-fluid">
   <center>
   <div class="row">
-<form class="form-inline">
+<form class="form-inline" method="get" action="material.php">
   <div class="form-group">
-    <label for="mat_name">ชื่อวัตถุดิบ</label>
-    <input type="text" class="form-control" id="mat_name" placeholder="material">
+    <label for="mat_name">ชื่อวัตถุดิบ/ชื่อบริษัทผู้ผลิต</label>
+    <input type="text" name="search" class="form-control" id="mat_name" placeholder="material" value="<?=$search;?>">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
   <a href="addmaterial.php" class="btn btn-success">Add</a>
