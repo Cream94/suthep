@@ -28,6 +28,12 @@
             </div>
             </div>
             <div class="form-group">
+            <label for="unit" class="col-sm-2 control-label">หน่วยนับ</label>
+            <div class="col-sm-10">
+            <input type="unit" class="form-control" id="unit" name="unit" placeholder="หน่วยนับ">
+            </div>
+            </div>
+            <div class="form-group">
             <label for="price" class="col-sm-2 control-label">ราคาวัตถุดิบ</label>
             <div class="col-sm-10">
             <input type="id" class="form-control" id="price" name="price" placeholder="ราคาวัตถุดิบ">
