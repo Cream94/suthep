@@ -2,7 +2,7 @@
 require_once '../database/connector.php';
 $sup_id = isset($_POST["sup_id"]) ? $_POST["sup_id"] : null; // short if.33
 $price = isset($_POST["price"]) ? $_POST["price"] : null; // short if.
-$sup_id = isset($_POST["sup_id"]) ? $_POST["sup_id"] : null; // short if.
+$mat_name = isset($_POST["mat_name"]) ? $_POST["mat_name"] : null; // short if.
 //print_r($_POST);
 //exit();
 if ($mat_name != null || $sup_id != null ) {

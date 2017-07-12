@@ -50,7 +50,7 @@ if (!isset($_SESSION["login_id"])) {
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PO & SO <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="purchase_order.php">Purchase Order</a></li>
-            <li><a href="#">Sale Order</a></li>
+            <li><a href="sale_order.php">Sale Order</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">Account</a></li>
           </ul>
