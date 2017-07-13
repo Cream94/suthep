@@ -3,6 +3,9 @@
   $sql = "SELECT * FROM customer";
   $querycustomer = mysqli_query($conn, $sql);
 
+  $sql2 = "SELECT * FROM product";
+  $queryproduct = mysqli_query($conn, $sql2);
+
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +38,13 @@
             </div>
             <label for="prod_id" class="col-sm-1 control-label">รหัสสินค้า</label>
             <div class="col-sm-2">
-              <select class="form-control" name="prod_id" id="prod_list" onchange="callPrice()">
+              <select class="form-control" name="prod_id" onchange="callProductName();" id="prod_list" >
+                <?php
+                  while ($row = mysqli_fetch_array($queryproduct)) {
+                    echo '<option value="'.$row["prod_id"]. ":" .$row["price"]. ":" .$row["prod_detail"].'">'.$row["prod_id"].'</option>';
+                  }
+
+                 ?>
               </select>
             </div>
             <div class="form-group">
@@ -61,6 +70,9 @@
               </td>
               <td align='center'>
                 รหัสสินค้า
+              </td>
+              <td align='center'>
+                รายละเอียด
               </td>
               <td align='center'>
                 จำนวน
@@ -92,9 +104,10 @@
             var cust_name = $('#cust_list').find('option:selected').text();
             var prod_id = ($('#prod_list').find('option:selected').val()).split(":");
             var prod_name = $('#prod_list').find('option:selected').text();
+            var prod_detail = prod_id[2];
             var number = $('#number').val();
-            var total = parseInt(number) * parseInt($('#prod_price').val());
-            //alert("mat_id: " + mat_id[0]);
+            var total = parseInt(number) * parseInt(prod_id[1]);
+            //alert(total);
             var tbody = $('#maincontent')
             var tr = $('<tr></tr>').appendTo(tbody);
             $('<input name="cust_id[]" style="display: none" value="'+ (cust_id) +'">').appendTo(tr);
@@ -104,6 +117,7 @@
             $('<td>'+ (rank++) +'</td>').appendTo(tr);
             $('<td>'+ (cust_name) +'</td>').appendTo(tr);
             $('<td>'+ (prod_name) +'</td>').appendTo(tr);
+            $('<td>'+ (prod_detail) +'</td>').appendTo(tr);
             $('<td><input name="number[]" value="'+ (number) +'"></td>').appendTo(tr);
             $('<td>'+ (addComma(total)) +'</td>').appendTo(tr);
             $('<td> <center> <button type="button" class="btn btn-warning btn-sm">Delete</button> <center> </td>').appendTo(tr);
@@ -147,5 +161,6 @@
       </script>
 
       <input type="hidden" id="prod_price">
+      <input type="hidden" id="prod_detail">
 </body>
 </html>
