@@ -118,6 +118,7 @@
             $('<td>'+ (cust_name) +'</td>').appendTo(tr);
             $('<td>'+ (prod_name) +'</td>').appendTo(tr);
             $('<td>'+ (prod_detail) +'</td>').appendTo(tr);
+            $('<input name="prod_detail[]" style="display: none" value="'+ (prod_detail) +'">').appendTo(tr);
             $('<td><input name="number[]" value="'+ (number) +'"></td>').appendTo(tr);
             $('<td>'+ (addComma(total)) +'</td>').appendTo(tr);
             $('<td> <center> <button type="button" class="btn btn-warning btn-sm">Delete</button> <center> </td>').appendTo(tr);

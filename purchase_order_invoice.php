@@ -1,3 +1,20 @@
+<?php
+require_once 'database/connector.php';
+$poid = $_GET["poid"];
+
+$sql = "SELECT * FROM purchase_order as po
+  left join supplier as su on su.sup_id = po.sup_id
+  left join admin as ad on ad.admin_id = po.admin_id
+  left join material as m on m.mat_id = po.mat_id WHERE po.po_id = $poid";
+
+$sql2 = "SELECT * FROM purchase_order as po
+    left join supplier as su on su.sup_id = po.sup_id
+    left join admin as ad on ad.admin_id = po.admin_id
+    left join material as m on m.mat_id = po.mat_id WHERE po.po_id = $poid";
+$query = mysqli_query($conn, $sql);
+$query2 = mysqli_query($conn, $sql2);
+$supplier = mysqli_fetch_assoc($query2);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -5,6 +22,9 @@
 <title>Suthep</title>
 <?php include 'header.php' ?>
 <style>
+  html, body {
+    min-height: 800px;
+  }
   .border-box {
     border: 1px solid #000;
     padding: 4px;
@@ -35,21 +55,21 @@
           <table class="table table-bordered">
             <tr>
               <td style="width: 40%" align="center">เลขที่เอกสาร</td>
-              <td style="width: 60%"></td>
+              <td style="width: 60%"><?=$supplier["po_id"];?></td>
             </tr>
             <tr>
               <td style="width: 40%" align="center">วันที่เอกสาร</td>
-              <td style="width: 60%"></td>
+              <td style="width: 60%"><?=$supplier["date_time"];?></td>
             </tr>
           </table>
       </div>
       <div class="col-md-12">
         <div class="col-md-6">
             <div class="col-md-6">
-              <strong>รหัสผู้ขาย</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ก. 1101
+              <strong>รหัสผู้ขาย</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$supplier["sup_id"];?>
             </div>
             <div class="col-md-6">
-              <strong>ชื่อผู้ติดต่อ</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;คุณ ครีม
+              <strong>ชื่อผู้ติดต่อ</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$supplier["admin_name"];?>
             </div>
         </div>
       </div>
@@ -60,13 +80,13 @@
               ชื่อผู้ขาย
             </div>
             <div class="col-md-10">
-              อลูมิเนียม จำกัด
+              <?=$supplier["sup_name"];?>
             </div>
             <div class="col-md-2">
               ที่อยู่
             </div>
             <div class="col-md-10">
-              กรุงเทพ
+              <?=$supplier["sup_address"];?>
             </div>
           </div>
         </div>
@@ -76,13 +96,13 @@
               วันที่อนุมัติขอซื้อ
             </div>
             <div class="col-md-9">
-              5/6/2560
+              <?=$supplier["date_time"];?>
             </div>
             <div class="col-md-3">
               วันกำหนดส่ง
             </div>
             <div class="col-md-9">
-              10/6/2560
+              -
             </div>
             <div class="col-md-3">
               จำนวนวันเครดิต
@@ -110,10 +130,25 @@
                 <th>จำนวนเงิน</th>
               </thead>
               <tbody>
-
+                <?php
+                  $count = 1;
+                  $total = 0;
+                  while ($row = mysqli_fetch_array($query)) {
+                    echo "<tr>";
+                    echo "<td>$count</td>";
+                    echo "<td>".$row["mat_name"]."</td>";
+                    echo "<td>".$row["number"]."</td>";
+                    echo "<td>".$row["unit"]."</td>";
+                    echo "<td>".$row["price"]."</td>";
+                    echo "<td>".number_format($row["number"] * $row["price"])."</td>";
+                    $total += ($row["number"] * $row["price"]);
+                    echo "</tr>";
+                    $count++;
+                  }
+                ?>
                 <tr>
                   <td colspan="5" align="right"><strong>ราคาสุทธิ</strong></td>
-                  <td>100.00</td>
+                  <td><?=number_format($total);?></td>
                 </tr>
               </tbody>
             </table>
@@ -138,12 +173,9 @@
           </div>
             <div class="col-md-3" style="border-left : 1px solid black">
               <div class="col-md-12">
-                ในนาม
+                ผู้จัดทำ
               </div>
               <br/><hr>
-              <div class="col-md-12">
-                ผู้มีอำนาจลงนาม
-              </div>
             </div>
             <div class="col-md-3"  style="border-left : 1px solid black">
               <div class="col-md-12">
@@ -157,7 +189,11 @@
           </div>
         </div>
       </div>
-
+      <div class="col-md-12" style="margin-top: 10px">
+        <center>
+          <a href="purchase_order.php" class="btn btn-danger">Black</a>
+        </center>
+      </div>
 
 
   </div>

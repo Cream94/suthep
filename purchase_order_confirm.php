@@ -25,47 +25,51 @@ $rowSuppier = mysqli_fetch_assoc($querySup);
 <body>
   <?php include 'navbar.php' ?>
   <div class="container">
-    <div class="col-md-12" align="center">
-      <h1><?=$rowSuppier["sup_name"]; ?></h1>
-      <h4><?=$rowSuppier["sup_address"]; ?></h4>
+    <form action="action/purchase_order_save.php" method="post">
+      <div class="col-md-12" align="center">
+        <h1><?=$rowSuppier["sup_name"]; ?></h1>
+        <h4><?=$rowSuppier["sup_address"]; ?></h4>
+      </div>
+      <div class="col-md-12" align="left">
+        <h5>รายการสินค้า</h5>
+      </div>
+      <div class="col-md-12">
+        <table class="table table-striped table-hover">
+          <thead>
+            <th>ลำดับ</th>
+            <th>ชื่อสินค้า</th>
+            <th style="width: 50px">จำนวน</th>
+            <th>ราคาต่อชิ้น</th>
+            <th>ราคารวม</th>
+          </thead>
+          <tbody>
+            <?php
+              $totalNet = 0;
+              for ($i=0; $i < sizeof($supID); $i++) {
+                echo "<tr>";
+                echo '<td>'.($i + 1).'</td>';
+                echo '<td>'.$matName[$i].'</td>';
+                echo '<td style="display: none"><input name="mat_id[]" type="text" value="'.$matID[$i].'"></td>';
+                echo '<td style="display: none"><input name="sup_id[]" type="text" value="'.$supID[$i].'"></td>';
+                echo '<td><input name="number[]" min="1" type="number" onchange="calculate('.$i.', this);" value="'.$numbers[$i].'"></td>';
+                echo '<td><input style="display: none" id="label-price-'.$i.'" value="'.$prices[$i].'">';
+                echo '<td">'.$prices[$i].'</td>';
+                echo '<td class="total-price" id="label-total-'.$i.'">'.number_format(($numbers[$i] * $prices[$i]), 2).'</td>';
+                echo "</tr>";
+                $totalNet += (int)($numbers[$i] * $prices[$i]);
+              }
+            ?>
+            <tr>
+              <td colspan="4" align="right"><strong>ราคาสุทธิ</strong></td>
+              <td id="total-net" style="font-weight: bold"><?=number_format($totalNet, 2);?></td>
+            </tr>
+          </tbody>
+        </table>
+        <center>
+        <button type="submit" class="btn btn-success">Confirm</button>
+      </div>
     </div>
-    <div class="col-md-12" align="left">
-      <h5>รายการสินค้า</h5>
-    </div>
-    <div class="col-md-12">
-      <table class="table table-striped table-hover">
-        <thead>
-          <th>ลำดับ</th>
-          <th>ชื่อสินค้า</th>
-          <th style="width: 50px">จำนวน</th>
-          <th>ราคาต่อชิ้น</th>
-          <th>ราคารวม</th>
-        </thead>
-        <tbody>
-          <?php
-            $totalNet = 0;
-            for ($i=0; $i < sizeof($supID); $i++) {
-              echo "<tr>";
-              echo '<td>'.($i + 1).'</td>';
-              echo '<td>'.$matName[$i].'</td>';
-              echo '<td><input id="number[]" min="1" type="number" onchange="calculate('.$i.', this);" value="'.$numbers[$i].'"></td>';
-              echo '<td><input style="display: none" id="label-price-'.$i.'" value="'.$prices[$i].'">';
-              echo '<td">'.$prices[$i].'</td>';
-              echo '<td class="total-price" id="label-total-'.$i.'">'.number_format(($numbers[$i] * $prices[$i]), 2).'</td>';
-              echo "</tr>";
-              $totalNet += (int)($numbers[$i] * $prices[$i]);
-            }
-          ?>
-          <tr>
-            <td colspan="4" align="right"><strong>ราคาสุทธิ</strong></td>
-            <td id="total-net" style="font-weight: bold"><?=number_format($totalNet, 2);?></td>
-          </tr>
-        </tbody>
-      </table>
-      <center>
-      <button type="submit" class="btn btn-success">Confirm</button>
-    </dvi>
-  </div>
+  </form>
   <script>
   function calculate(pos, box) {
     var price = $("#label-price-" + pos).val();

@@ -1,14 +1,11 @@
 <?php
   require_once 'database/connector.php';
   $sql = "SELECT * FROM purchase_order as po
-    left join supplier as su on su.sup_name = po.sup_id
-    left join material as m on m.mat_id = s.mat_name
-    left join material as m on po.mat_id = m.price
-    ";
+    left join supplier as su on su.sup_id = po.sup_id
+    left join po_status as pos on po.status = pos.status_id
+    Group By po_id ";
 
   $query = mysqli_query($conn, $sql);
-  $sql2 = "SELECT * FROM purchase_order ";
-  $query2 = mysqli_query($conn, $sql2);
 ?>
 
 <!DOCTYPE html>
@@ -52,19 +49,16 @@ function func_delete(id) {
       ลำดับ
     </td>
     <td align='center'>
+      เลขที่เอกสาร
+    </td>
+    <td align='center'>
       ชื่อบริษัทผู้ผลิต
     </td>
     <td align='center'>
-      ชื่อวัตถุดิบ
-    </td>
-    <td align='center'>
-      ราคาวัตถุดิบ/ชิ้น
-    </td>
-    <td align='center'>
-      จำนวน
-    </td>
-    <td align='center'>
       วันที่สั่งซื้อวัตถุดิบ
+    </td>
+    <td align='center'>
+      สถานะ
     </td>
     <td align='center'>
       Action
@@ -73,14 +67,13 @@ function func_delete(id) {
 
   <?php
     $count = 1;
-    while ($row = mysqli_fetch_array($query2)) {
+    while ($row = mysqli_fetch_array($query)) {
       echo '<tr>';
       echo '<td align="center">'.$count.'</td>';
+      echo '<td align="center">'.$row["po_id"].'</td>';
       echo '<td align="center">'.$row["sup_name"].'</td>';
-      echo '<td>'.$row["mat_name"].'</td>';
-      echo '<td align="right">'.$row["price"].'</td>';
-      echo '<td align="right">'.$row["number"].'</td>';
       echo '<td>'.$row["date_time"].'</td>';
+      echo '<td>'.$row["status_name"].'</td>';
       $id = $row["po_id"];
       echo '<td align="center"><a href="editpurchase_order.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
                 <button type="button" class="btn btn-default btn-sm">Detail</button>
