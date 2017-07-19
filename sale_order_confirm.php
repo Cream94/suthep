@@ -26,6 +26,7 @@ $rowCustomer = mysqli_fetch_assoc($queryCust);
 <body>
   <?php include 'navbar.php' ?>
   <div class="container">
+    <form action="action/sale_order_save.php" method="post">
     <div class="col-md-12" align="center">
       <h1><?=$rowCustomer["cust_name"]; ?></h1>
       <h4><?=$rowCustomer["cust_address"]; ?></h4>

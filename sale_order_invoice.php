@@ -1,3 +1,21 @@
+<?php
+require_once 'database/connector.php';
+$soid = $_GET["soid"];
+
+$sql = "SELECT * FROM sale_order as so
+  left join customer as c on c.cust_id = so.cus_id
+  left join admin as ad on ad.admin_id = so.admin_id
+  left join product as p on p.prod_id = so.prod_id WHERE so.so_id = $soid";
+
+$sql2 = "SELECT * FROM sale_order as so
+  left join customer as c on c.cust_id = so.cus_id
+  left join admin as ad on ad.admin_id = so.admin_id
+  left join product as p on p.prod_id = so.prod_id WHERE so.so_id = $soid";
+$query = mysqli_query($conn, $sql);
+$query2 = mysqli_query($conn, $sql2);
+$customer = mysqli_fetch_assoc($query2);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,19 +62,19 @@
               นามลูกค้า
             </div>
             <div class="col-md-9">
-              ห้างหุ้นส่วนจำกัด เอฟทรี เอ็นจิเนียริ่ง
+              <?=$customer["cust_name"];?>
             </div>
             <div class="col-md-3">
               ที่อยู่
             </div>
             <div class="col-md-9">
-              กรุงเทพ
+              <?=$customer["cust_address"];?>
             </div>
             <div class="col-md-3">
               เลขที่ผู้เสีภาษี
             </div>
             <div class="col-md-9">
-              0733549002363
+              <?=$customer["tex_id"];?>
             </div>
           </div>
         </div>
@@ -72,7 +90,7 @@
               วันที่
             </div>
             <div class="col-md-9">
-              10/6/2560
+              <?=$customer["date_time"];?>
             </div>
             <div class="col-md-3">
               กำหนดชำระเงิน
@@ -102,9 +120,27 @@
                 <th style="width: 10%" align="center">จำนวนเงิน</th>
               </thead>
               <tbody>
+                <?php
+                  $count = 1;
+                  $total = 0;
+                  while ($row = mysqli_fetch_array($query)) {
+                    echo "<tr>";
+                    echo "<td>$count</td>";
+                    echo "<td>".$row["prod_id"]."</td>";
+                    echo "<td>".$row["prod_detail"]."</td>";
+                    echo "<td>".$row["number"]."</td>";
+                    echo "<td>".$row["weight"]."</td>";
+                    echo "<td>".number_format($row["number"] * $row["weight"])."</td>";
+                    echo "<td>".$row["price"]."</td>";
+                    echo "<td>".number_format($row["number"] * $row["price"])."</td>";
+                    $total += ($row["number"] * $row["price"]);
+                    echo "</tr>";
+                    $count++;
+                  }
+                ?>
                 <tr>
                   <td colspan="7" align="right"><strong>รวมเงิน</strong></td>
-                  <td>100.00</td>
+                  <td><?=number_format($total);?></td>
                 </tr>
                 <tr>
                   <td colspan="7" align="right"><strong>ภาษีมูลเพิ่ม7%</strong></td>
@@ -159,6 +195,11 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 10px">
+          <center>
+            <a href="sale_order.php" class="btn btn-danger">Black</a>
+          </center>
         </div>
 
 </body>
