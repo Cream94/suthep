@@ -16,13 +16,13 @@ if (!isset($_SESSION["login_id"])) {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Brand</a>
+      <a class="navbar-brand" href="#" img src="logo.png" alt="logo.png" class="img-rounded"> </a>
+      <img alt="Brand" src="logosuthep.png" width="10%" height="10%">
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="---xz">Link <span class="sr-only">(current)</span></a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> User Management <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -58,7 +58,6 @@ if (!isset($_SESSION["login_id"])) {
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logout <span class="caret"></span></a>
           <ul class="dropdown-menu">
