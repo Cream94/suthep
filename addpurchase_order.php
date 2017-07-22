@@ -21,14 +21,6 @@
           <div class="col-md-10 col-md-offset-1 jumbotron well">
             <h4 style="font-weight: bold;">ใบสังซื้อสินค้า</h4> <br/>
             <form class="form-horizontal" action="purchase_order_confirm.php" method="post">
-              <label for="po_id" class="col-sm-2 control-label">เลขที่ใบสั่งซื้อ</label>
-              <fieldset disabled>
-              <div class="col-sm-2">
-              <div class="form-group">
-                <input type="text" class="form-control" id="po_id" name="po_id" placeholder="เลขที่ใบสั่งซื้อ">
-              </div>
-              </div>
-              </fieldset>
             <div class="form-group">
             <label for="sup_id" class="col-sm-2 control-label">ชื่อผู้ผลิต</label>
             <div class="col-sm-2">

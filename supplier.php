@@ -49,9 +49,6 @@ function func_delete(id) {
       ลำดับ
     </td>
     <td align='center'>
-      รหัสผู้ผลิต
-    </td>
-    <td align='center'>
       ชื่อผู้ผลิต
     </td>
     <td align='center'>
@@ -64,12 +61,6 @@ function func_delete(id) {
       เบอร์แฟ๊กซ์
     </td>
     <td align='center'>
-      E-mail
-    </td>
-    <td align='center'>
-      หมายเหตุ
-    </td>
-    <td align='center'>
       Action
     </td>
   </tr>
@@ -79,22 +70,32 @@ function func_delete(id) {
     while ($row = mysqli_fetch_array($query)) {
       echo '<tr>';
       echo '<td align="center">'.$count.'</td>';
-      echo '<td align="center">'.$row["sup_id"].'</td>';
       echo '<td>'.$row["sup_name"].'</td>';
       echo '<td>'.$row["sup_address"].'</td>';
       echo '<td align="right">'.$row["sup_tel"].'</td>';
       echo '<td align="right">'.$row["sup_fax"].'</td>';
-      echo '<td>'.$row["email"].'</td>';
-      echo '<td align="center">-</td>';
       $id = $row["sup_id"];
       if ($_SESSION["login_super_admin"] == 1) {
-      echo '<td align="center"><a href="editsupplier.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
-                <button type="button" class="btn btn-default btn-sm">Detail</button>
+      echo '<td align="center">
+                <a href="editsupplier.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+
+                <button type="button" onclick="$(\'#sup_id\').val('.$row["sup_id"].');$(\'#modal_sup_id\').val(\''.$row["sup_id"].'\');
+                $(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');$(\'#modal_sup_address\').val(\''.$row["sup_address"].'\');
+                $(\'#modal_sup_tel\').val(\''.$row["sup_tel"].'\');$(\'#modal_sup_fax\').val(\''.$row["sup_fax"].'\');
+                $(\'#modal_email\').val(\''.$row["email"].'\')"
+                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
+
                 <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["sup_id"].'\');" >Delete</button> </td>';
                 ;
           } else {
-          echo '<td align="center"><a href="editsupplier.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
-                <button type="button" class="btn btn-default btn-sm">Detail</button>';
+          echo '<td align="center">
+                <a href="editsupplier.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+
+                <button type="button" onclick="$(\'#sup_id\').val('.$row["sup_id"].');$(\'#modal_sup_id\').val(\''.$row["sup_id"].'\');
+                $(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');$(\'#modal_sup_address\').val(\''.$row["sup_address"].'\');
+                $(\'#modal_sup_tel\').val(\''.$row["sup_tel"].'\');$(\'#modal_sup_fax\').val(\''.$row["sup_fax"].'\');
+                $(\'#modal_email\').val(\''.$row["email"].'\')"
+                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>';
           }
           echo '</tr>';
       $count++; // $count = $count + 1;
@@ -104,3 +105,60 @@ function func_delete(id) {
 </table>
 </body>
 </html>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" id="formModal" action="" method="post">
+          <div class="form-group">
+            <label for="sup_id" class="col-sm-2 control-label">รหัสผู้ผลิต</label>
+          <div class="col-sm-4">
+            <input type="detail" class="form-control" readonly id="modal_sup_id" name="sup_id" value="" placeholder="รหัสผู้ผลิต">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="sup_name" class="col-sm-2 control-label">ชื่อผู้ผลิต</label>
+          <div class="col-sm-10">
+            <input type="detail" class="form-control" readonly id="modal_sup_name" name="sup_name" value="" placeholder="ชื่อผู้ผลิต">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="sup_address" class="col-sm-2 control-label">ที่อยู่</label>
+          <div class="col-sm-10">
+            <textarea  type="detail" class="form-control" style="resize: none;" rows="3" readonly id="modal_sup_address" name="sup_address" value="" placeholder="ที่อยู่">
+            </textarea>
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="sup_tel" class="col-sm-2 control-label">เบอร์โทร</label>
+          <div class="col-sm-7">
+            <input type="detail" class="form-control" readonly id="modal_sup_tel" name="sup_tel" value="" placeholder="เบอร์โทร">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="sup_fax" class="col-sm-2 control-label">เบอร์แฟ๊กซ์</label>
+          <div class="col-sm-7">
+            <input type="detail" class="form-control" readonly id="modal_sup_fax" name="sup_fax" value="" placeholder="เบอร์แฟ๊กซ์">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">อีเมล์</label>
+          <div class="col-sm-10">
+            <input type="detail" class="form-control" readonly id="modal_email" name="email" value="" placeholder="อีเมล์">
+          </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>

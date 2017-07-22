@@ -2,16 +2,17 @@
 require_once 'database/connector.php';
 $poid = $_GET["poid"];
 
-$sql = "SELECT * FROM purchase_order as po
-  left join supplier as su on su.sup_id = po.sup_id
-  left join admin as ad on ad.admin_id = po.admin_id
-  left join material as m on m.mat_id = po.mat_id WHERE po.po_id = $poid";
+$sql1 = "SELECT * FROM purchase_order as po
+    left join supplier as su on su.sup_id = po.sup_id
+    left join admin as ad on ad.admin_id = po.admin_id
+    left join material as m on m.mat_id = po.mat_id WHERE po.po_id = $poid";
 
 $sql2 = "SELECT * FROM purchase_order as po
     left join supplier as su on su.sup_id = po.sup_id
     left join admin as ad on ad.admin_id = po.admin_id
     left join material as m on m.mat_id = po.mat_id WHERE po.po_id = $poid";
-$query = mysqli_query($conn, $sql);
+
+$query1 = mysqli_query($conn, $sql1);
 $query2 = mysqli_query($conn, $sql2);
 $supplier = mysqli_fetch_assoc($query2);
 ?>
@@ -41,9 +42,12 @@ $supplier = mysqli_fetch_assoc($query2);
 <body>
   <?php include 'navbar.php' ?>
   <div class="container">
-
-      <div class="col-md-12" align="center">
-          <div class="form-group">
+      <div class="col-md-12" >
+        <div class="col-md-1" >
+          <img alt="Brand" src="logosuthep.png" width="220%" height="220%">
+        </div>
+        <div class="col-md-11" >
+          <div class="form-group" align="center">
             <h3>บริษัท สุเทพ การหล่อ จำกัด</h3>
             <h5>9/2 หมู่ 2 ถ.พุทธมณฑลสาย 4 ต.กระทุ่มล้ม อ.สามพราน จ.นครปฐม 73220 <br/>
                 โทร.02-12345678 แฟ๊กซ์.02-12345678
@@ -59,16 +63,22 @@ $supplier = mysqli_fetch_assoc($query2);
             </tr>
             <tr>
               <td style="width: 40%" align="center">วันที่เอกสาร</td>
-              <td style="width: 60%"><?=$supplier["date_time"];?></td>
+              <td style="width: 60%">
+                <?php
+                  $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $supplier["date_time"]);
+                  $newDateString = $myDateTime->format('d F Y');
+                  echo $newDateString;
+               ?>
+             </td>
             </tr>
           </table>
       </div>
       <div class="col-md-12">
         <div class="col-md-6">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <strong>รหัสผู้ขาย</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$supplier["sup_id"];?>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
               <strong>ชื่อผู้ติดต่อ</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$supplier["admin_name"];?>
             </div>
         </div>
@@ -96,7 +106,11 @@ $supplier = mysqli_fetch_assoc($query2);
               วันที่อนุมัติขอซื้อ
             </div>
             <div class="col-md-9">
-              <?=$supplier["date_time"];?>
+              <?php
+                $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $supplier["date_time"]);
+                $newDateString = $myDateTime->format('d F Y');
+                echo $newDateString;
+             ?>
             </div>
             <div class="col-md-3">
               วันกำหนดส่ง
@@ -133,7 +147,7 @@ $supplier = mysqli_fetch_assoc($query2);
                 <?php
                   $count = 1;
                   $total = 0;
-                  while ($row = mysqli_fetch_array($query)) {
+                  while ($row = mysqli_fetch_array($query1)) {
                     echo "<tr>";
                     echo "<td>$count</td>";
                     echo "<td>".$row["mat_name"]."</td>";

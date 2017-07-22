@@ -7,11 +7,9 @@ require_once '../database/connector.php';
     $query = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($query);
     if (!empty($row)) {
-      $data["result"] = true;
-      $data["id"] = $row["cust_id"];
-      $data["name"] = $row["password"];
-      $data["username"] = $row["username"];
-      echo json_encode($data);
+      $row["result"] = true;
+      $row["password"] = "";
+      echo json_encode($row);
     } else {
       $data["result"] = false;
       $data["message"] = "username นี้ไม่มีในระบบ";

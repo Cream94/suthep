@@ -5,6 +5,7 @@
   if ($search != "") {
     $sql .= " WHERE product.prod_id like '%$search%'";
   }
+  $sql .= " ORDER By product.id DESC";  //เมื่อ add ข้อมูลแล้วจะขึ้นบนสุดของ table
   $query = mysqli_query($conn, $sql);
 ?>
 
@@ -60,11 +61,6 @@ function func_delete(id) {
     <td align='center'>
       ราคา/ชิ้น
     </td>
-    <td align='center'>
-      น้ำหนัก/กก.
-    </td>
-    <td align='center'>
-      หมายเหตุ
     </td>
     <td align='center'>
       Action
@@ -76,48 +72,30 @@ function func_delete(id) {
       while ($row = mysqli_fetch_array($query)) {
         echo '<tr>';
         echo '<td align="center">'.$count.'</td>';
-        echo '<td align="center">รูปภาพ</td>';
+        echo '<td align="center"><img src="image/'.$row["prod_id"].'.jpg" width="50px" height="50px"></td>';
         echo '<td align="center">'.$row["prod_id"].'</td>';
         echo '<td>'.$row["prod_detail"].'</td>';
         echo '<td align="right">'.$row["price"].'</td>';
-        echo '<td align="right">'.$row["weight"].'</td>';
-        echo '<td align="center">-</td>';
         $id = $row["prod_id"];
-        echo   '<td align="center"><a href="editproduct.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
-                <button type="button" class="btn btn-default btn-sm">Detail</button>
+        echo   '<td align="center">
+                <a href="editproduct.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+
+                <button type="button" onclick="$(\'#modal_prod_id\').val(\''.$row["prod_id"].'\');
+                $(\'#modal_prod_detail\').val(\''.$row["prod_detail"].'\');$(\'#modal_price\').val(\''.$row["price"].'\');
+                $(\'#modal_weight\').val(\''.$row["weight"].'\')
+                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
+
                 <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["prod_id"].'\');" >Delete</button> </td>';
         echo '</tr>';
         $count++; // $count = $count + 1;
       }
     ?>
 
-    <script>
-      $(document).ready(function(){
-        $('.open-AddBookDialog').on('click', function(){
-          $.ajax({
-            url : "action/product_by_id.php",
-            type : "POST",
-            dataType : "JSON",
-            data : {
-              "id" : $('#prod_id').val()
-            },
-            success : function(data) {
-                var product = data.product;
-                $('#modal_mat_name').val(product.prod_name);
-                var productId = product.prod_id;
-                var prodList = $('#modal_prod_list');
-
-                $('#formModal').attr('action', 'action/product_edit.php?id=' + productId);
-                $('#myModal').modal();
-            }
-          })
-        })
-      })
-    </script>
 
 </table>
 </body>
 </html>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -128,13 +106,36 @@ function func_delete(id) {
         <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
       </div>
       <div class="modal-body">
+        <form class="form-horizontal" id="formModal" action="" method="post">
+          <div class="form-group">
+            <label for="prod_id" class="col-sm-2 control-label">รหัสสินค้า</label>
+          <div class="col-sm-10">
+            <input type="detail" class="form-control" readonly id="modal_prod_id" name="prod_id" value="" placeholder="รหัสสินค้า">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="prod_detail" class="col-sm-2 control-label">รายละเอียด</label>
+          <div class="col-sm-10">
+            <input type="detail" class="form-control" readonly id="modal_prod_detail" name="prod_detail" value="" placeholder="รายละเอียด">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="price" class="col-sm-2 control-label">ราคา/ชิ้น</label>
+          <div class="col-sm-7">
+            <input type="detail" class="form-control" readonly id="modal_price" name="price" value="" placeholder="ราคา">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="weight" class="col-sm-2 control-label">น้ำหนัก/ชิ้น</label>
+          <div class="col-sm-7">
+            <input type="detail" class="form-control" readonly id="modal_weight" name="weight" value="" placeholder="น้ำหนัก/ชิ้น">
+          </div>
+          </div>
 
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
-      </div>
-</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
   </div>
-</div>

@@ -2,18 +2,19 @@
 require_once 'database/connector.php';
 $soid = $_GET["soid"];
 
-$sql = "SELECT * FROM sale_order as so
-  left join customer as c on c.cust_id = so.cus_id
+$sql1 = "SELECT * FROM sale_order as so
+  left join customer as c on c.cust_id = so.cust_id
   left join admin as ad on ad.admin_id = so.admin_id
-  left join product as p on p.prod_id = so.prod_id WHERE so.so_id = $soid";
+  left join product as p on p.prod_id = so.prod_id WHERE so.so_id = $soid group by so.prod_id";
 
 $sql2 = "SELECT * FROM sale_order as so
-  left join customer as c on c.cust_id = so.cus_id
+  left join customer as c on c.cust_id = so.cust_id
   left join admin as ad on ad.admin_id = so.admin_id
-  left join product as p on p.prod_id = so.prod_id WHERE so.so_id = $soid";
-$query = mysqli_query($conn, $sql);
+  left join product as p on p.prod_id = so.prod_id WHERE so.so_id = $soid group by so.prod_id";
+
+$query = mysqli_query($conn, $sql1);
 $query2 = mysqli_query($conn, $sql2);
-$customer = mysqli_fetch_assoc($query2);
+$customer = mysqli_fetch_assoc($query);
 ?>
 
 <!DOCTYPE html>
@@ -38,9 +39,12 @@ $customer = mysqli_fetch_assoc($query2);
 <body>
   <?php include 'navbar.php' ?>
   <div class="container">
-
-      <div class="col-md-12" align="center">
-          <div class="form-group">
+      <div class="col-md-12" >
+        <div class="col-md-1" >
+          <img alt="Brand" src="logosuthep.png" width="220%" height="220%">
+        </div>
+        <div class="col-md-11" >
+          <div class="form-group" align="center">
             <h3>บริษัท สุเทพ การหล่อ จำกัด</h3>
             <h5>9/2 หมู่ 2 ถ.พุทธมณฑลสาย 4 ต.กระทุ่มล้ม อ.สามพราน จ.นครปฐม 73220 <br/>
                 โทร.02-12345678 แฟ๊กซ์.02-12345678
@@ -74,7 +78,7 @@ $customer = mysqli_fetch_assoc($query2);
               เลขที่ผู้เสีภาษี
             </div>
             <div class="col-md-9">
-              <?=$customer["tex_id"];?>
+              <?=$customer["tax_id"];?>
             </div>
           </div>
         </div>
@@ -84,13 +88,17 @@ $customer = mysqli_fetch_assoc($query2);
               เลขที่
             </div>
             <div class="col-md-9">
-              2016/052
+              <?=$customer["so_id"];?>
             </div>
             <div class="col-md-3">
               วันที่
             </div>
             <div class="col-md-9">
-              <?=$customer["date_time"];?>
+              <?php
+                $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $customer["date_time"]);
+                $newDateString = $myDateTime->format('d F Y');
+                echo $newDateString;
+               ?>
             </div>
             <div class="col-md-3">
               กำหนดชำระเงิน
@@ -102,7 +110,11 @@ $customer = mysqli_fetch_assoc($query2);
               ครบกำหนด
             </div>
             <div class="col-md-9">
-              18/6/2560
+              <?php
+                $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $customer["date_time"])->modify('+7 day');
+                $newDateString = $myDateTime->format('d F Y');
+                echo $newDateString;
+               ?>
             </div>
           </div>
         </div>
@@ -123,7 +135,7 @@ $customer = mysqli_fetch_assoc($query2);
                 <?php
                   $count = 1;
                   $total = 0;
-                  while ($row = mysqli_fetch_array($query)) {
+                  while ($row = mysqli_fetch_array($query2)) {
                     echo "<tr>";
                     echo "<td>$count</td>";
                     echo "<td>".$row["prod_id"]."</td>";
@@ -132,8 +144,8 @@ $customer = mysqli_fetch_assoc($query2);
                     echo "<td>".$row["weight"]."</td>";
                     echo "<td>".number_format($row["number"] * $row["weight"])."</td>";
                     echo "<td>".$row["price"]."</td>";
-                    echo "<td>".number_format($row["number"] * $row["price"])."</td>";
-                    $total += ($row["number"] * $row["price"]);
+                    echo "<td>".number_format(($row["number"] * $row["weight"])* $row["price"])."</td>";
+                    $total += (($row["number"] * $row["weight"])* $row["price"]);
                     echo "</tr>";
                     $count++;
                   }
@@ -144,11 +156,17 @@ $customer = mysqli_fetch_assoc($query2);
                 </tr>
                 <tr>
                   <td colspan="7" align="right"><strong>ภาษีมูลเพิ่ม7%</strong></td>
-                  <td>100.00</td>
+                  <td><?php echo number_format($total*7/100) ?></td>
                 </tr>
                 <tr>
                   <td colspan="7" align="right"><strong>ยอมรวมสุทธิ</strong></td>
-                  <td>100.00</td>
+                  <td>
+                    <?php
+                    $vat = $total * 7 / 100;
+                    $net = $total + $vat;
+                    echo number_format($net);
+                    ?>
+                  </td>
                 </tr>
               </tbody>
             </table>

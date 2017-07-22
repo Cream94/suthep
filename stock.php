@@ -54,9 +54,6 @@ function func_delete(id, mid) {
       ลำดับ
     </td>
     <td align='center'>
-      รหัสวัตถุดิบ
-    </td>
-    <td align='center'>
       ชื่อวัตถุดิบ
     </td>
     <td align='center'>
@@ -78,7 +75,6 @@ function func_delete(id, mid) {
       while ($row = mysqli_fetch_array($query)) {
         echo '<tr>';
         echo '<td align="center">'.$count.'</td>';
-        echo '<td align="center">'.$row["mat_id"].'</td>';
         echo '<td>'.$row["mat_name"].'</td>';
         echo '<td align="right">'.$row["number"].'</td>';
         echo '<td>'.$row["sup_name"].'</td>';
@@ -90,7 +86,13 @@ function func_delete(id, mid) {
 
         <?php
         echo '<button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].')" class="btn btn-default open-AddBookDialog btn-sm">Edit</button>
-              <button type="button" class="btn btn-default btn-sm">Detail</button>
+
+              <button type="button" onclick="$(\'#stock_id\').val('.$row["stock_id"].');$(\'#modal_mat_id1\').val(\''.$row["mat_id"].'\');
+              $(\'#modal_mat_name1\').val(\''.$row["mat_name"].'\');$(\'#modal_number1\').val(\''.$row["number"].'\');
+              $(\'#modal_unit1\').val(\''.$row["unit"].'\');$(\'#modal_sup_name1\').val(\''.$row["sup_name"].'\');
+              $(\'#modal_date_time1\').val(\''.$row["date_time"].'\')"
+              class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">Detail</button>
+
               <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["stock_id"].'\', \''.$row["mat_id"].'\');" >Delete</button> </td>';
         echo '</tr>';
         $count++; // $count = $count + 1;
@@ -199,5 +201,64 @@ function func_delete(id, mid) {
                 <button type="submit" class="btn btn-primary">Save changes</button>
       </div>
 </form>
+  </div>
+</div>
+</div>
+
+
+<!-- Modal Detail-->
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" id="formModal" action="" method="post">
+          <div class="form-group">
+            <label for="mat_id" class="col-sm-2 control-label">รหัสวัตถุดิบ</label>
+          <div class="col-sm-4">
+            <input type="detail" class="form-control" readonly id="modal_mat_id1" name="mat_id" value="" placeholder="รหัสวัตถุดิบ">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="mat_name" class="col-sm-2 control-label">ชื่อวัตถุดิบ</label>
+          <div class="col-sm-10">
+            <input type="detail" class="form-control" readonly id="modal_mat_name1" name="mat_name" value="" placeholder="ชื่อวัตถุดิบ">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="number" class="col-sm-2 control-label">จำนวน</label>
+          <div class="col-sm-10">
+            <input type="detail" class="form-control" readonly id="modal_number1" name="number" value="" placeholder="จำนวน">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="unit" class="col-sm-2 control-label">หน่วยนับ</label>
+          <div class="col-sm-10">
+            <input type="detail" class="form-control" readonly id="modal_unit1" name="unit" value="" placeholder="หน่วยนับ">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="sup_name" class="col-sm-2 control-label">บริษัทผู้ผลิต</label>
+          <div class="col-sm-7">
+            <input type="detail" class="form-control" readonly id="modal_sup_name1" name="sup_name" value="" placeholder="บริษัทผู้ผลิต">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="date_time" class="col-sm-2 control-label">อัพเดตล่าสุด</label>
+          <div class="col-sm-7">
+            <input type="detail" class="form-control" readonly id="modal_date_time1" name="date_time" value="" placeholder="อัพเดตล่าสุด">
+          </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

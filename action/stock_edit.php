@@ -1,5 +1,6 @@
 <?php
 require_once '../database/connector.php';
+session_start();
 $stock_id = isset($_GET["id"]) ? $_GET["id"] : null; // short if.
 $mat_id = isset($_POST["mat_id"]) ? $_POST["mat_id"] : null; // short if.
 $number = isset($_POST["number"]) ? $_POST["number"] : null; // short if.
@@ -7,8 +8,8 @@ $mat_name = isset($_POST["mat_name"]) ? $_POST["mat_name"] : null; // short if.
 $sup_id = isset($_POST["sup_id"]) ? $_POST["sup_id"] : null; // short if.
 $detail = isset($_POST["detail"]) ? $_POST["detail"] : null; // short if.
 $status = isset($_POST["status"]) ? $_POST["status"] : null; // short if.
-$admin_id = isset($_POST["admin_id"]) ? $_POST["admin_id"] : null; // short if.
-
+//$admin_id = isset($_POST["admin_id"]) ? $_POST["admin_id"] : null; // short if.
+$admin_id = $_SESSION["login_id"];
 if ($mat_name != null ) {
     $sql3 = "INSERT INTO material_log (mat_id, number, admin_id, detail, status)
             value('$mat_id','$number','$admin_id','$detail','$status')";

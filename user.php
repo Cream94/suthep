@@ -87,8 +87,15 @@ function func_delete(id) {
       echo '<td>'.$row["email"].'</td>';
       echo '<td align="center">-</td>';
       $id = $row["admin_id"];
-      echo '<td align="center"><a href="edituser.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
-                <button type="button" class="btn btn-default btn-sm">Detail</button>
+      echo '<td align="center">
+                <a href="edituser.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+
+                <button type="button" onclick="$(\'#admin_id\').val('.$row["admin_id"].');$(\'#modal_admin_id\').val(\''.$row["admin_id"].'\');
+                $(\'#modal_admin_name\').val(\''.$row["admin_name"].'\');$(\'#modal_admin_address\').val(\''.$row["admin_address"].'\');
+                $(\'#modal_admin_tel\').val(\''.$row["admin_tel"].'\');$(\'#modal_admin_fax\').val(\''.$row["admin_fax"].'\');
+                $(\'#modal_email\').val(\''.$row["email"].'\')"
+                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
+
                 <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["admin_id"].'\');" >Delete</button> </td>';
       echo '</tr>';
       $count++; // $count = $count + 1;
@@ -99,3 +106,60 @@ function func_delete(id) {
 </table>
 </body>
 </html>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal" id="formModal" action="" method="post">
+          <div class="form-group">
+            <label for="admin_id" class="col-sm-2 control-label">รหัสผู้ใช้</label>
+          <div class="col-sm-4">
+            <input type="detail" class="form-control" readonly id="modal_admin_id" name="admin_id" value="" placeholder="รหัสผู้ใช้">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="admin_name" class="col-sm-2 control-label">ชื่อผู้ใช้</label>
+          <div class="col-sm-10">
+            <input type="detail" class="form-control" readonly id="modal_admin_name" name="admin_name" value="" placeholder="ชื่อผู้ใช้">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="admin_address" class="col-sm-2 control-label">ที่อยู่</label>
+          <div class="col-sm-10">
+            <input type="detail" class="form-control" readonly id="modal_admin_address" name="admin_address" value="" placeholder="ที่อยู่">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="admin_tel" class="col-sm-2 control-label">เบอร์โทร</label>
+          <div class="col-sm-7">
+            <input type="detail" class="form-control" readonly id="modal_admin_tel" name="admin_tel" value="" placeholder="เบอร์โทร">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="admin_fax" class="col-sm-2 control-label">เบอร์แฟ๊กซ์</label>
+          <div class="col-sm-7">
+            <input type="detail" class="form-control" readonly id="modal_admin_fax" name="admin_fax" value="" placeholder="เบอร์แฟ๊กซ์">
+          </div>
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-sm-2 control-label">อีเมล์</label>
+          <div class="col-sm-10">
+            <input type="detail" class="form-control" readonly id="modal_email" name="email" value="" placeholder="อีเมล์">
+          </div>
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+        </div>
+      </form>
+    </div>
+  </div>

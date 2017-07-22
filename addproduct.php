@@ -13,10 +13,10 @@
         <div class="row">
           <div class="col-md-6 col-md-offset-3 jumbotron well">
             <h4 style="font-weight: bold;">Add Form</h4> <br/>
-            <form class="form-horizontal" action="action/product_add.php" method="post">
+            <form class="form-horizontal" action="action/product_add.php" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="pic" class="col-sm-2 control-label">รูปสินค้า</label>
-                <input type="file" id="exampleInputFile">
+                <input type="file" id="exampleInputFile" name="image">
               </div>
             <div class="form-group">
             <label for="prod_id" class="col-sm-2 control-label">รหัสสินค้า</label>

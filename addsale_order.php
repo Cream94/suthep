@@ -163,5 +163,6 @@
 
       <input type="hidden" id="prod_price">
       <input type="hidden" id="prod_detail">
+      <input type="hidden" id="tax_id">
 </body>
 </html>
