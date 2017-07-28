@@ -98,26 +98,26 @@ $customer = mysqli_fetch_assoc($query);
           <div>
             <table class="table table-bordered">
               <thead>
-                <th align="center">ลำดับ</th>
-                <th align="center">รายการ</th>
-                <th align="center">จำนวนเงิน</th>
-                <th align="center">จำนวนเงินมัดจำ</th>
-                <th align="center">ยอดคงค้าง</th>
-                <th align="center">ภาษี 7%</th>
-                <th align="center">ยอดชำระ</th>
+                <th style="text-align: center">ลำดับ</th>
+                <th style="text-align: center">รายการ</th>
+                <th style="text-align: center">จำนวนเงิน</th>
+                <th style="text-align: center">จำนวนเงินมัดจำ</th>
+                <th style="text-align: center">ยอดคงค้าง</th>
+                <th style="text-align: center">ภาษี 7%</th>
+                <th style="text-align: center">ยอดชำระ</th>
               <tbody>
                 <?php
                 $count = 1;
                 $net = 0;
                 while ($row = mysqli_fetch_array($query2)) {
                   echo '<tr>';
-                  echo "<td>$count</td>";
+                  echo "<td align='center'>$count</td>";
                   echo '<td>เอกสารเลขที่ '.$row["so_id"].'</td>';
-                  echo '<td>'.number_format($row["total"], 2).'</td>';
-                  echo '<td>'.number_format($row["deposit_money"], 2).'</td>';
-                  echo '<td>'.number_format(($row["total"])-$row["deposit_money"], 2).'</td>';
-                  echo '<td>'.number_format(($row["total"])*7/100, 2).'</td>';
-                  echo '<td>'.number_format(($row["total"])-$row["deposit_money"] + (($row["total"])*7/100), 2).'</td>';
+                  echo '<td align="right">'.number_format($row["total"], 2).'</td>';
+                  echo '<td align="right">'.number_format($row["deposit_money"], 2).'</td>';
+                  echo '<td align="right">'.number_format(($row["total"])-$row["deposit_money"], 2).'</td>';
+                  echo '<td align="right">'.number_format(($row["total"])*7/100, 2).'</td>';
+                  echo '<td align="right">'.number_format(($row["total"])-$row["deposit_money"] + (($row["total"])*7/100), 2).'</td>';
                   $net += ($row["total"])-$row["deposit_money"] + (($row["total"])*7/100);
                   echo '</tr>';
                   $count++;
@@ -126,7 +126,7 @@ $customer = mysqli_fetch_assoc($query);
 
                 <tr>
                   <td colspan="6" align="right"><strong>ยอมรวมสุทธิ</strong></td>
-                  <td>
+                  <td align='right'>
                     <?php
                     echo number_format($net, 2);
                     ?>

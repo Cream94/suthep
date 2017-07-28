@@ -136,12 +136,12 @@ $supplier = mysqli_fetch_assoc($query2);
           <div>
             <table class="table table-bordered">
               <thead>
-                <th>ลำดับ</th>
-                <th>รายการ</th>
-                <th>จำนวน</th>
-                <th>หน่วยนับ</th>
-                <th>ราคา/หน่วย</th>
-                <th>จำนวนเงิน</th>
+                <th style="text-align: center">ลำดับ</th>
+                <th style="text-align: center">รายการ</th>
+                <th style="text-align: center">จำนวน</th>
+                <th style="text-align: center">หน่วยนับ</th>
+                <th style="text-align: center">ราคา/หน่วย</th>
+                <th style="text-align: center">จำนวนเงิน</th>
               </thead>
               <tbody>
                 <?php
@@ -149,12 +149,12 @@ $supplier = mysqli_fetch_assoc($query2);
                   $total = 0;
                   while ($row = mysqli_fetch_array($query1)) {
                     echo "<tr>";
-                    echo "<td>$count</td>";
+                    echo "<td align='center'>$count</td>";
                     echo "<td>".$row["mat_name"]."</td>";
-                    echo "<td>".$row["number"]."</td>";
-                    echo "<td>".$row["unit"]."</td>";
-                    echo "<td>".number_format($row["price"], 2)."</td>";
-                    echo "<td>".number_format($row["number"] * $row["price"], 2)."</td>";
+                    echo "<td align='right'>".$row["number"]."</td>";
+                    echo "<td align='center'>".$row["unit"]."</td>";
+                    echo "<td align='right'>".number_format($row["price"], 2)."</td>";
+                    echo "<td align='right'>".number_format($row["number"] * $row["price"], 2)."</td>";
                     $total += ($row["number"] * $row["price"]);
                     echo "</tr>";
                     $count++;
@@ -162,7 +162,7 @@ $supplier = mysqli_fetch_assoc($query2);
                 ?>
                 <tr>
                   <td colspan="5" align="right"><strong>ราคาสุทธิ</strong></td>
-                  <td><?=number_format($total, 2);?></td>
+                  <td align='right'><?=number_format($total, 2);?></td>
                 </tr>
               </tbody>
             </table>

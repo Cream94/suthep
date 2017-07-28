@@ -111,7 +111,7 @@ $customer = mysqli_fetch_assoc($query);
             </div>
             <div class="col-md-9">
               <?php
-                
+
                 $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $customer["date_time"])->modify('+7 day');
                 $newDateString = $myDateTime->format('d F Y');
                 echo $newDateString;
@@ -123,14 +123,14 @@ $customer = mysqli_fetch_assoc($query);
           <div>
             <table class="table table-bordered">
               <thead>
-                <th style="width: 5%" align="center">ลำดับ</th>
-                <th style="width: 15%" align="center">รหัสสินค้า</th>
-                <th style="width: 30%" align="center">รายละเอียด</th>
-                <th style="width: 10%" align="center">จำนวน</th>
-                <th style="width: 10%" align="center">นน./ชิ้น</th>
-                <th style="width: 10%" align="center">นน.รวม</th>
-                <th style="width: 10%" align="center">หน่วยละ</th>
-                <th style="width: 10%" align="center">จำนวนเงิน</th>
+                <th style="text-align: center">ลำดับ</th>
+                <th style="text-align: center">รหัสสินค้า</th>
+                <th style="text-align: center">รายละเอียด</th>
+                <th style="text-align: center">จำนวน</th>
+                <th style="text-align: center">นน./ชิ้น</th>
+                <th style="text-align: center">นน.รวม</th>
+                <th style="text-align: center">หน่วยละ</th>
+                <th style="text-align: center">จำนวนเงิน</th>
               </thead>
               <tbody>
                 <?php
@@ -138,14 +138,14 @@ $customer = mysqli_fetch_assoc($query);
                   $total = 0;
                   while ($row = mysqli_fetch_array($query2)) {
                     echo "<tr>";
-                    echo "<td>$count</td>";
+                    echo "<td align='center'>$count</td>";
                     echo "<td>".$row["prod_id"]."</td>";
                     echo "<td>".$row["prod_detail"]."</td>";
-                    echo "<td>".$row["number"]."</td>";
-                    echo "<td>".$row["weight"]."</td>";
-                    echo "<td>".number_format($row["number"] * $row["weight"])."</td>";
-                    echo "<td>".$row["price"]."</td>";
-                    echo "<td>".number_format(($row["number"] * $row["weight"])* $row["price"])."</td>";
+                    echo "<td align='right'>".$row["number"]."</td>";
+                    echo "<td align='right'>".$row["weight"]."</td>";
+                    echo "<td align='right'>".number_format($row["number"] * $row["weight"], 2)."</td>";
+                    echo "<td align='right'>".$row["price"]."</td>";
+                    echo "<td align='right'>".number_format(($row["number"] * $row["weight"])* $row["price"], 2)."</td>";
                     $total += (($row["number"] * $row["weight"])* $row["price"]);
                     echo "</tr>";
                     $count++;
@@ -153,19 +153,19 @@ $customer = mysqli_fetch_assoc($query);
                 ?>
                 <tr>
                   <td colspan="7" align="right"><strong>รวมเงิน</strong></td>
-                  <td><?=number_format($total);?></td>
+                  <td align='right'><?=number_format($total, 2);?></td>
                 </tr>
                 <tr>
                   <td colspan="7" align="right"><strong>ภาษีมูลเพิ่ม7%</strong></td>
-                  <td><?php echo number_format($total*7/100) ?></td>
+                  <td align='right'><?php echo number_format($total*7/100, 2) ?></td>
                 </tr>
                 <tr>
                   <td colspan="7" align="right"><strong>ยอมรวมสุทธิ</strong></td>
-                  <td>
+                  <td align='right'>
                     <?php
                     $vat = $total * 7 / 100;
                     $net = $total + $vat;
-                    echo number_format($net);
+                    echo number_format($net, 2);
                     ?>
                   </td>
                 </tr>
