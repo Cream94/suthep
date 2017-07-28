@@ -97,6 +97,7 @@ function updateStatus() {
       echo '<td>'.$row["date_time"].'</td>';
       echo '<td>'.$row["status_name"].'</td>';
       $id = $row["po_id"];
+      if ($_SESSION["login_super_admin"] == 1) {
       echo '<td align="center">
                 <button type="button" onclick="$(\'#po_id\').val('.$row["po_id"].');$(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');
                 $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
@@ -104,7 +105,16 @@ function updateStatus() {
 
                 <a href="http://localhost/suthep/purchase_order_invoice.php?poid='.$id.'" target="_blank" type="button" class="btn btn-default btn-sm">Detail</a>
                 <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["po_id"].'\');" >Delete</button> </td>';
+                ;
+      } else {
+        echo '<td align="center">
+                  <button type="button" onclick="$(\'#po_id\').val('.$row["po_id"].');$(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');
+                  $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
+                  class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
 
+                  <a href="http://localhost/suthep/purchase_order_invoice.php?poid='.$id.'" target="_blank" type="button" class="btn btn-default btn-sm">Detail</a>'
+        ;
+      }
       echo '</tr>';
       $count++; // $count = $count + 1;
     }

@@ -21,7 +21,7 @@ function func_delete(id) {
     e.preventDefault();
     return false;
   }
-  window.location.href ="action/product_delete.php?prod_id=" + id;
+  window.location.href ="action/product_delete.php?id=" + id;
 
 }
 
@@ -85,7 +85,7 @@ function func_delete(id) {
                 $(\'#modal_weight\').val(\''.$row["weight"].'\')
                 " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
 
-                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["prod_id"].'\');" >Delete</button> </td>';
+                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["id"].'\');" >Delete</button> </td>';
         echo '</tr>';
         $count++; // $count = $count + 1;
       }

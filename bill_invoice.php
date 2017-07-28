@@ -1,3 +1,20 @@
+<?php
+require_once 'database/connector.php';
+$custid = $_GET["custid"];
+
+$sqlDeposit = "SELECT *, count(so.so_id) as count, sum((so.number * prod.weight) * prod.price) as total FROM sale_order so, product prod WHERE deposit = 1
+              and cust_id = $custid and so.prod_id = prod.prod_id group by so_id";
+
+$sql1 = "SELECT * FROM sale_order as so
+  left join customer as c on c.cust_id = so.cust_id
+  left join admin as ad on ad.admin_id = so.admin_id WHERE so.cust_id = $custid ";
+
+$query = mysqli_query($conn, $sql1);
+$query2 = mysqli_query($conn, $sqlDeposit);
+$customer = mysqli_fetch_assoc($query);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,13 +64,13 @@
               นามลูกค้า
             </div>
             <div class="col-md-9">
-              เจ๊ไก่
+              <?=$customer["cust_name"];?>
             </div>
             <div class="col-md-3">
               ที่อยู่
             </div>
             <div class="col-md-9">
-              กรุงเทพ
+              <?=$customer["cust_address"];?>
             </div>
           </div>
         </div>
@@ -63,13 +80,17 @@
               เลขที่
             </div>
             <div class="col-md-9">
-              2016/052
+              <?=$customer["so_id"];?>
             </div>
             <div class="col-md-3">
               วันที่
             </div>
             <div class="col-md-9">
-              16/8/2560
+              <?php
+                $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $customer["date_time"]);
+                $newDateString = $myDateTime->format('d F Y');
+                echo $newDateString;
+               ?>
             </div>
           </div>
         </div>
@@ -80,12 +101,36 @@
                 <th align="center">ลำดับ</th>
                 <th align="center">รายการ</th>
                 <th align="center">จำนวนเงิน</th>
+                <th align="center">จำนวนเงินมัดจำ</th>
                 <th align="center">ยอดคงค้าง</th>
+                <th align="center">ภาษี 7%</th>
                 <th align="center">ยอดชำระ</th>
               <tbody>
+                <?php
+                $count = 1;
+                $net = 0;
+                while ($row = mysqli_fetch_array($query2)) {
+                  echo '<tr>';
+                  echo "<td>$count</td>";
+                  echo '<td>เอกสารเลขที่ '.$row["so_id"].'</td>';
+                  echo '<td>'.number_format($row["total"], 2).'</td>';
+                  echo '<td>'.number_format($row["deposit_money"], 2).'</td>';
+                  echo '<td>'.number_format(($row["total"])-$row["deposit_money"], 2).'</td>';
+                  echo '<td>'.number_format(($row["total"])*7/100, 2).'</td>';
+                  echo '<td>'.number_format(($row["total"])-$row["deposit_money"] + (($row["total"])*7/100), 2).'</td>';
+                  $net += ($row["total"])-$row["deposit_money"] + (($row["total"])*7/100);
+                  echo '</tr>';
+                  $count++;
+                }
+                 ?>
+
                 <tr>
-                  <td colspan="4" align="right"><strong>จำนวนเงินสุทธิ</strong></td>
-                  <td>100.00</td>
+                  <td colspan="6" align="right"><strong>ยอมรวมสุทธิ</strong></td>
+                  <td>
+                    <?php
+                    echo number_format($net, 2);
+                    ?>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -137,6 +182,11 @@
                 ผู้รับเงิน..........................................................
             </div>
           </div>
+        </div>
+        <div class="col-md-12" style="margin-top: 10px">
+          <center>
+            <a href="sale_order.php" class="btn btn-danger">Black</a>
+          </center>
         </div>
 
       </body>

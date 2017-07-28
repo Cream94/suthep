@@ -23,7 +23,7 @@
             <form class="form-horizontal" action="action/product_edit.php?id=<?php echo $id;?>" method="post">
               <div class="form-group">
                 <label for="pic" class="col-sm-2 control-label">รูปสินค้า</label>
-                <input type="file" id="exampleInputFile">
+                <input type="file" id="exampleInputFile" name="image">
               </div>
             <div class="form-group">
             <label for="prod_id" class="col-sm-2 control-label">รหัสสินค้า</label>

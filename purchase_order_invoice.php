@@ -153,8 +153,8 @@ $supplier = mysqli_fetch_assoc($query2);
                     echo "<td>".$row["mat_name"]."</td>";
                     echo "<td>".$row["number"]."</td>";
                     echo "<td>".$row["unit"]."</td>";
-                    echo "<td>".$row["price"]."</td>";
-                    echo "<td>".number_format($row["number"] * $row["price"])."</td>";
+                    echo "<td>".number_format($row["price"], 2)."</td>";
+                    echo "<td>".number_format($row["number"] * $row["price"], 2)."</td>";
                     $total += ($row["number"] * $row["price"]);
                     echo "</tr>";
                     $count++;
@@ -162,7 +162,7 @@ $supplier = mysqli_fetch_assoc($query2);
                 ?>
                 <tr>
                   <td colspan="5" align="right"><strong>ราคาสุทธิ</strong></td>
-                  <td><?=number_format($total);?></td>
+                  <td><?=number_format($total, 2);?></td>
                 </tr>
               </tbody>
             </table>

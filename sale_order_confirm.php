@@ -6,6 +6,7 @@ $prodDetail = $_POST["prod_detail"];
 $numbers = $_POST["number"];
 $prices = $_POST["price"];
 $prodName = $_POST["name"];
+$deposit = $_POST["deposit"];
 
 $sqlCust = "SELECT * FROM customer WHERE cust_id = " . $custID[0];
 $queryCust = mysqli_query($conn, $sqlCust);
@@ -27,6 +28,7 @@ $rowCustomer = mysqli_fetch_assoc($queryCust);
   <?php include 'navbar.php' ?>
   <div class="container">
     <form action="action/sale_order_save.php" method="post">
+      <input type="hidden" name="deposit" value="<?php  echo $deposit; ?>">
     <div class="col-md-12" align="center">
       <h1><?=$rowCustomer["cust_name"]; ?></h1>
       <h4><?=$rowCustomer["cust_address"]; ?></h4>
@@ -66,6 +68,17 @@ $rowCustomer = mysqli_fetch_assoc($queryCust);
             <td colspan="5" align="right"><strong>ราคาสุทธิ</strong></td>
             <td id="total-net" style="font-weight: bold"><?=number_format($totalNet, 2);?></td>
           </tr>
+          <?php
+            if ($deposit == 1) {
+              ?>
+              <tr>
+                <td colspan="5" align="right"><strong>จำนวนเงินมัดจำ</strong></td>
+                <td id="deposit" style="font-weight: bold"><?=number_format($totalNet*50/100, 2);?></td>
+                <input type="hidden" id="text-deposit" name="total-deposit" value="<?=($totalNet*50/100);?>">
+              </tr>
+              <?php
+            }
+          ?>
         </tbody>
       </table>
       <center>
@@ -84,6 +97,9 @@ $rowCustomer = mysqli_fetch_assoc($queryCust);
       totalNet += parseInt(comma.replace(",", ""));
     })
     $('#total-net').html(addComma(totalNet.toFixed(2)));
+    var deposit = totalNet * 50 / 100;
+    $('#deposit').html(addComma(deposit.toFixed(2)));
+    $('#text-deposit').val(deposit.toFixed(2));
   }
   function addComma(val){
     while (/(\d+)(\d{3})/.test(val.toString())){

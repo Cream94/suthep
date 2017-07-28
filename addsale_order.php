@@ -56,6 +56,12 @@
               <button type="button" id="btnadd" class="btn btn-success">+</button>
               </div>
             </div>
+            <label class="radio-inline">
+              <input type="radio" name="deposit" id="inlineRadio1" value="0" checked> เงินสด
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="deposit" id="inlineRadio2" value="1">  มัดจำ (50%)
+            </label>
             </div>
 
             <label>

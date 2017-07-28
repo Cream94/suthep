@@ -111,6 +111,7 @@ $customer = mysqli_fetch_assoc($query);
             </div>
             <div class="col-md-9">
               <?php
+                
                 $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $customer["date_time"])->modify('+7 day');
                 $newDateString = $myDateTime->format('d F Y');
                 echo $newDateString;

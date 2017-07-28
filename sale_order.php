@@ -3,7 +3,7 @@
   $sql = "SELECT * FROM sale_order ";
   $query = mysqli_query($conn, $sql);
 
-  $sql2 = "SELECT * FROM sale_order as so
+  $sql2 = "SELECT *, sum(so.number) as total FROM sale_order as so
     left join customer as c on c.cust_id = so.cust_id
     left join so_status as sos on so.status = sos.status_id";
 
@@ -14,7 +14,9 @@
 
   $sql2 .= " group by so.so_id";
 
-    $query2 = mysqli_query($conn, $sql2);
+  $query2 = mysqli_query($conn, $sql2);
+
+  $productPerDay = 20;
 ?>
 
 <!DOCTYPE html>
@@ -62,6 +64,7 @@ function updateStatus() {
   </div>
   <button type="submit" class="btn btn-info">Search</button>
   <a href="addsale_order.php" class="btn btn-success">Add</a>
+  <a href="payment.php" class="btn btn-warning">Payment</a>
 </form>
 </center>
 
@@ -82,6 +85,12 @@ function updateStatus() {
       วันที่สั่งซื้อสินค้า
     </td>
     <td align='center'>
+      จำนวนวันในการผลิต
+    </td>
+    <td align='center'>
+      วันที่ครบกำหนดส่งสินค้า
+    </td>
+    <td align='center'>
       สถานะ
     </td>
     <td align='center'>
@@ -96,9 +105,25 @@ function updateStatus() {
       echo '<td align="center">'.$count.'</td>';
       echo '<td align="center">'.$row["so_id"].'</td>';
       echo '<td align="center">'.$row["cust_name"].'</td>';
-      echo '<td>'.$row["date_time"].'</td>';
+
+      $orderDate = DateTime::createFromFormat('Y-m-d H:i:s', $row["date_time"]);
+      $orderDateString = $orderDate->format('d F Y');
+      echo '<td>'.$orderDateString.'</td>';
+
+      $longDay = "+1 day";
+      $totalNumber = $row["total"];
+      $dayWork = ceil($totalNumber / $productPerDay);
+      $dayWork += 2;
+      $longDay = "+".$dayWork." day";
+
+      echo "<td align='center'>$dayWork วัน</td>";
+      $sendDate = DateTime::createFromFormat('Y-m-d H:i:s', $row["date_time"])->modify($longDay);
+      $newDateString = $sendDate->format('d F Y');
+      echo '<td>'.$newDateString.'</td>';
+
       echo '<td>'.$row["status_name"].'</td>';
       $id = $row["so_id"];
+      if ($_SESSION["login_super_admin"] == 1) {
       echo '<td align="center">
                 <button type="button" onclick="$(\'#so_id\').val('.$row["so_id"].');$(\'#modal_cust_name\').val(\''.$row["cust_name"].'\');
                 $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
@@ -107,6 +132,16 @@ function updateStatus() {
                 <a href="http://localhost/suthep/sale_order_invoice.php?soid='.$id.'" target="_blank" type="button" class="btn btn-default btn-sm">Detail</a>
                 <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["so_id"].'\');" >Delete</button> </td>';
 
+                ;
+      } else {
+      echo '<td align="center">
+                  <button type="button" onclick="$(\'#so_id\').val('.$row["so_id"].');$(\'#modal_cust_name\').val(\''.$row["cust_name"].'\');
+                  $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
+                  " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
+
+                  <a href="http://localhost/suthep/sale_order_invoice.php?soid='.$id.'" target="_blank" type="button" class="btn btn-default btn-sm">Detail</a>'
+                ;
+        }
       echo '</tr>';
       $count++; // $count = $count + 1;
     }

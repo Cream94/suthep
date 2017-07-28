@@ -48,25 +48,25 @@ function func_delete(id) {
   </label>
 <table class="table table-striped table-bordered">
   <tr  class="warning">
-    <td align='center'>
+    <td align='center' style="width: 5px">
       ลำดับ
     </td>
-    <td align='center'>
+    <td align='center' style="width: 20px">
       ชื่อวัตถุดิบ
     </td>
-    <td align='center'>
+    <td align='center' style="width: 10px">
       ราคาวัตถุดิบ/หน่วย
     </td>
-    <td align='center'>
+    <td align='center' style="width: 10px">
       หน่วยนับ
     </td>
-    <td align='center'>
+    <td align='center' style="width: 20px">
       ชื่อบริษัท
     </td>
-    <td align='center'>
+    <td align='center' style="width: 20px">
       ที่อยู่
     </td>
-    <td align='center'>
+    <td align='center' style="width: 15px">
       Action
     </td>
   </tr>
