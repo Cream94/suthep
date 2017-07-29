@@ -41,7 +41,7 @@
               <select class="form-control" name="prod_id" onchange="callProductName();" id="prod_list" >
                 <?php
                   while ($row = mysqli_fetch_array($queryproduct)) {
-                    echo '<option value="'.$row["prod_id"]. ":" .$row["price"]. ":" .$row["prod_detail"].'">'.$row["prod_id"].'</option>';
+                    echo '<option value="'.$row["prod_id"]. ":" .$row["price"]. ":" .$row["prod_detail"].":" .$row["weight"].'">'.$row["prod_id"].'</option>';
                   }
 
                  ?>
@@ -111,6 +111,7 @@
             var prod_id = ($('#prod_list').find('option:selected').val()).split(":");
             var prod_name = $('#prod_list').find('option:selected').text();
             var prod_detail = prod_id[2];
+            var prod_weight = prod_id[3];
             var number = $('#number').val();
             var total = parseInt(number) * parseInt(prod_id[1]);
             //alert(total);
@@ -125,6 +126,7 @@
             $('<td>'+ (prod_name) +'</td>').appendTo(tr);
             $('<td>'+ (prod_detail) +'</td>').appendTo(tr);
             $('<input name="prod_detail[]" style="display: none" value="'+ (prod_detail) +'">').appendTo(tr);
+            $('<input name="weight[]" style="display: none" value="'+ (prod_weight) +'">').appendTo(tr);
             $('<td><input name="number[]" value="'+ (number) +'"></td>').appendTo(tr);
             $('<td>'+ (addComma(total)) +'</td>').appendTo(tr);
             $('<td> <center> <button type="button" class="btn btn-warning btn-sm">Delete</button> <center> </td>').appendTo(tr);

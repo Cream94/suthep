@@ -7,6 +7,7 @@ $numbers = $_POST["number"];
 $prices = $_POST["price"];
 $prodName = $_POST["name"];
 $deposit = $_POST["deposit"];
+$weight = $_POST["weight"];
 
 $sqlCust = "SELECT * FROM customer WHERE cust_id = " . $custID[0];
 $queryCust = mysqli_query($conn, $sqlCust);
@@ -59,9 +60,9 @@ $rowCustomer = mysqli_fetch_assoc($queryCust);
               echo '<td><input name="number[]" min="1" type="number" onchange="calculate('.$i.', this);" value="'.$numbers[$i].'"></td>';
               echo '<td><input style="display: none" id="label-price-'.$i.'" value="'.$prices[$i].'">';
               echo '<td">'.$prices[$i].'</td>';
-              echo '<td class="total-price" id="label-total-'.$i.'">'.number_format(($numbers[$i] * $prices[$i]), 2).'</td>';
+              echo '<td class="total-price" id="label-total-'.$i.'">'.number_format((($numbers[$i] * $weight[$i])* $prices[$i]), 2).'</td>';
               echo "</tr>";
-              $totalNet += (int)($numbers[$i] * $prices[$i]);
+              $totalNet += (int)(($numbers[$i] * $weight[$i])* $prices[$i]);
             }
           ?>
           <tr>

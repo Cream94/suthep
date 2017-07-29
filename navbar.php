@@ -47,7 +47,7 @@ if (!isset($_SESSION["login_id"])) {
             <li><a href="purchase_order.php">Purchase Order</a></li>
             <li><a href="sale_order.php">Sale Order</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="#">Account</a></li>
+            <li><a href="account.php">Account</a></li>
           </ul>
         </li>
       </ul>

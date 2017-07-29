@@ -20,6 +20,14 @@ if ($prod_id != null && $number != null && $cust_id != null ) {
     $sql = "INSERT INTO sale_order (so_id, cust_id, admin_id, prod_id, number, deposit, deposit_money) ";
     $sql .= " VALUES($soid, $cust_id[$i], $adminID, '$prod_id[$i]', $number[$i], $deposit, $totalDeposit)";
     mysqli_query($conn, $sql) or die('Die query2 ' . mysqli_error($conn));
+
+    $sqlProd = "SELECT * FROM product WHERE prod_id = $prod_id[$i]";
+    $queryProd = mysqli_query($conn, $sqlProd);
+    $rowProd = mysqli_fetch_assoc($queryProd);
+    $itemRemove = $number[$i] * $rowProd["material_number"];
+    $sqlRemoveMat = "UPDATE stock SET number = number - " . $itemRemove . " WHERE mat_id = " . $rowProd["material_id"];
+    mysqli_query($conn, $sqlRemoveMat);
+
   }
   header("Location: http://localhost/suthep/sale_order_invoice.php?soid=$soid");
   die();
