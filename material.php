@@ -6,7 +6,7 @@
   if ($search != "") {
     $sql .= " WHERE m.mat_name like '%$search%' or s.sup_name like '%$search%'";
   }
-  $sql .= " order by mat_name";
+  $sql .= " order by mat_id DESC";
 
   $query = mysqli_query($conn, $sql);
 ?>

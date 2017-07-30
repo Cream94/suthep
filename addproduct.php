@@ -1,3 +1,10 @@
+<?php
+  require_once 'database/connector.php';
+  $sql = "SELECT * FROM product, material group by material.mat_name";
+  $query= mysqli_query($conn, $sql);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,6 +47,25 @@
             <label for="weight" class="col-sm-2 control-label">น้ำหนัก/กก.</label>
             <div class="col-sm-10">
             <input type="weight" class="form-control" id="weight" name="weight" placeholder="น้ำหนัก">
+            </div>
+            </div>
+            <div class="form-group">
+            <label for="material_id" class="col-sm-2 control-label">วัตถุดิบที่ใช้</label>
+            <div class="col-sm-7">
+              <select class="form-control" name="material_id" >
+                <?php
+                  while ($row = mysqli_fetch_array($query)) {
+                    echo '<option value="'.$row["mat_id"].'">'.$row["mat_name"].'</option>';
+                  }
+
+                 ?>
+              </select>
+            </div>
+            </div>
+            <div class="form-group">
+            <label for="material_number" class="col-sm-2 control-label">จำนวนที่ใข้</label>
+            <div class="col-sm-7">
+            <input type="material_number" class="form-control" id="material_number" name="material_number" placeholder="จำนวนที่ใข้">
             </div>
             </div>
 

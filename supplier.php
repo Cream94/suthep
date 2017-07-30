@@ -1,6 +1,6 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT * FROM supplier";
+  $sql = "SELECT * FROM supplier ORDER BY supplier.sup_id DESC";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
   if ($search != "") {
     $sql .= " WHERE supplier.sup_name like '%$search%'";

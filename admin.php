@@ -1,6 +1,6 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT * FROM admin WHERE super_admin = 1";
+  $sql = "SELECT * FROM admin WHERE super_admin = 1 ORDER BY admin.admin_id DESC";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
   if ($search != "") {
     $sql .= " and (admin.admin_name like '%$search%')";

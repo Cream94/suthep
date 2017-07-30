@@ -2,7 +2,7 @@
   require_once 'database/connector.php';
   $sql = "SELECT * FROM stock as s
     left join material as m on m.mat_id = s.mat_id
-    left join supplier as su on m.sup_id = su.sup_id";
+    left join supplier as su on m.sup_id = su.sup_id ORDER BY s.stock_id DESC";
     $search = isset($_GET["search"]) ? $_GET["search"] : "";
     if ($search != "") {
       $sql .= " WHERE m.mat_name like '%$search%'";

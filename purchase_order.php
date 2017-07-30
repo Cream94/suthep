@@ -9,7 +9,7 @@
     if ($search != "") {
       $sql .= " WHERE po.po_id like '%$search%' or su.sup_name like '%$search%'";
     }
-    $sql .= " Group By po.po_id ";
+    $sql .= " Group By po.po_id ORDER BY po.po_id DESC";
 
   $query = mysqli_query($conn, $sql);
 ?>

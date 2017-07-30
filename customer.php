@@ -1,6 +1,6 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT * FROM customer";
+  $sql = "SELECT * FROM customer ORDER BY customer.cust_id DESC";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
   if ($search != "") {
     $sql .= " WHERE customer.cust_name like '%$search%'";

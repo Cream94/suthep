@@ -12,7 +12,7 @@
     $sql2 .= " WHERE so.so_id like '%$search%' or c.cust_name like '%$search%'";
   }
 
-  $sql2 .= " group by so.so_id";
+  $sql2 .= " group by so.so_id ORDER BY so.so_id DESC";
 
   $query2 = mysqli_query($conn, $sql2);
 
