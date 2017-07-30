@@ -217,7 +217,7 @@ $customer = mysqli_fetch_assoc($query);
         </div>
         <div class="col-md-12" style="margin-top: 10px">
           <center>
-            <a href="sale_order.php" class="btn btn-danger">Black</a>
+            <a href="sale_order.php" class="btn btn-danger">Back</a>
           </center>
         </div>
 

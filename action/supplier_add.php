@@ -9,6 +9,6 @@ if ($sup_name != null || $sup_address != null || $sup_tel != null || $sup_fax !=
     $sql = "INSERT INTO supplier (sup_name, sup_address, sup_tel, sup_fax, email)
     VALUES('$sup_name', '$sup_address', '$sup_tel', '$sup_fax', '$email')";
     $query = mysqli_query($conn, $sql) or die('Die query');
-    header("Location: http://localhost/suthep/supplier.php");
+    header("Location: /suthep/supplier.php");
     die();
 }

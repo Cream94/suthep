@@ -1,6 +1,6 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT * FROM product, material WHERE product.material_id = material.mat_id group by product.prod_id";
+  $sql = "SELECT *, product.price as pprice FROM product, material WHERE product.material_id = material.mat_id group by product.prod_id";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
   if ($search != "") {
     $sql .= " WHERE product.prod_id like '%$search%'";
@@ -75,13 +75,13 @@ function func_delete(id) {
         echo '<td align="center"><img src="image/'.$row["prod_id"].'.jpg" width="50px" height="50px"></td>';
         echo '<td align="center">'.$row["prod_id"].'</td>';
         echo '<td>'.$row["prod_detail"].'</td>';
-        echo '<td align="right">'.$row["price"].'</td>';
+        echo '<td align="right">'.$row["pprice"].'</td>';
         $id = $row["prod_id"];
         echo   '<td align="center">
                 <a href="editproduct.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
 
                 <button type="button" onclick="$(\'#modal_prod_id\').val(\''.$row["prod_id"].'\');
-                $(\'#modal_prod_detail\').val(\''.$row["prod_detail"].'\');$(\'#modal_price\').val(\''.$row["price"].'\');
+                $(\'#modal_prod_detail\').val(\''.$row["prod_detail"].'\');$(\'#modal_price\').val(\''.$row["pprice"].'\');
                 $(\'#modal_weight\').val(\''.$row["weight"].'\');$(\'#modal_material_id\').val(\''.$row["mat_name"].'\');
                 $(\'#modal_material_number\').val(\''.$row["material_number"].'\')
                 " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
@@ -121,9 +121,9 @@ function func_delete(id) {
           </div>
           </div>
           <div class="form-group">
-            <label for="price" class="col-sm-2 control-label">ราคา/ชิ้น</label>
+            <label for="pprice" class="col-sm-2 control-label">ราคา/ชิ้น</label>
           <div class="col-sm-7">
-            <input type="detail" class="form-control" readonly id="modal_price" name="price" value="" placeholder="ราคา">
+            <input type="detail" class="form-control" readonly id="modal_price" name="pprice" value="" placeholder="ราคา">
           </div>
           </div>
           <div class="form-group">

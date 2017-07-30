@@ -185,7 +185,7 @@ $customer = mysqli_fetch_assoc($query);
         </div>
         <div class="col-md-12" style="margin-top: 10px">
           <center>
-            <a href="payment.php" class="btn btn-danger">Black</a>
+            <a href="payment.php" class="btn btn-danger">Back</a>
           </center>
         </div>
 

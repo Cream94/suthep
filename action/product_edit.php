@@ -18,6 +18,6 @@ if ($prod_id != null || $prod_detail != null || $price != null || $weight != nul
     $sql = "UPDATE product SET  prod_id = '$new_id', prod_detail = '$prod_detail', price = $price,
             weight = $weight, material_id = $material_id, material_number = $material_number WHERE prod_id = '$prod_id'";
     $query = mysqli_query($conn, $sql) or die('Die query => ' . mysqli_error($conn));
-    header("Location: http://localhost/suthep/product.php");
+    header("Location: /suthep/product.php");
     die();
 }

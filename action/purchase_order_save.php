@@ -16,7 +16,7 @@ if ($mat_id != null && $number != null && $sup_id != null) {
     $sql .= " VALUES($poid, $sup_id[$i], $adminID, $mat_id[$i], $number[$i])";
     mysqli_query($conn, $sql) or die('Die query');
   }
-  header("Location: http://localhost/suthep/purchase_order_invoice.php?poid=$poid");
+  header("Location: /suthep/purchase_order_invoice.php?poid=$poid");
   die();
 } else {
   echo "Nope";

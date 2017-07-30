@@ -10,6 +10,6 @@ if ($cust_name != null || $cust_address != null || $cust_tel != null || $cust_fa
     $sql = "UPDATE customer SET cust_name = '$cust_name', cust_address = '$cust_address', cust_tel = '$cust_tel',
             cust_fax = '$cust_fax', email = '$email' WHERE cust_id = $cust_id";
     $query = mysqli_query($conn, $sql) or die('Die query => ' . mysqli_error($conn));
-    header("Location: http://localhost/suthep/customer.php");
+    header("Location: /suthep/customer.php");
     die();
 }

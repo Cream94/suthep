@@ -10,7 +10,7 @@ if ($prod_name != null || $prod_id != null ) {
     VALUES('$cus_id', '$prod_id','$number')";
     $query = mysqli_query($conn, $sql) or die('Die query');
 
-    header("Location: http://localhost/suthep/sale_order.php");
+    header("Location: /suthep/sale_order.php");
     die();
 
 }

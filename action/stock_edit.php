@@ -33,6 +33,6 @@ if ($mat_name != null ) {
 
 
 
-    header("Location: http://localhost/suthep/stock.php");
+    header("Location: /suthep/stock.php");
     die();
 }

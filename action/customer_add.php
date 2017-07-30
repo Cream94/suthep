@@ -9,6 +9,6 @@ if ($cust_name != null || $cust_address != null || $cust_tel != null || $cust_fa
     $sql = "INSERT INTO customer (cust_name, cust_address, cust_tel, cust_fax, email, username, password)
     VALUES('$cust_name', '$cust_address', '$cust_tel', '$cust_fax', '$email', '$email', '$cust_tel')";
     $query = mysqli_query($conn, $sql) or die('Die query');
-    header("Location: http://localhost/suthep/customer.php");
+    header("Location: /suthep/customer.php");
     die();
 }

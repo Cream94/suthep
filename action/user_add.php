@@ -10,6 +10,6 @@ if ($admin_name != null || $admin_address != null || $admin_tel != null || $admi
     $sql = "INSERT INTO admin (admin_name, admin_address, admin_tel, admin_fax, email, username, password, super_admin)
     VALUES('$admin_name', '$admin_address', '$admin_tel', '$admin_fax', '$email', '$email', '$admin_tel', '$super_admin')";
     $query = mysqli_query($conn, $sql) or die('Die query');
-    header("Location: http://localhost/suthep/user.php");
+    header("Location: /suthep/user.php");
     die();
 }

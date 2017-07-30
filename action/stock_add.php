@@ -8,6 +8,6 @@ if ($mat_id != null || $number != null ) {
     $sql = "INSERT INTO stock (mat_id, number)
     VALUES('$mat_id', '$number')";
     $query = mysqli_query($conn, $sql) or die('Die query');
-    header("Location: http://localhost/suthep/stock.php");
+    header("Location: /suthep/stock.php");
     die();
 }

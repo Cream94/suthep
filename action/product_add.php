@@ -18,6 +18,6 @@ if ($prod_id != null || $prod_detail != null || $price != null || $weight != nul
     $sql = "INSERT INTO product (prod_id, prod_detail, price, weight, material_id, material_number)
     VALUES('$prod_id', '$prod_detail', '$price', '$weight', '$material_id', '$material_number')";
     $query = mysqli_query($conn, $sql) or die('Die query');
-    header("Location: http://localhost/suthep/product.php");
+    header("Location: /suthep/product.php");
     die();
 }

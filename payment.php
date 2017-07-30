@@ -77,7 +77,7 @@ function updateDeposit() {
                   ;$(\'#deposit\').val(\''.$row["deposit"].'\')"
                   " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
 
-                  <a href="http://localhost/suthep/bill_invoice.php?custid='.$id.'" target="_blank" type="button" class="btn btn-info btn-sm">Detail</a>
+                  <a href="../suthep/bill_invoice.php?custid='.$id.'" target="_blank" type="button" class="btn btn-info btn-sm">Detail</a>
                   </td>';
 
         echo '</tr>';
@@ -132,6 +132,6 @@ function updateDeposit() {
 
 <div class="col-md-12" style="margin-top: 10px">
   <center>
-    <a href="sale_order.php" class="btn btn-danger">Black</a>
+    <a href="sale_order.php" class="btn btn-danger">Back</a>
   </center>
 </div>

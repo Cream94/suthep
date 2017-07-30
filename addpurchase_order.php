@@ -108,6 +108,9 @@
             $('<td><input name="number[]" value="'+ (number) +'"></td>').appendTo(tr);
             $('<td>'+ (addComma(total)) +'</td>').appendTo(tr);
             $('<td> <center> <button type="button" class="btn btn-warning btn-sm">Delete</button> <center> </td>').appendTo(tr);
+
+            $('#sup_list').attr('disabled', 'disabled');
+
           });
         })
 

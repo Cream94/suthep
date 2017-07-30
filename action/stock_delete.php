@@ -9,7 +9,7 @@ if ($stock_id != null || $mat_id != null) {
 
     $sql = " DELETE FROM material WHERE mat_id = $mat_id";
     mysqli_query($conn, $sql) or die('Die query 2');
-    header("Location: http://localhost/suthep/stock.php");
+    header("Location: /suthep/stock.php");
 
     die();
 

@@ -29,7 +29,7 @@ if ($prod_id != null && $number != null && $cust_id != null ) {
     mysqli_query($conn, $sqlRemoveMat);
 
   }
-  header("Location: http://localhost/suthep/sale_order_invoice.php?soid=$soid");
+  header("Location: /suthep/sale_order_invoice.php?soid=$soid");
   die();
 } else {
   echo "Nope";

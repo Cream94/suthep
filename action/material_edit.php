@@ -8,6 +8,6 @@ $sup_id = isset($_POST["sup_id"]) ? $_POST["sup_id"] : null; // short if.
 if ($mat_name != null || $unit != null || $price != null || $sup_id != null ) {
     $sql = "UPDATE material SET mat_name = '$mat_name', unit = '$unit', price = '$price', sup_id = '$sup_id' WHERE mat_id = $mat_id";
     $query = mysqli_query($conn, $sql) or die('Die query => ' . mysqli_error($conn));
-    header("Location: http://localhost/suthep/material.php");
+    header("Location: /suthep/material.php");
     die();
 }

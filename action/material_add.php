@@ -17,7 +17,7 @@ if ($mat_name != null || $unit != null || $sup_id != null) {
     mysqli_query($conn, $sql_stock) or die('Die query');
 
 
-    header("Location: http://localhost/suthep/material.php");
+    header("Location: /suthep/material.php");
     die();
 
 }

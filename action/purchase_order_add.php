@@ -16,7 +16,7 @@ if ($mat_name != null || $sup_id != null ) {
     mysqli_query($conn, $sql_stock) or die('Die query');
 
 
-    header("Location: http://localhost/suthep/purchase_order.php");
+    header("Location: /suthep/purchase_order.php");
     die();
 
 }

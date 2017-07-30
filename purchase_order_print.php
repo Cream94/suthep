@@ -40,13 +40,12 @@ $supplier = mysqli_fetch_assoc($query2);
 </style>
 </head>
 <body>
-  <?php include 'navbar.php' ?>
   <div class="container">
-      <div class="col-md-12" >
-        <div class="col-md-1" >
+      <div class="col-md-12 col-xs-12" >
+        <div class="col-md-1 col-xs-1" >
           <img alt="Brand" src="logosuthep.png" width="220%" height="220%">
         </div>
-        <div class="col-md-11" >
+        <div class="col-md-11 col-xs-11" >
           <div class="form-group" align="center">
             <h3>บริษัท สุเทพ การหล่อ จำกัด</h3>
             <h5>9/2 หมู่ 2 ถ.พุทธมณฑลสาย 4 ต.กระทุ่มล้ม อ.สามพราน จ.นครปฐม 73220 <br/>
@@ -55,8 +54,8 @@ $supplier = mysqli_fetch_assoc($query2);
             <h4><b>ใบสั่งซื้อ</b></h4>
           </div>
       </div>
-      <div class="col-md-4 col-md-offset-8">
-          <table class="table table-bordered">
+      <div class="col-md-4 col-xs-4 col-md-offset-8 ">
+          <table class="table table-bordered" >
             <tr>
               <td style="width: 40%" align="center">เลขที่เอกสาร</td>
               <td style="width: 60%"><?=$supplier["po_id"];?></td>
@@ -73,66 +72,66 @@ $supplier = mysqli_fetch_assoc($query2);
             </tr>
           </table>
       </div>
-      <div class="col-md-12">
-        <div class="col-md-6">
-            <div class="col-md-4">
+      <div class="col-md-12 col-xs-12">
+        <div class="col-md-6 col-xs-6">
+            <div class="col-md-4 col-xs-4">
               <strong>รหัสผู้ขาย</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$supplier["sup_id"];?>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 col-xs-8">
               <strong>ชื่อผู้ติดต่อ</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<?=$supplier["admin_name"];?>
             </div>
         </div>
       </div>
-      <div class="col-md-12" style="margin-top: 10px">
-        <div class="col-md-6">
-          <div class="col-md-12  border-box">
-            <div class="col-md-2">
+      <div class="col-md-12 col-xs-12" style="margin-top: 10px">
+        <div class="col-md-6 col-xs-6">
+          <div class="col-md-12 col-xs-12 border-box">
+            <div class="col-md-3 col-xs-3">
               ชื่อผู้ขาย
             </div>
-            <div class="col-md-10">
+            <div class="col-md-9 col-xs-9">
               <?=$supplier["sup_name"];?>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3 col-xs-3">
               ที่อยู่
             </div>
-            <div class="col-md-10">
+            <div class="col-md-9 col-xs-9">
               <?=$supplier["sup_address"];?>
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="col-md-12  border-box">
-            <div class="col-md-3">
+        <div class="col-md-6 col-xs-6">
+          <div class="col-md-12 col-xs-12 border-box">
+            <div class="col-md-4 col-xs-4">
               วันที่อนุมัติขอซื้อ
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8 col-xs-8">
               <?php
                 $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $supplier["date_time"]);
                 $newDateString = $myDateTime->format('d F Y');
                 echo $newDateString;
              ?>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4 col-xs-4">
               วันกำหนดส่ง
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8 col-xs-8">
               -
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4 col-xs-4">
               จำนวนวันเครดิต
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8 col-xs-8">
               7 วัน
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4 col-xs-4">
               เงื่อนไขการชำระ
             </div>
-            <div class="col-md-9">
+            <div class="col-md-8 col-xs-8">
               ทุกวันจันทร์-ศุกร์
             </div>
           </div>
         </div>
-        <div class="col-md-12 border" style="margin-top: 10px">
+        <div class="col-md-12 col-xs-12 border" style="margin-top: 10px">
           <div>
             <table class="table table-bordered">
               <thead>
@@ -168,47 +167,48 @@ $supplier = mysqli_fetch_assoc($query2);
             </table>
           </div>
         </div>
-          <div class="col-md-12  border-box" style="margin-top: 3px">
-            <div class="col-md-6">
+          <div class="col-md-12 col-xs-12 border-box" style="margin-top: 10px">
+            <div class="col-md-6 col-xs-6">
             <h6>
-              <strong><div class="col-md-12">
+              <strong><div class="col-md-12 col-xs-12">
                 เงื่อนไขอื่นๆ
               </strong></div>
-              <div class="col-md-12">
+              <div class="col-md-12 col-xs-12">
                 (1)โปรดระบุเลขที่ใบสั่งซื้อข้างต้น ใบในสั่งของทุกฉบับ
               </div>
-              <div class="col-md-12">
+              <div class="col-md-12 col-xs-12">
                 (2)การวางบิลและการรับเช็คเป็นไปตามกำหนดเวลาที่บริษัทกำหนดไว้
               </div>
-              <div class="col-md-12">
+              <div class="col-md-12 col-xs-12">
                 (3)ในการวางบิลเพื่อเรียกเก็บ ให้แนบสำเนาใบสั่งซื้อมาด้วย
               </div>
             </h6>
           </div>
-            <div class="col-md-3" style="border-left : 1px solid black">
-              <div class="col-md-12">
+            <div class="col-md-3 col-xs-3" style="border-left : 1px solid black">
+              <div class="col-md-12 col-xs-12">
                 ผู้จัดทำ
               </div>
               <br/><hr>
             </div>
-            <div class="col-md-3"  style="border-left : 1px solid black">
-              <div class="col-md-12">
+            <div class="col-md-3 col-xs-3"  style="border-left : 1px solid black">
+              <div class="col-md-12 col-xs-12">
                 ในนาม
               </div>
               <br/><hr>
-              <div class="col-md-12">
+              <div class="col-md-12 col-xs-12">
                 ผู้มีอำนาจลงนาม
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-12" style="margin-top: 10px">
-        <center>
-          <a href="purchase_order.php" class="btn btn-danger">Back</a>
-          <a href="purchase_order_print.php?poid=<?=$poid;?>" target="_blank" class="btn btn-warning">Print</a>
-        </center>
-      </div>
   </div>
 </body>
+
+<script>
+  $(document).ready(function(){
+    window.print();
+  })
+</script>
+
 </html>

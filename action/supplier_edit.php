@@ -10,6 +10,6 @@ if ($sup_name != null || $sup_address != null || $sup_tel != null || $sup_fax !=
     $sql = "UPDATE supplier SET sup_name = '$sup_name', sup_address = '$sup_address', sup_tel = '$sup_tel',
             sup_fax = '$sup_fax', email = '$email' WHERE sup_id = $sup_id";
     $query = mysqli_query($conn, $sql) or die('Die query => ' . mysqli_error($conn));
-    header("Location: http://localhost/suthep/supplier.php");
+    header("Location: /suthep/supplier.php");
     die();
 }

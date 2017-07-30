@@ -129,17 +129,15 @@ function updateStatus() {
                 $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
                 " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
 
-                <a href="http://localhost/suthep/sale_order_invoice.php?soid='.$id.'" target="_blank" type="button" class="btn btn-default btn-sm">Detail</a>
+                <a href="/suthep/sale_order_invoice.php?soid='.$id.'" target="_blank" type="button" class="btn btn-default btn-sm">Detail</a>
                 <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["so_id"].'\');" >Delete</button> </td>';
-
-                ;
       } else {
       echo '<td align="center">
                   <button type="button" onclick="$(\'#so_id\').val('.$row["so_id"].');$(\'#modal_cust_name\').val(\''.$row["cust_name"].'\');
                   $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
                   " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
 
-                  <a href="http://localhost/suthep/sale_order_invoice.php?soid='.$id.'" target="_blank" type="button" class="btn btn-default btn-sm">Detail</a>'
+                  <a href="/suthep/sale_order_invoice.php?soid='.$id.'" target="_blank" type="button" class="btn btn-default btn-sm">Detail</a>'
                 ;
         }
       echo '</tr>';
