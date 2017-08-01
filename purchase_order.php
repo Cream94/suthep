@@ -103,7 +103,7 @@ function updateStatus() {
                 $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
                 class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
 
-                <a href="/suthep/purchase_order_invoice.php?poid='.$id.'" target="_blank" type="button" class="btn btn-default btn-sm">Detail</a>
+                <a href="/suthep/purchase_order_invoice.php?poid='.$id.'" target="" type="button" class="btn btn-default btn-sm">Detail</a>
                 <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["po_id"].'\');" >Delete</button> </td>';
       } else {
         echo '<td align="center">
@@ -111,7 +111,7 @@ function updateStatus() {
                   $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
                   class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
 
-                  <a href="/suthep/purchase_order_invoice.php?poid='.$id.'" target="_blank" type="button" class="btn btn-default btn-sm">Detail</a>'
+                  <a href="/suthep/purchase_order_invoice.php?poid='.$id.'" target="" type="button" class="btn btn-default btn-sm">Detail</a>'
         ;
       }
       echo '</tr>';

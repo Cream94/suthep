@@ -8,8 +8,6 @@
   $sqlMat = "SELECT * FROM material";
   $queryMat = mysqli_query($conn, $sqlMat);
 
-  $sql2 = "SELECT * FROM customer";
-  $query2 = mysqli_query($conn, $sql2);
 
 ?>
 
@@ -73,19 +71,6 @@
             <label for="material_number" class="col-sm-2 control-label">จำนวนที่ใข้</label>
             <div class="col-sm-7">
             <input type="material_number" class="form-control" id="material_number" name="material_number" value="<?php echo $row["material_number"]; ?>" placeholder="จำนวนที่ใข้">
-            </div>
-            </div>
-            <div class="form-group">
-            <label for="cust_id" class="col-sm-2 control-label">บริษัทลูกค้า</label>
-            <div class="col-sm-7">
-              <select class="form-control" name="cust_id" >
-                <?php
-                  while ($row2 = mysqli_fetch_array($query2)) {
-                    echo '<option value="'.$row2["cust_id"].'">'.$row2["cust_name"].'</option>';
-                  }
-
-                 ?>
-              </select>
             </div>
             </div>
 

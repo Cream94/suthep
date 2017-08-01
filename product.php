@@ -103,7 +103,7 @@ function func_delete(id) {
                 <button type="button" onclick="$(\'#modal_prod_id\').val(\''.$row["prod_id"].'\');
                 $(\'#modal_prod_detail\').val(\''.$row["prod_detail"].'\');$(\'#modal_price\').val(\''.$row["pprice"].'\');
                 $(\'#modal_weight\').val(\''.$row["weight"].'\');$(\'#modal_material_id\').val(\''.$row["mat_name"].'\');
-                $(\'#modal_material_number\').val(\''.$row["material_number"].'\');$(\'#modal_cust_name\').val(\''.$row["cust_name"].'\')"
+                $(\'#modal_material_number\').val(\''.$row["material_number"].'\')"
                 " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
 
                 <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["prod_id"].'\');" >Delete</button> </td>';
@@ -162,12 +162,6 @@ function func_delete(id) {
             <label for="material_number" class="col-sm-2 control-label">จำนวนที่ใช้วัตถุดิบ</label>
           <div class="col-sm-7">
             <input type="detail" class="form-control" readonly id="modal_material_number" name="material_number" value="" placeholder="จำนวนที่ใช้วัตถุดิบ">
-          </div>
-          </div>
-          <div class="form-group">
-            <label for="cust_name" class="col-sm-2 control-label">ชื่อลูกค้า</label>
-          <div class="col-sm-7">
-            <input type="detail" class="form-control" readonly id="modal_cust_name" name="cust_name" value="" placeholder="ชื่อลูกค้า">
           </div>
           </div>
 
