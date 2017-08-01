@@ -2,7 +2,7 @@
   require_once 'database/connector.php';
   $prodid = $_GET["prodid"];
 
-  $sql = "SELECT *, product.price as pprice FROM product, material";
+  $sql = "SELECT *, product.price as pprice FROM product, material, customer";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
   if ($search != "") {
     $sql .= " WHERE (product.prod_id like '%$search%' or product.prod_detail like '%$search%') and product.material_id = material.mat_id ";
@@ -12,10 +12,11 @@
   $sql .= " group by product.prod_id ORDER By product.id DESC";  //เมื่อ add ข้อมูลแล้วจะขึ้นบนสุดของ table
   $query = mysqli_query($conn, $sql);
 
-
   $sqlStock = "SELECT * FROM stock, material WHERE stock.mat_id = material.mat_id and stock.number <= 10";
   $queryStock = mysqli_query($conn, $sqlStock);
   $rowStock = mysqli_num_rows($queryStock);
+
+
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +103,7 @@ function func_delete(id) {
                 <button type="button" onclick="$(\'#modal_prod_id\').val(\''.$row["prod_id"].'\');
                 $(\'#modal_prod_detail\').val(\''.$row["prod_detail"].'\');$(\'#modal_price\').val(\''.$row["pprice"].'\');
                 $(\'#modal_weight\').val(\''.$row["weight"].'\');$(\'#modal_material_id\').val(\''.$row["mat_name"].'\');
-                $(\'#modal_material_number\').val(\''.$row["material_number"].'\')
+                $(\'#modal_material_number\').val(\''.$row["material_number"].'\');$(\'#modal_cust_name\').val(\''.$row["cust_name"].'\')"
                 " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
 
                 <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["prod_id"].'\');" >Delete</button> </td>';
@@ -163,6 +164,12 @@ function func_delete(id) {
             <input type="detail" class="form-control" readonly id="modal_material_number" name="material_number" value="" placeholder="จำนวนที่ใช้วัตถุดิบ">
           </div>
           </div>
+          <div class="form-group">
+            <label for="cust_name" class="col-sm-2 control-label">ชื่อลูกค้า</label>
+          <div class="col-sm-7">
+            <input type="detail" class="form-control" readonly id="modal_cust_name" name="cust_name" value="" placeholder="ชื่อลูกค้า">
+          </div>
+          </div>
 
         </div>
         <div class="modal-footer">
@@ -172,6 +179,8 @@ function func_delete(id) {
     </div>
   </div>
 </div>
+
+
   <!-- Modal -->
 <div class="modal fade" id="modal-stock-material" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">

@@ -40,7 +40,7 @@
             </div>
             </div>
             <div class="form-group">
-            <label for="sup_id" class="col-sm-2 control-label">รหัสผู้ผลิต</label>
+            <label for="sup_id" class="col-sm-2 control-label">บริษัทผู้ผลิต</label>
             <div class="col-sm-7">
               <select class="form-control" name="sup_id" >
                 <?php
