@@ -14,6 +14,7 @@
 <title>Suthep</title>
 <?php include 'header.php' ?>
 <script>
+var rank = 1;
   $(document).ready(function(){
     $('#main-form').on('submit', function(e){
       var empty = 0;
@@ -32,6 +33,14 @@
     })
   })
 
+  $(document).on('click', '.remove-row', function(){
+    $(this).closest("tr").remove();
+    var count = 1;
+    $('.ranking').each(function(){
+      $(this).text(count++);
+    })
+    rank = count;
+  })
 
 </script>
 </head>
@@ -124,7 +133,6 @@
 
       <script>
         $(document).ready(function(){
-          var rank = 1;
           callProductName();
           $('#btnadd').on('click', function(){
             var cust_id = $('#cust_list').find('option:selected').val();
@@ -142,7 +150,7 @@
             $('<input name="prod_id[]" style="display: none" value="'+ (prod_id[0]) +'">').appendTo(tr);
             $('<input name="price[]" style="display: none" value="'+ (prod_id[1]) +'">').appendTo(tr);
             $('<input name="name[]" style="display: none" value="'+ (prod_name) +'">').appendTo(tr);
-            $('<td>'+ (rank++) +'</td>').appendTo(tr);
+            $('<td class="ranking">'+ (rank++) +'</td>').appendTo(tr);
             $('<td>'+ (cust_name) +'</td>').appendTo(tr);
             $('<td>'+ (prod_name) +'</td>').appendTo(tr);
             $('<td>'+ (prod_detail) +'</td>').appendTo(tr);
@@ -150,7 +158,7 @@
             $('<input name="weight[]" style="display: none" value="'+ (prod_weight) +'">').appendTo(tr);
             $('<td><input name="number[]" value="'+ (number) +'"></td>').appendTo(tr);
             $('<td>'+ (addComma(total)) +'</td>').appendTo(tr);
-            $('<td> <center> <button type="button" class="btn btn-warning btn-sm">Delete</button> <center> </td>').appendTo(tr);
+            $('<td> <center> <button type="button" class="btn btn-warning btn-sm remove-row">Delete</button> <center> </td>').appendTo(tr);
 
             $('#cust_list').attr('disabled', 'disabled');
 
