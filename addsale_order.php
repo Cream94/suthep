@@ -13,6 +13,27 @@
 <head>
 <title>Suthep</title>
 <?php include 'header.php' ?>
+<script>
+  $(document).ready(function(){
+    $('#main-form').on('submit', function(e){
+      var empty = 0;
+      $('input[name^=number]').each(function(){
+        var num = $(this).val();
+        if (num == 0 || num == "") {
+          empty += 1;
+        }
+      })
+      if (empty == 0) {
+        $('form:first').submit();
+      } else {
+        alert('กรุณาใส่จำนวนสินค้า');
+        e.preventDefault();
+      }
+    })
+  })
+
+
+</script>
 </head>
 <body>
   <?php include 'navbar.php' ?>
@@ -23,7 +44,7 @@
         <div class="row">
           <div class="col-md-10 col-md-offset-1 jumbotron well">
             <h4 style="font-weight: bold;">ใบสังขายสินค้า</h4> <br/>
-            <form class="form-horizontal" action="sale_order_confirm.php" method="post">
+            <form id="main-form" class="form-horizontal" action="sale_order_confirm.php" method="post">
             <div class="form-group">
             <label for="cust_id" class="col-sm-2 control-label">ชื่อลูกค้า</label>
             <div class="col-sm-2">
@@ -50,7 +71,7 @@
             <div class="form-group">
             <label for="number" class="col-sm-1 control-label">จำนวน</label>
             <div class="col-sm-2">
-            <input type="id" class="form-control" id="number" name="number" placeholder="จำนวน">
+            <input type="id" class="form-control" id="number" name="add-number" placeholder="จำนวน">
             </div>
             <div class="col-sm-2">
               <button type="button" id="btnadd" class="btn btn-success">+</button>
@@ -130,6 +151,9 @@
             $('<td><input name="number[]" value="'+ (number) +'"></td>').appendTo(tr);
             $('<td>'+ (addComma(total)) +'</td>').appendTo(tr);
             $('<td> <center> <button type="button" class="btn btn-warning btn-sm">Delete</button> <center> </td>').appendTo(tr);
+
+            $('#cust_list').attr('disabled', 'disabled');
+
           });
         })
 

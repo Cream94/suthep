@@ -1,10 +1,11 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT * FROM customer ORDER BY customer.cust_id DESC";
+  $sql = "SELECT * FROM customer ";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
   if ($search != "") {
     $sql .= " WHERE customer.cust_name like '%$search%'";
   }
+  $sql .= " ORDER BY customer.cust_id DESC";
   $query = mysqli_query($conn, $sql);
 ?>
 

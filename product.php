@@ -1,12 +1,21 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT *, product.price as pprice FROM product, material WHERE product.material_id = material.mat_id group by product.prod_id";
+  $prodid = $_GET["prodid"];
+
+  $sql = "SELECT *, product.price as pprice FROM product, material";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
   if ($search != "") {
-    $sql .= " WHERE product.prod_id like '%$search%'";
+    $sql .= " WHERE (product.prod_id like '%$search%' or product.prod_detail like '%$search%') and product.material_id = material.mat_id ";
+  } else {
+    $sql .= " WHERE product.material_id = material.mat_id ";
   }
-  $sql .= " ORDER By product.id DESC";  //เมื่อ add ข้อมูลแล้วจะขึ้นบนสุดของ table
+  $sql .= " group by product.prod_id ORDER By product.id DESC";  //เมื่อ add ข้อมูลแล้วจะขึ้นบนสุดของ table
   $query = mysqli_query($conn, $sql);
+
+
+  $sqlStock = "SELECT * FROM stock, material WHERE stock.mat_id = material.mat_id and stock.number <= 10";
+  $queryStock = mysqli_query($conn, $sqlStock);
+  $rowStock = mysqli_num_rows($queryStock);
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +24,15 @@
 <title>Suthep</title>
 <?php include 'header.php' ?>
 <script type="text/javascript">
+
+$(document).ready(function(){
+  <?php
+    if ($rowStock > 0) {
+      echo "$('#modal-stock-material').modal();";
+    }
+   ?>
+})
+
 function func_delete(id) {
 
   if(!confirm('Are you sure?')){
@@ -34,11 +52,12 @@ function func_delete(id) {
   <div class="row">
 <form class="form-inline">
   <div class="form-group">
-    <label for="prod_id">รหัสสินค้า</label>
+    <label for="prod_id">รหัสสินค้า/รายละเอียดสินค้า</label>
     <input type="text" name="search" class="form-control" id="prod_id" placeholder="product" value="<?=$search;?>">
   </div>
   <button type="submit" class="btn btn-info">Search</button>
   <a href="addproduct.php" class="btn btn-success">Add</a>
+  <a href="product_print.php?prodid=<?=$prodid;?>" target="_blank" class="btn btn-warning">Report</a>
 </form>
 </center>
 
@@ -152,3 +171,42 @@ function func_delete(id) {
       </form>
     </div>
   </div>
+</div>
+  <!-- Modal -->
+<div class="modal fade" id="modal-stock-material" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">แจ้งเตือน รายการวัตถุดิบคงเหลือ</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-stripped table-bordered">
+          <thead>
+            <th>ลำดับ</th>
+            <th>รหัสวัตถุดิบ</th>
+            <th>ชื่อวัตถุดิบ</th>
+            <th>จำนวนคงเหลือ</th>
+          </thead>
+          <tbody>
+            <?php
+              $count = 1;
+              while ($rowStock = mysqli_fetch_array($queryStock)) {
+                echo '<tr>';
+                echo "<td>$count</td>";
+                echo "<td>".$rowStock["mat_id"]."</td>";
+                echo "<td>".$rowStock["mat_name"]."</td>";
+                echo "<td style='color: red;font-weight: bold'>".$rowStock["number"]."</td>";
+                echo '</tr>';
+                $count++;
+              }
+             ?>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@ $cust_fax = isset($_POST["cust_fax"]) ? $_POST["cust_fax"] : null; // short if.
 $email = isset($_POST["email"]) ? $_POST["email"] : null; // short if.
 if ($cust_name != null || $cust_address != null || $cust_tel != null || $cust_fax != null || $email != null) {
     $sql = "INSERT INTO customer (cust_name, cust_address, cust_tel, cust_fax, email, username, password)
-    VALUES('$cust_name', '$cust_address', '$cust_tel', '$cust_fax', '$email', '$email', '$cust_tel')";
+    VALUES('$cust_name', '$cust_address', '$cust_tel', '$cust_fax', '$email', '$cust_tel', '$cust_tel')";
     $query = mysqli_query($conn, $sql) or die('Die query');
     header("Location: /suthep/customer.php");
     die();

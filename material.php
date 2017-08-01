@@ -1,5 +1,7 @@
 <?php
   require_once 'database/connector.php';
+  $matid = $_GET["matid"];
+
   $sql = "SELECT * FROM material as m
   left join supplier as s on s.sup_id = m.sup_id ";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
@@ -41,6 +43,7 @@ function func_delete(id) {
   </div>
   <button type="submit" class="btn btn-info">Search</button>
   <a href="addmaterial.php" class="btn btn-success">Add</a>
+  <a href="material_print.php?matid=<?=$matid;?>" target="_blank" class="btn btn-warning">Report</a>
 </form>
 </center>
 

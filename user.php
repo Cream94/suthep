@@ -1,10 +1,13 @@
 <?php
   require_once 'database/connector.php';
-  $sql = "SELECT * FROM admin WHERE super_admin = 0 ORDER BY admin.admin_id DESC";
+  $adminid = $_GET["asminid"];
+
+  $sql = "SELECT * FROM admin WHERE super_admin = 0 ";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
   if ($search != "") {
     $sql .= " and (admin.admin_name like '%$search%')";
   }
+    $sql .= " ORDER BY admin.admin_id DESC";
   $query = mysqli_query($conn, $sql);
 ?>
 
@@ -38,6 +41,7 @@ function func_delete(id) {
   </div>
   <button type="submit" class="btn btn-info">Search</button>
   <a href="adduser.php" class="btn btn-success">Add</a>
+  <a href="admin_print.php?adminid=<?=$adminid;?>" target="_blank" class="btn btn-warning">Report</a>
 </form>
 </center>
 

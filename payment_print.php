@@ -37,11 +37,11 @@ $customer = mysqli_fetch_assoc($query);
 <body>
   <?php include 'navbar.php' ?>
   <div class="container">
-      <div class="col-md-12" >
-        <div class="col-md-1" >
+      <div class="col-md-12 col-xs-12" >
+        <div class="col-md-1 col-xs-1" >
           <img alt="Brand" src="logosuthep.png" width="220%" height="220%">
         </div>
-        <div class="col-md-11" >
+        <div class="col-md-11 col-xs-11" >
           <div class="form-group" align="center">
             <h3>บริษัท สุเทพ การหล่อ จำกัด</h3>
             <h5>9/2 หมู่ 2 ถ.พุทธมณฑลสาย 4 ต.กระทุ่มล้ม อ.สามพราน จ.นครปฐม 73220 <br/>
@@ -50,42 +50,42 @@ $customer = mysqli_fetch_assoc($query);
             <h4><b>ใบเสร็จรับเงิน</b></h4>
           </div>
       </div>
-      <div class="col-md-4 col-md-offset-8">
+      <div class="col-md-4 col-xs-4 col-md-offset-8">
           <table class="table table-bordered">
             <tr>
               <td align="center">สำเนาใบกำกับภาษี/ใบเสร็จรับเงิน</td>
             </tr>
           </table>
       </div>
-      <div class="col-md-12" style="margin-top: 1px">
-        <div class="col-md-6">
-          <div class="col-md-12  border-box">
-            <div class="col-md-3">
+      <div class="col-md-12 col-xs-12" style="margin-top: 1px">
+        <div class="col-md-6 col-xs-6">
+          <div class="col-md-12 col-xs-12 border-box">
+            <div class="col-md-3 col-xs-3">
               นามลูกค้า
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 col-xs-9">
               <?=$customer["cust_name"];?>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-xs-3">
               ที่อยู่
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 col-xs-9">
               <?=$customer["cust_address"];?>
             </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="col-md-12  border-box">
-            <div class="col-md-3">
+        <div class="col-md-6 col-xs-6">
+          <div class="col-md-12 col-xs-12 border-box">
+            <div class="col-md-3 col-xs-3">
               เลขที่
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 col-xs-9">
               <?=$customer["so_id"];?>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-xs-3">
               วันที่
             </div>
-            <div class="col-md-9">
+            <div class="col-md-9 col-xs-9">
               <?php
                 $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $customer["date_time"]);
                 $newDateString = $myDateTime->format('d F Y');
@@ -94,7 +94,7 @@ $customer = mysqli_fetch_assoc($query);
             </div>
           </div>
         </div>
-        <div class="col-md-12 border" style="margin-top: 10px">
+        <div class="col-md-12 col-xs-12 border" style="margin-top: 10px">
           <div>
             <table class="table table-bordered">
               <thead>
@@ -136,34 +136,34 @@ $customer = mysqli_fetch_assoc($query);
             </table>
           </div>
         </div>
-        <div class="col-md-12" style="margin-top: 8px">
-          <div class="col-md-4">
-            <div class="col-md-12  border-box">
-              <div class="col-md-12">
+        <div class="col-md-12 col-xs-12" style="margin-top: 8px">
+          <div class="col-md-4 col-xs-4">
+            <div class="col-md-12 col-xs-12 border-box">
+              <div class="col-md-12 col-xs-12">
                 ในนาม
               </div>
               <br/><hr>
-              <div class="col-md-12" align="center">
+              <div class="col-md-12 col-xs-12" align="center">
                 ผู้มีอำนาจลงนาม
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="col-md-12  border-box">
-              <div class="col-md-12"><br/>
-                จัดเตรียมโดย..............................................
+          <div class="col-md-4 col-xs-4">
+            <div class="col-md-12 col-xs-12 border-box">
+              <div class="col-md-12 col-xs-12"><br/>
+                จัดเตรียมโดย.......................................
               </div>
-              <div class="col-md-12"><br/>
-                ตรวจสอบโดย..............................................
+              <div class="col-md-12 col-xs-12"><br/>
+                ตรวจสอบโดย.......................................
               </div>
             </div>
           </div>
-          <div class="col-md-4">
-            <div class="col-md-12  border-box">
-              <div class="col-md-12">
+          <div class="col-md-4 col-xs-4">
+            <div class="col-md-12 col-xs-12 border-box">
+              <div class="col-md-12 col-xs-12">
                 ชำระโดย
               </div>
-              <div class="col-md-12" align="center">
+              <div class="col-md-12 col-xs-12" align="center">
                 <label class="radio-inline">
                   <label class="checkbox-inline">
                     <input type="checkbox" id="inlineCheckbox1" value="option1"> เงินสด
@@ -172,23 +172,24 @@ $customer = mysqli_fetch_assoc($query);
                     <input type="checkbox" id="inlineCheckbox2" value="option2"> เงินเชื่อ
                   </label>
                 </div>
-            <div class="col-md-12">
-                ธนาคาร..........................................................
+            <div class="col-md-12 col-xs-12">
+                ธนาคาร...................................................
             </div>
-            <div class="col-md-12">
-                เลขที่.......................วันที่...............................
+            <div class="col-md-12 col-xs-12">
+                เลขที่..................วันที่........................
             </div>
-            <div class="col-md-12">
-                ผู้รับเงิน..........................................................
+            <div class="col-md-12 col-xs-12">
+                ผู้รับเงิน..................................................
             </div>
           </div>
         </div>
-        <div class="col-md-12" style="margin-top: 10px">
-          <center>
-            <a href="payment.php" class="btn btn-danger">Back</a>
-            <a href="payment_print.php?custid=<?=$custid;?>" target="_blank" class="btn btn-warning">Print</a>
-          </center>
-        </div>
 
       </body>
+
+      <script>
+        $(document).ready(function(){
+          window.print();
+        })
+      </script>
+
       </html>
