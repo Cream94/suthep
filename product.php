@@ -1,13 +1,16 @@
 <?php
+  session_start();
   require_once 'database/connector.php';
   $prodid = $_GET["prodid"];
-
-  $sql = "SELECT *, product.price as pprice FROM product, material, customer";
+  $sql = "SELECT *, product.price as pprice ,product.status as pstatus FROM product, material, customer  ";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
   if ($search != "") {
     $sql .= " WHERE (product.prod_id like '%$search%' or product.prod_detail like '%$search%') and product.material_id = material.mat_id ";
   } else {
     $sql .= " WHERE product.material_id = material.mat_id ";
+  }
+  if ($_SESSION["login_super_admin"]==0) {
+    $sql .= " and product.status = 1 ";
   }
   $sql .= " group by product.prod_id ORDER By product.id DESC";  //เมื่อ add ข้อมูลแล้วจะขึ้นบนสุดของ table
   $query = mysqli_query($conn, $sql);
@@ -41,6 +44,15 @@ function func_delete(id) {
     return false;
   }
   window.location.href ="action/product_delete.php?id=" + id;
+
+}
+function func_recall(id) {
+
+  if(!confirm('Are you sure?')){
+    e.preventDefault();
+    return false;
+  }
+  window.location.href ="action/product_recall.php?id=" + id;
 
 }
 
@@ -97,17 +109,32 @@ function func_delete(id) {
         echo '<td>'.$row["prod_detail"].'</td>';
         echo '<td align="right">'.$row["pprice"].'</td>';
         $id = $row["prod_id"];
-        echo   '<td align="center">
-                <a href="editproduct.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+      ?>
+      <td align="center">
+          <a href="editproduct.php?id=<?php echo $id; ?>" class="btn btn-default btn-sm">Edit</a>
 
-                <button type="button" onclick="$(\'#modal_prod_id\').val(\''.$row["prod_id"].'\');
-                $(\'#modal_prod_detail\').val(\''.$row["prod_detail"].'\');$(\'#modal_price\').val(\''.$row["pprice"].'\');
-                $(\'#modal_weight\').val(\''.$row["weight"].'\');$(\'#modal_material_id\').val(\''.$row["mat_name"].'\');
-                $(\'#modal_material_number\').val(\''.$row["material_number"].'\')"
-                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
+          <button type="button" onclick="$('#modal_prod_id').val('<?php echo $row["prod_id"]; ?>');
+          $('#modal_prod_detail').val('<?php echo $row["prod_detail"]; ?>');$('#modal_price').val('<?php  echo $row["pprice"]; ?>');
+          $('#modal_weight').val('<?php echo $row["weight"]; ?>');$('#modal_material_id').val('<?php echo $row["mat_name"]; ?>');
+          $('#modal_material_number').val('<?php echo $row["material_number"]; ?>')"
+         class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
+         <?php
+          if ($row["pstatus"]==0) {
+            ?>
+            <button type="button" class="btn btn-info btn-sm" onclick="func_recall(<?php echo $row["prod_id"]; ?>);" >Recall</button>
+            <?php
+            # code...
+          }else{
+            ?>
+            <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(<?php echo $row["prod_id"]; ?>);" >Delete</button>
+        <?php
+          }
+         ?>
 
-                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["prod_id"].'\');" >Delete</button> </td>';
+        </td>
+      <?php
         echo '</tr>';
+
         $count++; // $count = $count + 1;
       }
     ?>

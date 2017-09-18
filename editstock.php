@@ -40,7 +40,7 @@
               <div class="form-group">
               <label for="number" class="col-sm-2 control-label">จำนวน</label>
               <div class="col-sm-10">
-              <input type="text" class="form-control" id="number" max="<?php echo $row['number']?>" name="number" value="<?php echo $row['number']?>" placeholder="จำนวน">
+              <input type="number" class="form-control" id="number" max="<?php echo $row['number']?>" name="number" value="<?php echo $row['number']?>" placeholder="จำนวน">
               </div>
               </div>
               <div class="form-group">

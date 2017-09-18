@@ -45,7 +45,7 @@
             <div class="form-group">
             <label for="price" class="col-sm-2 control-label">ราคา/ชิ้น</label>
             <div class="col-sm-10">
-            <input type="price" class="form-control" id="price" name="price" value="<?php echo $row["prod_price"]; ?>" placeholder="ราคา">
+            <input type="number" class="form-control" id="price" name="price" value="<?php echo $row["prod_price"]; ?>" placeholder="ราคา">
             </div>
             </div>
             <div class="form-group">

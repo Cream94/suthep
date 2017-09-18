@@ -8,10 +8,11 @@
     left join so_status as sos on so.status = sos.status_id";
 
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
+  $wh = "";
   if ($search != "") {
-    $sql2 .= " WHERE so.so_id like '%$search%' or c.cust_name like '%$search%'";
+    $wh .= " and so.so_id like '%$search%' or c.cust_name like '%$search%'";
   }
-
+  $sql2 .= " WHERE so.status_update = 1 ".$wh;
   $sql2 .= " group by so.so_id ORDER BY so.so_id DESC";
 
   $query2 = mysqli_query($conn, $sql2);

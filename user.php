@@ -7,6 +7,7 @@
   if ($search != "") {
     $sql .= " and (admin.admin_name like '%$search%')";
   }
+    $sql .= " and admin.status = 1 ";  //การลบข้อมูลแต่ใน database ยังอยู่
     $sql .= " ORDER BY admin.admin_id DESC";
   $query = mysqli_query($conn, $sql);
 ?>

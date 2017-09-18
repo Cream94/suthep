@@ -31,12 +31,6 @@
     <h4 align='center' style="font-weight: bold;" >บัญชี</h4> <br/>
   </form>
 
-    <div class="col-md-2 col-md-offset-10">
-      <select class="form-control">
-        <option>1</option>
-      </select>
-    </div>
-
     <div class="col-md-6">
       <table class="table table-striped table-bordered">
         <tr class="warning" style="font-weight: bold;">

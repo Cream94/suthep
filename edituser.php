@@ -35,13 +35,13 @@
             <div class="form-group">
             <label for="admin_tel" class="col-sm-2 control-label">เบอร์โทร</label>
             <div class="col-sm-10">
-            <input type="price" class="form-control" id="admin_tel" name="admin_tel" value="<?php echo $row["admin_tel"]; ?>" placeholder="เบอร์โทร">
+            <input type="number" class="form-control" id="admin_tel" name="admin_tel" value="<?php echo $row["admin_tel"]; ?>" placeholder="เบอร์โทร">
             </div>
             </div>
             <div class="form-group">
             <label for="admin_fax" class="col-sm-2 control-label">เบอร์แฟ๊กซ์</label>
             <div class="col-sm-10">
-            <input type="weight" class="form-control" id="admin_fax" name="admin_fax" value="<?php echo $row["admin_fax"]; ?>" placeholder="เบอร์แฟ๊กซ์">
+            <input type="number" class="form-control" id="admin_fax" name="admin_fax" value="<?php echo $row["admin_fax"]; ?>" placeholder="เบอร์แฟ๊กซ์">
             </div>
             </div>
             <div class="form-group">

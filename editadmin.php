@@ -35,13 +35,13 @@
             <div class="form-group">
             <label for="admin_tel" class="col-sm-2 control-label">เบอร์โทร</label>
             <div class="col-sm-10">
-            <input type="price" class="form-control" id="admin_tel" name="admin_tel" value="<?php echo $row["admin_tel"]; ?>" placeholder="เบอร์โทร">
+            <input type="number" class="form-control" id="admin_tel" name="admin_tel" value="<?php echo $row["admin_tel"]; ?>" placeholder="เบอร์โทร">
             </div>
             </div>
             <div class="form-group">
             <label for="admin_fax" class="col-sm-2 control-label">เบอร์แฟ๊กซ์</label>
             <div class="col-sm-10">
-            <input type="weight" class="form-control" id="admin_fax" name="admin_fax" value="<?php echo $row["admin_fax"]; ?>" placeholder="เบอร์แฟ๊กซ์">
+            <input type="number" class="form-control" id="admin_fax" name="admin_fax" value="<?php echo $row["admin_fax"]; ?>" placeholder="เบอร์แฟ๊กซ์">
             </div>
             </div>
             <div class="form-group">
@@ -53,17 +53,17 @@
             <div class="form-group">
             <label for="username" class="col-sm-2 control-label">Username</label>
             <div class="col-sm-10">
-            <input type="weight" class="form-control" id="username" name="username" value="<?php echo $row["username"]; ?>" placeholder="username">
+            <input type="weight" class="form-control" id="username" name="username" value="<?php echo $row["username"]; ?>" placeholder="username" >
             </div>
             </div>
             <div class="form-group">
             <label for="password" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
-            <input type="password" class="form-control" id="password" name="password" value="<?php echo $row["password"]; ?>" placeholder="password">
+            <input type="password" class="form-control" id="password" name="password" value="<?php echo $row["password"]; ?>" placeholder="password" minlength="8" required>
             </div>
             </div>
 
-        <button type="submit" class="btn btn-success">Save</button>
+        <input type="submit" name="Save" class="btn btn-success" value="Save">
         <a href="admin.php" class="btn btn-danger">Cancel</a>
 
       </form>

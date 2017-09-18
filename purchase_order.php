@@ -4,11 +4,13 @@
     left join supplier as su on su.sup_id = po.sup_id
     left join po_status as pos on po.status = pos.status_id
     ";
+    $wh = "";
 
     $search = isset($_GET["search"]) ? $_GET["search"] : "";
     if ($search != "") {
-      $sql .= " WHERE po.po_id like '%$search%' or su.sup_name like '%$search%'";
+      $wh .= " and po.po_id like '%$search%' or su.sup_name like '%$search%'";
     }
+    $sql .= " WHERE po.status_update = 1".$wh;
     $sql .= " Group By po.po_id ORDER BY po.po_id DESC";
 
   $query = mysqli_query($conn, $sql);

@@ -4,10 +4,12 @@
 
   $sql = "SELECT * FROM material as m
   left join supplier as s on s.sup_id = m.sup_id ";
+  $wh = "";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
   if ($search != "") {
-    $sql .= " WHERE m.mat_name like '%$search%' or s.sup_name like '%$search%'";
+    $wh .= " and m.mat_name like '%$search%' or s.sup_name like '%$search%'";
   }
+  $sql .= " WHERE m.status = 1".$wh;
   $sql .= " order by mat_id DESC";
 
   $query = mysqli_query($conn, $sql);

@@ -80,7 +80,7 @@ var rank = 1;
             <div class="form-group">
             <label for="number" class="col-sm-1 control-label">จำนวน</label>
             <div class="col-sm-2">
-            <input type="id" class="form-control" id="number" name="add-number" placeholder="จำนวน">
+            <input type="number" class="form-control" id="number" name="add-number" placeholder="จำนวน">
             </div>
             <div class="col-sm-2">
               <button type="button" id="btnadd" class="btn btn-success">+</button>
@@ -156,7 +156,7 @@ var rank = 1;
             $('<td>'+ (prod_detail) +'</td>').appendTo(tr);
             $('<input name="prod_detail[]" style="display: none" value="'+ (prod_detail) +'">').appendTo(tr);
             $('<input name="weight[]" style="display: none" value="'+ (prod_weight) +'">').appendTo(tr);
-            $('<td><input name="number[]" value="'+ (number) +'"></td>').appendTo(tr);
+            $('<td><input type="number" name="number[]" value="'+ (number) +'"></td>').appendTo(tr);
             $('<td>'+ (addComma(total)) +'</td>').appendTo(tr);
             $('<td> <center> <button type="button" class="btn btn-warning btn-sm remove-row">Delete</button> <center> </td>').appendTo(tr);
 

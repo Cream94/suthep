@@ -2,9 +2,11 @@
   require_once 'database/connector.php';
   $sql = "SELECT * FROM supplier ";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
+  $wh = "";
   if ($search != "") {
-    $sql .= " WHERE supplier.sup_name like '%$search%'";
+    $wh .= " and supplier.sup_name like '%$search%'";
   }
+    $sql .= " WHERE supplier.status = 1".$wh;
     $sql .= " ORDER BY supplier.sup_id DESC";
   $query = mysqli_query($conn, $sql);
 ?>

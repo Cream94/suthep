@@ -3,10 +3,12 @@
   $sql = "SELECT * FROM stock as s
     left join material as m on m.mat_id = s.mat_id
     left join supplier as su on m.sup_id = su.sup_id ";
+    $wh = "";
     $search = isset($_GET["search"]) ? $_GET["search"] : "";
     if ($search != "") {
-      $sql .= " WHERE m.mat_name like '%$search%'";
+      $wh .= " and m.mat_name like '%$search%'";
     }
+     $sql .= " WHERE s.status = 1".$wh;
      $sql .= " ORDER BY s.stock_id DESC";
   $query = mysqli_query($conn, $sql);
 
@@ -160,7 +162,7 @@ function func_delete(id, mid) {
           <div class="form-group">
           <label for="number" class="col-sm-2 control-label">จำนวน</label>
           <div class="col-sm-10">
-          <input type="text" class="form-control" id="modal_number" max="<?php echo $row['number']?>" name="number" value="<?php echo $row['number']?>" placeholder="จำนวน">
+          <input type="number" class="form-control" id="modal_number" max="<?php echo $row['number']?>" name="number" value="<?php echo $row['number']?>" placeholder="จำนวน">
           </div>
           </div>
           <div class="form-group">

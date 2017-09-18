@@ -11,6 +11,7 @@
 <title>Suthep</title>
 <?php include 'header.php' ?>
 <script>
+var rank = 1;
   $(document).ready(function(){
     $('#main-form').on('submit', function(e){
       var empty = 0;
@@ -29,12 +30,15 @@
     })
   })
 
-  function removeRow(row){
+  $(document).on('click', '.remove-row', function(){
+    $(this).closest("tr").remove();
     var count = 1;
-    $('.rank-count').each(function(){
+    $('.ranking').each(function(){
       $(this).text(count++);
     })
-  }
+    rank = count;
+  })
+
 </script>
 </head>
 <body>
@@ -68,7 +72,7 @@
             <div class="form-group">
             <label for="number" class="col-sm-1 control-label">จำนวน</label>
             <div class="col-sm-2">
-            <input type="id" class="form-control" id="number" name="add-number" placeholder="จำนวน">
+            <input type="number" class="form-control" id="number" name="add-number" placeholder="จำนวน">
             </div>
             <div class="col-sm-2">
               <button type="button" id="btnadd" class="btn btn-success">+</button>
@@ -131,9 +135,9 @@
             $('<td class="rank-count">'+ (rank++) +'</td>').appendTo(tr);
             $('<td>'+ (sup_name) +'</td>').appendTo(tr);
             $('<td>'+ (mat_name) +'</td>').appendTo(tr);
-            $('<td><input name="number[]" value="'+ (number) +'"></td>').appendTo(tr);
+            $('<td><input type="number" name="number[]" value="'+ (number) +'"></td>').appendTo(tr);
             $('<td>'+ (addComma(total)) +'</td>').appendTo(tr);
-            $('<td> <center> <button type="button" onclick="removeRow(\'tr-'+rank+'\')" class="btn btn-warning btn-sm remove-row">Delete</button> <center> </td>').appendTo(tr);
+            $('<td> <center> <button type="button" class="btn btn-warning btn-sm remove-row">Delete</button> <center> </td>').appendTo(tr);
 
             $('#sup_list').attr('disabled', 'disabled');
 
