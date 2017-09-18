@@ -101,7 +101,7 @@ function func_delete(id) {
                 $(\'#modal_email\').val(\''.$row["email"].'\')"
                 " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
 
-                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["admin_id"].'\');" >Delete</button> </td>';
+                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["admin_id"].'\');" >Cencal</button> </td>';
       echo '</tr>';
       $count++; // $count = $count + 1;
     }

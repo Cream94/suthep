@@ -126,7 +126,7 @@ function func_recall(id) {
             # code...
           }else{
             ?>
-            <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(<?php echo $row["prod_id"]; ?>);" >Delete</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(<?php echo $row["prod_id"]; ?>);" >Cencal</button>
         <?php
           }
          ?>

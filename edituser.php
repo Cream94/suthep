@@ -59,11 +59,11 @@
             <div class="form-group">
             <label for="password" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
-            <input type="password" class="form-control" id="password" name="password" value="<?php echo $row["password"]; ?>" placeholder="password">
+            <input type="password" class="form-control" id="password" name="password" value="<?php echo $row["password"]; ?>" placeholder="password" minlength="8" required>
             </div>
             </div>
 
-        <button type="submit" class="btn btn-success">Save</button>
+        <input type="submit" name="Save" class="btn btn-success" value="Save">
         <a href="user.php" class="btn btn-danger">Cancel</a>
 
       </form>
