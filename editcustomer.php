@@ -15,6 +15,47 @@
   <?php include 'navbar.php' ?>
     <div class="container-fluid">
 
+
+                  <script type="text/javascript">
+
+                      function Checkpassword(){
+                        var pass =  $("#password").val();
+                        if(isNaN(pass))
+                          {
+                            var val_check = chk_string(pass);
+                            if (val_check==true) {
+                                alert('กรุณาระบุ ตัวอักษรภาษาอังกฤษ และ ตัวเลข');
+                                $("#password").val("");
+                                $("#password").focus();
+                              return false;
+                            }else {
+                              return true;
+                            }
+                          }else{
+                            alert('กรุณาระบุ ตัวอักษรภาษาอังกฤษ และ ตัวเลข');
+                              $("#password").val("");
+                              $("#password").focus();
+                             return false;
+                          }
+                      }
+                      function chk_string(str) {
+                        return /^[a-zA-Z()]+$/.test(str);
+                      }
+
+
+                    function KeyCode(objId)
+                    {
+                      if (event.keyCode >= 48 && event.keyCode<=57 || event.keyCode>=65 && event.keyCode<=90 || event.keyCode>=97 && event.keyCode<=122)
+                      {
+                        return true;
+                      }
+                      else {
+                        alert("password ต้องประกอบไปด้วย เลข 0-9 ตัวอักษร A-Z และ a-z");
+                        return false;
+                      }
+                    }
+                  </script>
+
       <center>
         <div class="row">
           <div class="col-md-6 col-md-offset-3 jumbotron well">
@@ -50,8 +91,20 @@
             <input type="weight" class="form-control" id="weight" name="email" value="<?php echo $row["email"]; ?>" placeholder="E-mail">
             </div>
             </div>
+            <div class="form-group">
+            <label for="username" class="col-sm-2 control-label">Username</label>
+            <div class="col-sm-10">
+            <input type="weight" class="form-control" id="username" name="username" value="<?php echo $row["username"]; ?>" placeholder="username" >
+            </div>
+            </div>
+            <div class="form-group">
+            <label for="password" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+            <input type="password" class="form-control" id="password" name="password" value="<?php echo $row["password"]; ?>" placeholder="password" minlength="8" required onKeyPress="return KeyCode(password)" data-regex="^[a-z0-9_-]{6,18}$">
+            </div>
+            </div>
 
-        <button type="submit" class="btn btn-success">Save</button>
+        <input type="submit" name="Save" class="btn btn-success" value="Save" onclick="return Checkpassword();">
         <a href="customer.php" class="btn btn-danger">Cancel</a>
 
       </form>

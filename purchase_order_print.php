@@ -160,7 +160,8 @@ $supplier = mysqli_fetch_assoc($query2);
                   }
                 ?>
                 <tr>
-                  <td colspan="5" align="right"><strong>ราคาสุทธิ</strong></td>
+                  <td colspan="4" align="center"><script>document.write(ArabicNumberToText('<?=number_format($total, 2);?>'));</script></td>
+                  <td align="right"><strong>ราคาสุทธิ</strong></td>
                   <td align='right'><?=number_format($total, 2);?></td>
                 </tr>
               </tbody>

@@ -125,7 +125,8 @@ $customer = mysqli_fetch_assoc($query);
                  ?>
 
                 <tr>
-                  <td colspan="6" align="right"><strong>ยอมรวมสุทธิ</strong></td>
+                  <td colspan="5" align="center"><script>document.write(ArabicNumberToText('<?=number_format($net, 2);?>'));</script></td>
+                  <td align="right"><strong>ยอมรวมสุทธิ</strong></td>
                   <td align='right'>
                     <?php
                     echo number_format($net, 2);

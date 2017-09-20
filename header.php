@@ -7,3 +7,4 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="dist/js/jquery-3.2.1.min.js"></script>
 <script src="dist/js/bootstrap.js"></script>
+<script src="dist/js/thaibath.js" type="text/javascript" charset="utf-8"></script>

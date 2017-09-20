@@ -160,7 +160,8 @@ $customer = mysqli_fetch_assoc($query);
                   <td align='right'><?php echo number_format($total*7/100, 2) ?></td>
                 </tr>
                 <tr>
-                  <td colspan="7" align="right"><strong>ยอมรวมสุทธิ</strong></td>
+                  <td colspan="6" align="center"><script>document.write(ArabicNumberToText('<?=number_format((($total * 7 / 100)+($total + $vat)), 2);?>'));</script></td>
+                  <td align="right"><strong>ยอมรวมสุทธิ</strong></td>
                   <td align='right'>
                     <?php
                     $vat = $total * 7 / 100;
@@ -222,5 +223,5 @@ $customer = mysqli_fetch_assoc($query);
           window.print();
         })
       </script>
-      
+
 </html>
