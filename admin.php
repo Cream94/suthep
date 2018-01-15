@@ -38,11 +38,11 @@ function func_delete(id) {
 <form class="form-inline" method="get" action="admin.php">
   <div class="form-group">
     <label for="admin_name">ชื่อผู้ดูแล</label>
-    <input type="text"  name="search" class="form-control" id="admin_name" placeholder="admin" value="<?=$search;?>">
+    <input type="text"  name="search" class="form-control" id="admin_name" placeholder="ชื่อผู้ดูแล" value="<?=$search;?>">
   </div>
-  <button type="submit" class="btn btn-info">Search</button>
-  <a href="addadmin.php" class="btn btn-success">Add</a>
-  <a href="admin_print.php?adminid=<?=$adminid;?>" target="_blank" class="btn btn-warning">Report</a>
+  <button type="submit" class="btn btn-info">ค้นหา</button>
+  <a href="addadmin.php" class="btn btn-success">เพิ่ม</a>
+  <a href="admin_print.php?adminid=<?=$adminid;?>" target="_blank" class="btn btn-warning">รายงาน</a>
 </form>
 </center>
 
@@ -54,10 +54,10 @@ function func_delete(id) {
       ลำดับ
     </td>
     <td align='center'>
-      รหัสผูู้ใช้
+      รหัสผู้ดูแล
     </td>
     <td align='center'>
-      ชื่อผู้ใช้
+      ชื่อผู้ดูแล
     </td>
     <td align='center'>
       ที่อยู่
@@ -93,15 +93,15 @@ function func_delete(id) {
       echo '<td align="center">-</td>';
       $id = $row["admin_id"];
       echo '<td align="center">
-                <a href="editadmin.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+                <a href="editadmin.php?id='.$id.'" class="btn btn-default btn-sm">แก้ไข</a>
 
                 <button type="button" onclick="$(\'#admin_id\').val('.$row["admin_id"].');$(\'#modal_admin_id\').val(\''.$row["admin_id"].'\');
                 $(\'#modal_admin_name\').val(\''.$row["admin_name"].'\');$(\'#modal_admin_address\').val(\''.$row["admin_address"].'\');
                 $(\'#modal_admin_tel\').val(\''.$row["admin_tel"].'\');$(\'#modal_admin_fax\').val(\''.$row["admin_fax"].'\');
                 $(\'#modal_email\').val(\''.$row["email"].'\')"
-                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
+                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">รายละเอียด</button>
 
-                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["admin_id"].'\');" >Cencal</button> </td>';
+                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["admin_id"].'\');" >ยกเลิก</button> </td>';
       echo '</tr>';
       $count++; // $count = $count + 1;
     }
@@ -119,18 +119,18 @@ function func_delete(id) {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
+        <h4 class="modal-title" id="myModalLabel">รายละเอียดข้อมูลผู้ดูแล</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" id="formModal" action="" method="post">
           <div class="form-group">
-            <label for="admin_id" class="col-sm-2 control-label">รหัสผู้ใช้</label>
+            <label for="admin_id" class="col-sm-2 control-label">รหัสผู้ดูแล</label>
           <div class="col-sm-4">
             <input type="detail" class="form-control" readonly id="modal_admin_id" name="admin_id" value="" placeholder="รหัสผู้ใช้">
           </div>
           </div>
           <div class="form-group">
-            <label for="admin_name" class="col-sm-2 control-label">ชื่อผู้ใช้</label>
+            <label for="admin_name" class="col-sm-2 control-label">ชื่อผู้ดูแล</label>
           <div class="col-sm-10">
             <input type="detail" class="form-control" readonly id="modal_admin_name" name="admin_name" value="" placeholder="ชื่อผู้ใช้">
           </div>
@@ -163,7 +163,7 @@ function func_delete(id) {
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">ปิด</button>
         </div>
       </form>
     </div>

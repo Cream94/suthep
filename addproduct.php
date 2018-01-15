@@ -3,6 +3,9 @@
   $sql = "SELECT * FROM product, material group by material.mat_name";
   $query = mysqli_query($conn, $sql);
 
+  $sqlCustomer = "SELECT * FROM customer";
+  $query2 = mysqli_query($conn, $sqlCustomer);
+
 ?>
 
 <!DOCTYPE html>
@@ -14,6 +17,7 @@
 <body>
   <?php include 'navbar.php' ?>
     <div class="container-fluid">
+
 
       <center>
 
@@ -66,6 +70,19 @@
             <label for="material_number" class="col-sm-2 control-label">จำนวนที่ใข้</label>
             <div class="col-sm-7">
             <input type="material_number" class="form-control" id="material_number" name="material_number" placeholder="จำนวนที่ใข้">
+            </div>
+            </div>
+            <div class="form-group">
+            <label for="owner" class="col-sm-2 control-label">บริษัทลูกค้า</label>
+            <div class="col-sm-7">
+              <select class="form-control" name="owner" >
+                <?php
+                  while ($row = mysqli_fetch_array($query2)) {
+                    echo '<option value="'.$row["cust_id"].'">'.$row["cust_name"].'</option>';
+                  }
+
+                 ?>
+              </select>
             </div>
             </div>
 

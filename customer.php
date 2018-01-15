@@ -37,10 +37,10 @@ function func_delete(id) {
 <form class="form-inline">
   <div class="form-group">
     <label for="cust_name">ชื่อลูกค้า</label>
-    <input type="text" name="search" class="form-control" id="cust_name" placeholder="customer" value="<?=$search;?>">
+    <input type="text" name="search" class="form-control" id="cust_name" placeholder="ชื่อลูกค้า" value="<?=$search;?>">
   </div>
-  <button type="submit" class="btn btn-info">Search</button>
-  <a href="addcustomer.php" class="btn btn-success">Add</a>
+  <button type="submit" class="btn btn-info">ค้นหา</button>
+  <a href="addcustomer.php" class="btn btn-success">เพิ่ม</a>
 </form>
 </center>
 
@@ -80,25 +80,25 @@ function func_delete(id) {
       $id = $row["cust_id"];
       if ($_SESSION["login_super_admin"] == 1) {
       echo '<td align="center">
-                <a href="editcustomer.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+                <a href="editcustomer.php?id='.$id.'" class="btn btn-default btn-sm">แก้ไข</a>
 
                 <button type="button" onclick="$(\'#cust_id\').val('.$row["cust_id"].');$(\'#modal_cust_id\').val(\''.$row["cust_id"].'\');
                 $(\'#modal_cust_name\').val(\''.$row["cust_name"].'\');$(\'#modal_cust_address\').val(\''.$row["cust_address"].'\');
                 $(\'#modal_cust_tel\').val(\''.$row["cust_tel"].'\');$(\'#modal_cust_fax\').val(\''.$row["cust_fax"].'\');
                 $(\'#modal_email\').val(\''.$row["email"].'\');$(\'#modal_tax_id\').val(\''.$row["tax_id"].'\');
-                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
+                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">รายละเอียด</button>
 
-                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["cust_id"].'\');" >Delete</button> </td>';
+                </td>';
                 ;
       } else {
         echo '<td align="center">
-                  <a href="editcustomer.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+                  <a href="editcustomer.php?id='.$id.'" class="btn btn-default btn-sm">แก้ไข</a>
 
                   <button type="button" onclick="$(\'#cust_id\').val('.$row["cust_id"].');$(\'#modal_cust_id\').val(\''.$row["cust_id"].'\');
                   $(\'#modal_cust_name\').val(\''.$row["cust_name"].'\');$(\'#modal_cust_address\').val(\''.$row["cust_address"].'\');
                   $(\'#modal_cust_tel\').val(\''.$row["cust_tel"].'\');$(\'#modal_cust_fax\').val(\''.$row["cust_fax"].'\');
                   $(\'#modal_email\').val(\''.$row["email"].'\');$(\'#modal_tax_id\').val(\''.$row["tax_id"].'\');
-                  " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>'
+                  " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">รายละเอียด</button>'
                   ;
       }
       echo '</tr>';
@@ -118,7 +118,7 @@ function func_delete(id) {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
+        <h4 class="modal-title" id="myModalLabel">รายละเอียดข้อมูลลูกค้า</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" id="formModal" action="" method="post">
@@ -168,7 +168,7 @@ function func_delete(id) {
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">ปิด</button>
         </div>
       </form>
     </div>

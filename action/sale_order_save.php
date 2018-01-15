@@ -7,7 +7,7 @@ $cust_id = isset($_POST["cust_id"]) ? $_POST["cust_id"] : null; // short if.
 $adminID = $_SESSION["login_id"];
 $deposit = isset($_POST["deposit"]) ? $_POST["deposit"] : null;
 $totalDeposit = isset($_POST["total-deposit"]) ? $_POST["total-deposit"] : null;
-if ($deposit == 0) {
+if ($deposit == 0 || $deposit == 2) {
   $totalDeposit = 0;
 }
 if ($prod_id != null && $number != null && $cust_id != null ) {
@@ -19,7 +19,7 @@ if ($prod_id != null && $number != null && $cust_id != null ) {
   for ($i=0; $i < sizeof($prod_id); $i++) {
     $sql = "INSERT INTO sale_order (so_id, cust_id, admin_id, prod_id, number, deposit, deposit_money) ";
     $sql .= " VALUES($soid, $cust_id[$i], $adminID, '$prod_id[$i]', $number[$i], $deposit, $totalDeposit)";
-    mysqli_query($conn, $sql) or die('Die query2 ' . mysqli_error($conn));
+    mysqli_query($conn, $sql) or die('Die query2 :' . $sql);
 
     $sqlProd = "SELECT * FROM product WHERE prod_id = $prod_id[$i]";
     $queryProd = mysqli_query($conn, $sqlProd);
@@ -29,7 +29,14 @@ if ($prod_id != null && $number != null && $cust_id != null ) {
     mysqli_query($conn, $sqlRemoveMat);
 
   }
-  header("Location: /suthep/sale_order_invoice.php?soid=$soid");
+  if ($deposit == 0) {
+    header("Location: /suthep/money_invoice.php?soid=$soid");
+  } else if ($deposit == 1) {
+    header("Location: /suthep/deposit_invoice.php?soid=$soid");
+  } else if ($deposit == 2) {
+    header("Location: /suthep/sale_order_invoice.php?soid=$soid");
+  }
+
   die();
 } else {
   echo "Nope";

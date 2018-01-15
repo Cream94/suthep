@@ -49,16 +49,10 @@ $customer = mysqli_fetch_assoc($query);
             <h5>9/2 หมู่ 2 ถ.พุทธมณฑลสาย 4 ต.กระทุ่มล้ม อ.สามพราน จ.นครปฐม 73220 <br/>
                 โทร.02-12345678 แฟ๊กซ์.02-12345678
             </h5><br/>
-            <h4><b>ใบเสนอราคา/ใบสั่งผลิต</b></h4>
+            <h4><b>ใบค้างส่งสินค้า/ใบเสร็จรับเงิน</b></h4>
           </div>
       </div>
-      <div class="col-md-4 col-xs-4 col-md-offset-8">
-          <table class="table table-bordered">
-            <tr>
-              <td align="center">สำเนาใบกำกับภาษี/ใบส่งของ</td>
-            </tr>
-          </table>
-      </div>
+
       <div class="col-md-12 col-xs-12" style="margin-top: 1px">
         <div class="col-md-6 col-xs-6">
           <div class="col-md-12 col-xs-12 border-box">
@@ -68,14 +62,14 @@ $customer = mysqli_fetch_assoc($query);
             <div class="col-md-9 col-xs-9">
               <?=$customer["cust_name"];?>
             </div>
-            <div class="col-md-3 col-xs-3">
+            <div class="col-md-3 col-xs-9">
               ที่อยู่
             </div>
             <div class="col-md-9 col-xs-9">
               <?=$customer["cust_address"];?>
             </div>
             <div class="col-md-3 col-xs-3">
-              เลขที่ผู้เสีภาษี
+              เลขที่ผู้เสียภาษี
             </div>
             <div class="col-md-9 col-xs-9">
               <?=$customer["tax_id"];?>
@@ -96,23 +90,6 @@ $customer = mysqli_fetch_assoc($query);
             <div class="col-md-9 col-xs-9">
               <?php
                 $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $customer["date_time"]);
-                $newDateString = $myDateTime->format('d F Y');
-                echo $newDateString;
-               ?>
-            </div>
-            <div class="col-md-3 col-xs-3">
-              กำหนดชำระเงิน
-            </div>
-            <div class="col-md-9 col-xs-9">
-              7 วัน
-            </div>
-            <div class="col-md-3 col-xs-3">
-              ครบกำหนด
-            </div>
-            <div class="col-md-9 col-xs-9">
-              <?php
-
-                $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $customer["date_time"])->modify('+7 day');
                 $newDateString = $myDateTime->format('d F Y');
                 echo $newDateString;
                ?>
@@ -175,53 +152,59 @@ $customer = mysqli_fetch_assoc($query);
           </div>
         </div>
         <div class="col-md-12 col-xs-12" style="margin-top: 8px">
-          <div class="col-md-3 col-xs-3">
+          <div class="col-md-4 col-xs-4">
             <div class="col-md-12 col-xs-12 border-box">
               <div class="col-md-12 col-xs-12">
-                ผู้รับสินค้า...............................
+                ในนาม
               </div>
-              <div class="col-md-12 col-xs-12">
-                วันที่...................................
+              <br/><hr>
+              <div class="col-md-12 col-xs-12" align="center">
+                ผู้มีอำนาจลงนาม
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-xs-3">
+          <div class="col-md-4 col-xs-4">
             <div class="col-md-12 col-xs-12 border-box">
-              <div class="col-md-12 col-xs-12">
-                ผู้ส่งสินค้า...............................
+              <div class="col-md-12 col-xs-12"><br/>
+                จัดเตรียมโดย..............................................
               </div>
-              <div class="col-md-12 col-xs-12">
-                วันที่...................................
+              <div class="col-md-12 col-xs-12"><br/>
+                ตรวจสอบโดย..............................................
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-xs-3">
+          <div class="col-md-4 col-xs-4">
             <div class="col-md-12 col-xs-12 border-box">
               <div class="col-md-12 col-xs-12">
-                ผู้รับเงิน.................................
+                ชำระโดย
               </div>
-              <div class="col-md-12 col-xs-12">
-                วันที่...................................
-              </div>
+              <div class="col-md-12 col-xs-12" align="center">
+                <label class="radio-inline">
+                  <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox1" value="option1"> เงินสด
+                  </label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox2" value="option2"> เงินเชื่อ
+                  </label>
+                </div>
+            <div class="col-md-12 col-xs-12">
+                ธนาคาร..........................................................
             </div>
-          </div>
-          <div class="col-md-3 col-xs-3">
-            <div class="col-md-12 col-xs-12 border-box">
-              <div class="col-md-12 col-xs-12">
-                ผู้อนุมัติ.................................
-              </div>
-              <div class="col-md-12 col-xs-12">
-                วันที่...................................
-              </div>
+            <div class="col-md-12 col-xs-12">
+                เลขที่.......................วันที่...............................
+            </div>
+            <div class="col-md-12 col-xs-12">
+                ผู้รับเงิน..........................................................
             </div>
           </div>
         </div>
-</body>
 
-      <script>
-        $(document).ready(function(){
-          window.print();
-        })
-      </script>
+      </body>
 
-</html>
+                      <script>
+                        $(document).ready(function(){
+                          window.print();
+                        })
+                      </script>
+
+      </html>

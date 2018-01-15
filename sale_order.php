@@ -63,9 +63,11 @@ function updateStatus() {
     <label for="cust_name">ชื่อบริษัท/เลขที่ใบสั่งสินค้า</label>
     <input type="text" name="search" class="form-control" id="cust_name" placeholder="ชื่อบริษัท/เลขที่ใบสั่งสินค้า" value="<?=$search;?>">
   </div>
-  <button type="submit" class="btn btn-info">Search</button>
-  <a href="addsale_order.php" class="btn btn-success">Add</a>
-  <a href="payment.php" class="btn btn-warning">Payment</a>
+  <button type="submit" class="btn btn-info">ค้นหา</button>
+  <a href="addsale_order.php" class="btn btn-success">เพิ่ม</a>
+
+  
+
 </form>
 </center>
 
@@ -124,23 +126,40 @@ function updateStatus() {
 
       echo '<td>'.$row["status_name"].'</td>';
       $id = $row["so_id"];
-      if ($_SESSION["login_super_admin"] == 1) {
-      echo '<td align="center">
-                <button type="button" onclick="$(\'#so_id\').val('.$row["so_id"].');$(\'#modal_cust_name\').val(\''.$row["cust_name"].'\');
-                $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
-                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
+      $deposit = $row["deposit"];
+      $sostatus = $row["status"];
 
-                <a href="/suthep/sale_order_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">Detail</a>
-                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["so_id"].'\');" >Delete</button> </td>';
-      } else {
+      if ($deposit == 0){
       echo '<td align="center">
                   <button type="button" onclick="$(\'#so_id\').val('.$row["so_id"].');$(\'#modal_cust_name\').val(\''.$row["cust_name"].'\');
                   $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
-                  " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
+                  " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">แก้ไข</button>
 
-                  <a href="/suthep/sale_order_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">Detail</a>'
+                  <a href="/suthep/money_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">รายละเอียด</a>'
                 ;
-        }
+              }
+      else if ($deposit == 1){
+
+                echo '<td align="center">
+                            <button type="button" onclick="$(\'#so_id\').val('.$row["so_id"].');$(\'#modal_cust_name\').val(\''.$row["cust_name"].'\');
+                            $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
+                            " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">แก้ไข</button>
+
+                            <a href="/suthep/deposit_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบเสร็จรับเงินค่ามัดจำ</a>
+                            <a href="/suthep/deposit_product_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบส่งสินค้า</a>
+                            <a href="/suthep/deposit_bill_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบเสร็จรับเงิน</a>';
+      } else if ($deposit == 2){
+
+                echo '<td align="center">
+                            <button type="button" onclick="$(\'#so_id\').val('.$row["so_id"].');$(\'#modal_cust_name\').val(\''.$row["cust_name"].'\');
+                            $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
+                            " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">แก้ไข</button>
+
+                            <a href="/suthep/sale_order_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบเสนอราคา</a>
+                            <a href="/suthep/max_product_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบส่งสินค้า</a>
+                            <a href="/suthep/max_bill_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบเสร็จรับเงิน</a>';
+      }
+
       echo '</tr>';
       $count++; // $count = $count + 1;
     }
@@ -158,7 +177,7 @@ function updateStatus() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
+        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูลการสั่งผลิตสินค้า</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" id="formModal" action="" method="post">
@@ -169,7 +188,7 @@ function updateStatus() {
           </div>
           </div>
           <div class="form-group">
-            <label for="date_time" class="col-sm-3 control-label">วันที่สั่งซื้อสินค้า</label>
+            <label for="date_time" class="col-sm-3 control-label">วันที่สั่งผลิตสินค้า</label>
           <div class="col-sm-5">
             <input type="detail" class="form-control" readonly id="modal_date_time" name="date_time" value="" placeholder="วันที่สั่งซื้อสินค้า">
           </div>
@@ -195,13 +214,13 @@ function updateStatus() {
               </select>
             </div>
             <a class="btn btn-default" id ="btnupdate_status" onclick="updateStatus();">
-              update
+              ยืนยัน
             </a>
           </div>
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-warning" data-dismiss="modal">ปิด</button>
       </div>
     </form>
   </div>

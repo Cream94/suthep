@@ -65,12 +65,12 @@ function func_recall(id) {
   <div class="row">
 <form class="form-inline">
   <div class="form-group">
-    <label for="prod_id">รหัสสินค้า/รายละเอียดสินค้า</label>
-    <input type="text" name="search" class="form-control" id="prod_id" placeholder="product" value="<?=$search;?>">
+    <label for="prod_id">รหัสชิ้นงานต้นแบบ/รายละเอียดชิ้นงานต้นแบบ</label>
+    <input type="text" name="search" class="form-control" id="prod_id" placeholder="รหัสชิ้นงาน/รายละเอียดชิ้นงาน" value="<?=$search;?>">
   </div>
-  <button type="submit" class="btn btn-info">Search</button>
-  <a href="addproduct.php" class="btn btn-success">Add</a>
-  <a href="product_print.php?prodid=<?=$prodid;?>" target="_blank" class="btn btn-warning">Report</a>
+  <button type="submit" class="btn btn-info">ค้นหา</button>
+  <a href="addproduct.php" class="btn btn-success">เพิ่ม</a>
+  <a href="product_print.php?prodid=<?=$prodid;?>" target="_blank" class="btn btn-warning">รายงาน</a>
 </form>
 </center>
 
@@ -82,13 +82,13 @@ function func_recall(id) {
       ลำดับ
     </td>
     <td align='center'>
-      รูปภาพ
+      รูปชิ้นงานต้นแบบ
     </td>
     <td align='center'>
-      รหัสสินค้า
+      รหัสชิ้นงานต้นแบบ
     </td>
     <td align='center'>
-      รายละเอียดสินค้า
+      รายละเอียดชิ้นงานต้นแบบ
     </td>
     <td align='center'>
       ราคา/ชิ้น
@@ -111,22 +111,22 @@ function func_recall(id) {
         $id = $row["prod_id"];
       ?>
       <td align="center">
-          <a href="editproduct.php?id=<?php echo $id; ?>" class="btn btn-default btn-sm">Edit</a>
+          <a href="editproduct.php?id=<?php echo $id; ?>" class="btn btn-default btn-sm">แก้ไข</a>
 
           <button type="button" onclick="$('#modal_prod_id').val('<?php echo $row["prod_id"]; ?>');
           $('#modal_prod_detail').val('<?php echo $row["prod_detail"]; ?>');$('#modal_price').val('<?php  echo $row["pprice"]; ?>');
           $('#modal_weight').val('<?php echo $row["weight"]; ?>');$('#modal_material_id').val('<?php echo $row["mat_name"]; ?>');
           $('#modal_material_number').val('<?php echo $row["material_number"]; ?>')"
-         class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
+         class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">รายละเอียด</button>
          <?php
           if ($row["pstatus"]==0) {
             ?>
-            <button type="button" class="btn btn-info btn-sm" onclick="func_recall(<?php echo $row["prod_id"]; ?>);" >Recall</button>
+            <button type="button" class="btn btn-info btn-sm" onclick="func_recall('<?php echo $row["prod_id"]; ?>');" >เรียกคืน</button>
             <?php
             # code...
           }else{
             ?>
-            <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(<?php echo $row["prod_id"]; ?>);" >Cencal</button>
+            <button type="button" class="btn btn-danger btn-sm" onclick="func_delete('<?php echo $row["prod_id"]; ?>');" >ยกเลิก</button>
         <?php
           }
          ?>
@@ -156,37 +156,37 @@ function func_recall(id) {
       <div class="modal-body">
         <form class="form-horizontal" id="formModal" action="" method="post">
           <div class="form-group">
-            <label for="prod_id" class="col-sm-2 control-label">รหัสสินค้า</label>
-          <div class="col-sm-10">
+            <label for="prod_id" class="col-sm-4 control-label">รหัสชิ้นงานต้นแบบ</label>
+          <div class="col-sm-7">
             <input type="detail" class="form-control" readonly id="modal_prod_id" name="prod_id" value="" placeholder="รหัสสินค้า">
           </div>
           </div>
           <div class="form-group">
-            <label for="prod_detail" class="col-sm-2 control-label">รายละเอียด</label>
-          <div class="col-sm-10">
+            <label for="prod_detail" class="col-sm-4 control-label">รายละเอียดชิ้นงานชิ้นงาน</label>
+          <div class="col-sm-7">
             <input type="detail" class="form-control" readonly id="modal_prod_detail" name="prod_detail" value="" placeholder="รายละเอียด">
           </div>
           </div>
           <div class="form-group">
-            <label for="pprice" class="col-sm-2 control-label">ราคา/ชิ้น</label>
+            <label for="pprice" class="col-sm-4 control-label">ราคา/ชิ้น</label>
           <div class="col-sm-7">
             <input type="detail" class="form-control" readonly id="modal_price" name="pprice" value="" placeholder="ราคา">
           </div>
           </div>
           <div class="form-group">
-            <label for="weight" class="col-sm-2 control-label">น้ำหนัก/ชิ้น</label>
+            <label for="weight" class="col-sm-4 control-label">น้ำหนัก/ชิ้น</label>
           <div class="col-sm-7">
             <input type="detail" class="form-control" readonly id="modal_weight" name="weight" value="" placeholder="น้ำหนัก/ชิ้น">
           </div>
           </div>
           <div class="form-group">
-            <label for="mat_name" class="col-sm-2 control-label">วัตถุดิบที่ใช้</label>
+            <label for="mat_name" class="col-sm-4 control-label">วัตถุดิบที่ใช้</label>
           <div class="col-sm-7">
             <input type="detail" class="form-control" readonly id="modal_material_id" name="mat_name" value="" placeholder="วัตถุดิบที่ใช้">
           </div>
           </div>
           <div class="form-group">
-            <label for="material_number" class="col-sm-2 control-label">จำนวนที่ใช้วัตถุดิบ</label>
+            <label for="material_number" class="col-sm-4 control-label">จำนวนที่ใช้วัตถุดิบ/กิโลกรัม</label>
           <div class="col-sm-7">
             <input type="detail" class="form-control" readonly id="modal_material_number" name="material_number" value="" placeholder="จำนวนที่ใช้วัตถุดิบ">
           </div>
@@ -194,7 +194,7 @@ function func_recall(id) {
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">ยกเลิก</button>
         </div>
       </form>
     </div>

@@ -11,7 +11,6 @@ if (!isset($_SESSION["login_id"])) {
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
       <a class="navbar-brand" href="#">
-        <img alt="Brand" src="">
       </a>
     </div>
 
@@ -19,44 +18,44 @@ if (!isset($_SESSION["login_id"])) {
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> User Management <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> การจัดการผู้ใช้งาน <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <?php
               if ($_SESSION["login_super_admin"] == 1) {
-                echo '<li><a href="admin.php">Super Admin</a></li>';
+                echo '<li><a href="admin.php">ผู้ดูแล</a></li>';
               }
             ?>
-            <li><a href="user.php">User</a></li>
+            <li><a href="user.php">พนักงาน</a></li>
           </ul>
         </li>
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Assets Management <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> การจัดการข้อมูล <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="product.php">Product</a></li>
-            <li><a href="customer.php">Customer</a></li>
-            <li><a href="supplier.php">Supplier</a></li>
-            <li><a href="material.php">Material</a></li>
-            <li><a href="stock.php">Stock</a></li>
+            <li><a href="product.php">ชิ้นงานต้นแบบ</a></li>
+            <li><a href="customer.php">ลูกค้า</a></li>
+            <li><a href="supplier.php">ผู้ผลิต</a></li>
+            <li><a href="material.php">วัตถุดิบ</a></li>
+            <li><a href="stock.php">คลังวัตถุดิบ</a></li>
           </ul>
         </li>
 
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PO & SO <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">สั่งซื้อ & สั่งผลิต <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="purchase_order.php">Purchase Order</a></li>
-            <li><a href="sale_order.php">Sale Order</a></li>
+            <li><a href="purchase_order.php">สั่งซื้อวัตถุดิบ</a></li>
+            <li><a href="sale_order.php">สั่งผลิตสินค้า</a></li>
             <li role="separator" class="divider"></li>
-            <li><a href="account.php">Account</a></li>
+            <li><a href="account.php">บัญชี</a></li>
           </ul>
         </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Logout <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ออกจากระบบ <span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href="index.php">logout</a></li>
+            <li><a href="index.php">ออกจากระบบ</a></li>
           </ul>
         </li>
       </ul>

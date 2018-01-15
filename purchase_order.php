@@ -106,7 +106,7 @@ function updateStatus() {
                 class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
 
                 <a href="/suthep/purchase_order_invoice.php?poid='.$id.'" target="" type="button" class="btn btn-default btn-sm">Detail</a>
-                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["po_id"].'\');" >Delete</button> </td>';
+                </td>';
       } else {
         echo '<td align="center">
                   <button type="button" onclick="$(\'#po_id\').val('.$row["po_id"].');$(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');

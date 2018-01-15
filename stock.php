@@ -43,9 +43,9 @@ function func_delete(id, mid) {
 <form class="form-inline">
   <div class="form-group">
     <label for="mat_name">ชื่อวัตถุดิบ</label>
-    <input type="text" name="search" class="form-control" id="mat_name" placeholder="material" value="<?=$search;?>">
+    <input type="text" name="search" class="form-control" id="mat_name" placeholder="ชื่อวัตถุดิบ" value="<?=$search;?>">
   </div>
-  <button type="submit" class="btn btn-info">Search</button>
+  <button type="submit" class="btn btn-info">ค้นหา</button>
 </form>
 </center>
 
@@ -88,15 +88,15 @@ function func_delete(id, mid) {
         <td align="center">
 
         <?php
-        echo '<button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].')" class="btn btn-default open-AddBookDialog btn-sm">Edit</button>
+        echo '<button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].'); hideLow();" class="btn btn-default open-AddBookDialog btn-sm">แก้ไข</button>
+              <button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].'); hideTop();" class="btn btn-default open-AddBookDialog btn-sm">เบิก</button>
 
-              <button type="button" onclick="$(\'#stock_id\').val('.$row["stock_id"].');$(\'#modal_mat_id1\').val(\''.$row["mat_id"].'\');
+              <button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].');callLog();$(\'#stock_id\').val('.$row["stock_id"].');$(\'#modal_mat_id1\').val(\''.$row["mat_id"].'\');
               $(\'#modal_mat_name1\').val(\''.$row["mat_name"].'\');$(\'#modal_number1\').val(\''.$row["number"].'\');
               $(\'#modal_unit1\').val(\''.$row["unit"].'\');$(\'#modal_sup_name1\').val(\''.$row["sup_name"].'\');
               $(\'#modal_date_time1\').val(\''.$row["date_time"].'\')"
-              class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">Detail</button>
-
-              <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["stock_id"].'\', \''.$row["mat_id"].'\');" >Delete</button> </td>';
+              class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">รายละเอียด</button>
+              </td>';
         echo '</tr>';
         $count++; // $count = $count + 1;
       }
@@ -131,10 +131,44 @@ function func_delete(id, mid) {
                 }
                 $('#formModal').attr('action', 'action/stock_edit.php?id=' + stockId);
                 $('#myModal').modal();
+                callLog();
             }
           })
         })
       })
+
+      function callLog() {
+        var box = $('#textarea-detail');
+        box.text("");
+        $.ajax({
+          url : "action/stock_log_by_id.php",
+          type : "POST",
+          dataType : "JSON",
+          data : {
+            "id" : $('#mat_id').val()
+          },
+          success : function(data) {
+            var text = "";
+            for (var i = 0; i < data.length; i++) {
+              text += "วันที่ "+data[i].date_time + "  เบิก  "+ data[i].mat_name + "  ใช้ไป  "+ data[i].number + " "+ data[i].unit + " "+ data[i].detail + "\n\n";
+            }
+            if (text == "") {
+              text = "-";
+            }
+            box.text(text);
+          }
+        })
+      }
+
+      function hideTop() {
+        $('#high-content').hide();
+        $('#low-content').show();
+      }
+
+      function hideLow() {
+        $('#low-content').hide();
+        $('#high-content').show();
+      }
     </script>
 
 </table>
@@ -147,22 +181,17 @@ function func_delete(id, mid) {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
+        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูลวัตถุดิบในคงคลัง</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" id="formModal" action="" method="post">
+          <div id="high-content">
           <input type="hidden" id="mat_id" name="mat_id" value="">
           <input type="hidden" id="admin_id" name="admin_id" value="">
           <div class="form-group">
           <label for="mat_name" class="col-sm-2 control-label">ชื่อวัตถุดิบ</label>
           <div class="col-sm-10">
           <input type="detail" class="form-control" id="modal_mat_name" name="mat_name" value="" placeholder="ชื่อวัตถุดิบ">
-          </div>
-          </div>
-          <div class="form-group">
-          <label for="number" class="col-sm-2 control-label">จำนวน</label>
-          <div class="col-sm-10">
-          <input type="number" class="form-control" id="modal_number" max="<?php echo $row['number']?>" name="number" value="<?php echo $row['number']?>" placeholder="จำนวน">
           </div>
           </div>
           <div class="form-group">
@@ -173,15 +202,19 @@ function func_delete(id, mid) {
             </select>
           </div>
           </div>
-
+        </div>
+        <div id="low-content">
+          <div class="form-group">
+          <label for="number" class="col-sm-2 control-label">จำนวน</label>
+          <div class="col-sm-10">
+          <input type="number" class="form-control" id="modal_number" max="<?php echo $row['number']?>" name="number" value="<?php echo $row['number']?>" placeholder="จำนวน">
+          </div>
+          </div>
           <div class="form-group">
           <label for="status" class="col-sm-2 control-label">สถานะวัตถุดิบ</label>
           <div class="col-sm-10" align="left">
           <label class="radio-inline">
-            <input type="radio" name="status" id="inlineRadio1" value="1" checked> เพิ่มวัตถุดิบ
-          </label>
-          <label class="radio-inline">
-            <input type="radio" name="status" id="inlineRadio2" value="2">  เบิกไปใช้งาน
+            <input type="radio" name="status" id="inlineRadio2" value="2" checked>  เบิกไปใช้งาน
           </label>
           <label class="radio-inline">
             <input type="radio" name="status" id="inlineRadio3" value="3" > เสื่อมสภาพ, หาย
@@ -195,13 +228,13 @@ function func_delete(id, mid) {
 
         </div>
         </div>
-
+      </div>
 
 
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+                <button type="submit" class="btn btn-primary">บันทึก</button>
       </div>
 </form>
   </div>
@@ -215,7 +248,7 @@ function func_delete(id, mid) {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
+        <h4 class="modal-title" id="myModalLabel">รายละเอียดข้อมูลวัตถุดิบในคงคลัง</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" id="formModal" action="" method="post">
@@ -255,11 +288,18 @@ function func_delete(id, mid) {
             <input type="detail" class="form-control" readonly id="modal_date_time1" name="date_time" value="" placeholder="อัพเดตล่าสุด">
           </div>
           </div>
+          <div class="form-group">
+            <label for="detail" class="col-sm-2 control-label">บันทึกรายการปรับปรุง</label>
+          <div class="col-sm-10">
+            <textarea id="textarea-detail" class="form-control" rows="10"></textarea>
+          </div>
+          </div>
+
 
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">ปิด</button>
         </div>
       </form>
     </div>

@@ -10,14 +10,16 @@ $material_number = isset($_POST["material_number"]) ? $_POST["material_number"] 
 
 $target_dir = "../image/";
 $target_file = ($target_dir . $prod_id . ".jpg");
+
 if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+  if ($prod_id != null || $prod_detail != null || $price != null || $weight != null || $new_id != null || $material_id != null || $material_number != null) {
+      $sql = "UPDATE product SET  prod_id = '$new_id', prod_detail = '$prod_detail', price = $price,
+              weight = $weight, material_id = $material_id, material_number = $material_number WHERE prod_id = '$prod_id'";
+      $query = mysqli_query($conn, $sql) or die('Die query => ' . mysqli_error($conn));
+      header("Location: /suthep/product.php");
+      die();
 
-}
-
-if ($prod_id != null || $prod_detail != null || $price != null || $weight != null || $new_id != null || $material_id != null || $material_number != null) {
-    $sql = "UPDATE product SET  prod_id = '$new_id', prod_detail = '$prod_detail', price = $price,
-            weight = $weight, material_id = $material_id, material_number = $material_number WHERE prod_id = '$prod_id'";
-    $query = mysqli_query($conn, $sql) or die('Die query => ' . mysqli_error($conn));
-    header("Location: /suthep/product.php");
-    die();
+  }
+} else {
+  echo "can not upload image";
 }

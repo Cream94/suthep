@@ -37,10 +37,10 @@ function func_delete(id) {
 <form class="form-inline">
   <div class="form-group">
     <label for="sup_name">ชื่อผู้ผลิต</label>
-    <input type="text" name="search" class="form-control" id="sup_name" placeholder="supplier" value="<?=$search;?>">
+    <input type="text" name="search" class="form-control" id="sup_name" placeholder="ชื่อผู้ผลิต" value="<?=$search;?>">
   </div>
-  <button type="submit" class="btn btn-info">Search</button>
-  <a href="addsupplier.php" class="btn btn-success">Add</a>
+  <button type="submit" class="btn btn-info">ค้นหา</button>
+  <a href="addsupplier.php" class="btn btn-success">เพิ่ม</a>
 </form>
 </center>
 
@@ -80,25 +80,25 @@ function func_delete(id) {
       $id = $row["sup_id"];
       if ($_SESSION["login_super_admin"] == 1) {
       echo '<td align="center">
-                <a href="editsupplier.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+                <a href="editsupplier.php?id='.$id.'" class="btn btn-default btn-sm">แก้ไข</a>
 
                 <button type="button" onclick="$(\'#sup_id\').val('.$row["sup_id"].');$(\'#modal_sup_id\').val(\''.$row["sup_id"].'\');
                 $(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');$(\'#modal_sup_address\').val(\''.$row["sup_address"].'\');
                 $(\'#modal_sup_tel\').val(\''.$row["sup_tel"].'\');$(\'#modal_sup_fax\').val(\''.$row["sup_fax"].'\');
                 $(\'#modal_email\').val(\''.$row["email"].'\')"
-                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>
+                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">รายละเอียด</button>
 
-                <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["sup_id"].'\');" >Delete</button> </td>';
+                </td>';
                 ;
           } else {
           echo '<td align="center">
-                <a href="editsupplier.php?id='.$id.'" class="btn btn-default btn-sm">Edit</a>
+                <a href="editsupplier.php?id='.$id.'" class="btn btn-default btn-sm">แก้ไข</a>
 
                 <button type="button" onclick="$(\'#sup_id\').val('.$row["sup_id"].');$(\'#modal_sup_id\').val(\''.$row["sup_id"].'\');
                 $(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');$(\'#modal_sup_address\').val(\''.$row["sup_address"].'\');
                 $(\'#modal_sup_tel\').val(\''.$row["sup_tel"].'\');$(\'#modal_sup_fax\').val(\''.$row["sup_fax"].'\');
                 $(\'#modal_email\').val(\''.$row["email"].'\')"
-                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Detail</button>';
+                " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">รายละเอียด</button>';
           }
           echo '</tr>';
       $count++; // $count = $count + 1;
@@ -115,7 +115,7 @@ function func_delete(id) {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูล</h4>
+        <h4 class="modal-title" id="myModalLabel">รายละเอียดข้อมูลผู้ผลิต</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" id="formModal" action="" method="post">
@@ -160,7 +160,7 @@ function func_delete(id) {
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">ปิด</button>
         </div>
       </form>
     </div>

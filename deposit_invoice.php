@@ -49,21 +49,15 @@ $customer = mysqli_fetch_assoc($query);
             <h5>9/2 หมู่ 2 ถ.พุทธมณฑลสาย 4 ต.กระทุ่มล้ม อ.สามพราน จ.นครปฐม 73220 <br/>
                 โทร.02-12345678 แฟ๊กซ์.02-12345678
             </h5><br/>
-            <h4><b>ใบเสนอราคา/ใบสั่งผลิต</b></h4>
+            <h4><b>ใบค้างส่งสินค้า/ใบเสร็จรับเงินค่ามัดจำ</b></h4>
           </div>
       </div>
-      <div class="col-md-4 col-md-offset-8">
-          <table class="table table-bordered">
-            <tr>
-              <td align="center">สำเนาใบกำกับภาษี/ใบส่งของ</td>
-            </tr>
-          </table>
-      </div>
+
       <div class="col-md-12" style="margin-top: 1px">
         <div class="col-md-6">
           <div class="col-md-12  border-box">
             <div class="col-md-3">
-              นามลูกค้า
+              นามผู้ซื้อ
             </div>
             <div class="col-md-9">
               <?=$customer["cust_name"];?>
@@ -100,128 +94,102 @@ $customer = mysqli_fetch_assoc($query);
                 echo $newDateString;
                ?>
             </div>
-            <div class="col-md-3">
-              กำหนดชำระเงิน
-            </div>
-            <div class="col-md-9">
-              7 วัน
-            </div>
-            <div class="col-md-3">
-              ครบกำหนด
-            </div>
-            <div class="col-md-9">
-              <?php
-
-                $myDateTime = DateTime::createFromFormat('Y-m-d H:i:s', $customer["date_time"])->modify('+7 day');
-                $newDateString = $myDateTime->format('d F Y');
-                echo $newDateString;
-               ?>
-            </div>
           </div>
         </div>
         <div class="col-md-12 border" style="margin-top: 10px">
           <div>
             <table class="table table-bordered">
               <thead>
-                <th style="text-align: center">ลำดับ</th>
-                <th style="text-align: center">รหัสสินค้า</th>
-                <th style="text-align: center">รายละเอียด</th>
-                <th style="text-align: center">จำนวน</th>
-                <th style="text-align: center">นน./ชิ้น</th>
-                <th style="text-align: center">นน.รวม</th>
-                <th style="text-align: center">หน่วยละ</th>
+                <th style="text-align: center; width: 10%">ลำดับที่</th>
+                <th style="text-align: center">รายการ</th>
                 <th style="text-align: center">จำนวนเงิน</th>
               </thead>
               <tbody>
                 <?php
-                  $count = 1;
                   $total = 0;
                   while ($row = mysqli_fetch_array($query2)) {
-                    echo "<tr>";
-                    echo "<td align='center'>$count</td>";
-                    echo "<td>".$row["prod_id"]."</td>";
-                    echo "<td>".$row["prod_detail"]."</td>";
-                    echo "<td align='right'>".$row["number"]."</td>";
-                    echo "<td align='right'>".$row["weight"]."</td>";
-                    echo "<td align='right'>".number_format($row["number"] * $row["weight"], 2)."</td>";
-                    echo "<td align='right'>".$row["price"]."</td>";
-                    echo "<td align='right'>".number_format(($row["number"] * $row["weight"])* $row["price"], 2)."</td>";
                     $total += (($row["number"] * $row["weight"])* $row["price"]);
-                    echo "</tr>";
-                    $count++;
                   }
                 ?>
                 <tr>
-                  <td colspan="7" align="right"><strong>รวมเงิน</strong></td>
-                  <td align='right'><?=number_format($total, 2);?></td>
-                </tr>
-                <tr>
-                  <td colspan="7" align="right"><strong>ภาษีมูลเพิ่ม7%</strong></td>
-                  <td align='right'><?php echo number_format($total*7/100, 2) ?></td>
-                </tr>
-                <tr>
-                  <td colspan="6" align="center"><script>document.write(ArabicNumberToText('<?=number_format((($total * 7 / 100)+($total + $vat)), 2);?>'));</script></td>
-                  <td align="right"><strong>ยอมรวมสุทธิ</strong></td>
+                  <td>
+                    1
+                  </td>
+                  <td>
+                    รับเงินมัดจำตามใบสั่งขายเลขที่ <?php echo $soid; ?>
+                  </td>
                   <td align='right'>
                     <?php
-                    $vat = $total * 7 / 100;
-                    $net = $total + $vat;
+                    echo number_format($total * (50/100), 2);
+                    ?>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" align="right"><strong>รวมเงิน</strong></td>
+                  <td align='right'><?=number_format($total * (50/100), 2);?></td>
+                </tr>
+                <tr>
+                  <td colspan="2" align="right"><strong>ภาษีมูลเพิ่ม7%</strong></td>
+                  <td align='right'><?php echo number_format(($total * (50/100)) *7/100, 2) ?></td>
+                </tr>
+                <tr>
+
+                  <td  colspan="2" align="right"><strong>ยอมรวมสุทธิ</strong></td>
+                  <td align='right'>
+                    <?php
+                    $vat =($total * (50/100)) *7/100;
+                    $net = ($total * (50/100)) + $vat;
                     echo number_format($net, 2);
                     ?>
                   </td>
+                </tr>
+                <tr>
+                  <td colspan="3" align="center"><script>document.write(ArabicNumberToText('<?=number_format($net, 2);?>'));</script></td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
         <div class="col-md-12" style="margin-top: 8px">
-          <div class="col-md-3">
+          <div class="col-md-6">
             <div class="col-md-12  border-box">
-              <div class="col-md-12">
-                ผู้รับสินค้า...............................
-              </div>
-              <div class="col-md-12">
-                วันที่...................................
+              <br/><hr>
+              <div class="col-md-12" align="center">
+                ผู้รับเงิน
               </div>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-6">
             <div class="col-md-12  border-box">
               <div class="col-md-12">
-                ผู้ส่งสินค้า...............................
+                ชำระโดย
               </div>
-              <div class="col-md-12">
-                วันที่...................................
-              </div>
+              <div class="col-md-12" align="center">
+                <label class="radio-inline">
+                  <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox1" value="option1"> เงินสด
+                  </label>
+                  <label class="checkbox-inline">
+                    <input type="checkbox" id="inlineCheckbox2" value="option2"> เงินเชื่อ
+                  </label>
+                </div>
+            <div class="col-md-12">
+                ธนาคาร..........................................................
             </div>
-          </div>
-          <div class="col-md-3">
-            <div class="col-md-12  border-box">
-              <div class="col-md-12">
-                ผู้รับเงิน.................................
-              </div>
-              <div class="col-md-12">
-                วันที่...................................
-              </div>
+            <div class="col-md-12">
+                เลขที่.......................วันที่...............................
             </div>
-          </div>
-          <div class="col-md-3">
-            <div class="col-md-12  border-box">
-              <div class="col-md-12">
-                ผู้อนุมัติ.................................
-              </div>
-              <div class="col-md-12">
-                วันที่...................................
-              </div>
+            <div class="col-md-12">
+                ผู้รับเงิน..........................................................
             </div>
           </div>
         </div>
         <div class="col-md-12" style="margin-top: 10px">
           <center>
             <a href="sale_order.php" class="btn btn-danger">ย้อนกลับ</a>
-            <a href="sale_order_print.php?soid=<?=$soid;?>" target="_blank" class="btn btn-warning">รายงาน</a>
+            <a href="deposit_print.php?soid=<?=$soid;?>" target="_blank" class="btn btn-warning">รายงาน</a>
           </center>
         </div>
 
-</body>
-</html>
+      </body>
+      </html>

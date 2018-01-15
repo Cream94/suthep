@@ -7,7 +7,7 @@ if ($status != null) {
   $sql = "UPDATE sale_order SET status =  $status WHERE so_id = $so_id ";
   $query = mysqli_query($conn, $sql) or die('Die query => ' . mysqli_error($conn));
 
-  if ($status == 2 || $status == 5) {
+  if ($status == 2 || $status == 5 || $status == 11) {
     $sqlSMS = "SELECT * FROM sale_order so, customer c WHERE so.cust_id = c.cust_id and so.so_id = $so_id group by so.so_id";
     $querySMS = mysqli_query($conn, $sqlSMS);
     $row = mysqli_fetch_assoc($querySMS);

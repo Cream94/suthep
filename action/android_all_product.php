@@ -1,6 +1,8 @@
 <?php
   require_once '../database/connector.php';
-  $sql = "SELECT * FROM product";
+  $id = isset($_GET["id"]) ? $_GET["id"] : null; // short if.
+
+  $sql = "SELECT * FROM product where owner = $id";
   $query = mysqli_query($conn, $sql);
   $data = array();
   while ($row = mysqli_fetch_assoc($query)) {

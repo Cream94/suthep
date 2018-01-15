@@ -28,7 +28,8 @@
             <form class="form-horizontal" action="action/product_edit.php?id=<?php echo $id;?>" method="post"  enctype="multipart/form-data">
               <div class="form-group">
                 <label for="pic" class="col-sm-2 control-label">รูปสินค้า</label>
-                <input type="file" id="exampleInputFile" name="image">
+                <input type="file" id="exampleInputFile" name="image" accept="image/jpeg">
+                <label style="color: red">* .jpg เท่านั้น</label>
               </div>
             <div class="form-group">
             <label for="prod_id" class="col-sm-2 control-label">รหัสสินค้า</label>

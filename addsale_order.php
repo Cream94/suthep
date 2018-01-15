@@ -52,7 +52,7 @@ var rank = 1;
 
         <div class="row">
           <div class="col-md-10 col-md-offset-1 jumbotron well">
-            <h4 style="font-weight: bold;">ใบสังขายสินค้า</h4> <br/>
+            <h4 style="font-weight: bold;">ใบสังผลิตสินค้า</h4> <br/>
             <form id="main-form" class="form-horizontal" action="sale_order_confirm.php" method="post">
             <div class="form-group">
             <label for="cust_id" class="col-sm-2 control-label">ชื่อลูกค้า</label>
@@ -92,6 +92,9 @@ var rank = 1;
             <label class="radio-inline">
               <input type="radio" name="deposit" id="inlineRadio2" value="1">  มัดจำ (50%)
             </label>
+            <label class="radio-inline">
+              <input type="radio" name="deposit" id="inlineRadio2" value="2">  เงินเชื่อ
+            </label>
             </div>
 
             <label>
@@ -125,8 +128,8 @@ var rank = 1;
             </tbody>
           </table>
 
-        <button type="submit" class="btn btn-success">Save</button>
-        <a href="sale_order.php" class="btn btn-danger">Cancel</a>
+        <button type="submit" class="btn btn-success">บันทึก</button>
+        <a href="sale_order.php" class="btn btn-danger">ยกเลิก</a>
 
       </form>
       </center>
@@ -158,7 +161,7 @@ var rank = 1;
             $('<input name="weight[]" style="display: none" value="'+ (prod_weight) +'">').appendTo(tr);
             $('<td><input type="number" name="number[]" value="'+ (number) +'"></td>').appendTo(tr);
             $('<td>'+ (addComma(total)) +'</td>').appendTo(tr);
-            $('<td> <center> <button type="button" class="btn btn-warning btn-sm remove-row">Delete</button> <center> </td>').appendTo(tr);
+            $('<td> <center> <button type="button" class="btn btn-warning btn-sm remove-row">ลบ</button> <center> </td>').appendTo(tr);
 
             $('#cust_list').attr('disabled', 'disabled');
 

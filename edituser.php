@@ -59,10 +59,10 @@
       <center>
         <div class="row">
           <div class="col-md-6 col-md-offset-3 jumbotron well">
-            <h4 style="font-weight: bold;">Edit Form</h4> <br/>
+            <h4 style="font-weight: bold;">แก้ไขข้อมูลพนักงาน</h4> <br/>
             <form class="form-horizontal" action="action/user_edit.php?id=<?php echo $id;?>" method="post">
             <div class="form-group">
-            <label for="admin_name" class="col-sm-2 control-label">ชื่อผู้ดูแล</label>
+            <label for="admin_name" class="col-sm-2 control-label">ชื่อพนักงาน</label>
             <div class="col-sm-10">
             <input type="id" class="form-control" id="admin_name" name="admin_name" value="<?php echo $row["admin_name"]; ?>" placeholder="ชื่อผู้ดูแล">
             </div>
@@ -104,8 +104,8 @@
             </div>
             </div>
 
-        <input type="submit" name="Save" class="btn btn-success" value="Save" onclick="return Checkpassword();">
-        <a href="user.php" class="btn btn-danger">Cancel</a>
+        <input type="submit" name="Save" class="btn btn-success" value="บันทึก" onclick="return Checkpassword();">
+        <a href="user.php" class="btn btn-danger">ยกเลิก</a>
 
       </form>
       </center>
