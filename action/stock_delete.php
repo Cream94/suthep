@@ -7,8 +7,8 @@ if ($stock_id != null || $mat_id != null) {
     $sql = " UPDATE stock SET `status`= 0 WHERE stock_id = $stock_id";
     mysqli_query($conn, $sql) or die('Die query');
 
-    $sql = " UPDATE material SET `status`= 0 WHERE mat_id = $mat_id";
-    mysqli_query($conn, $sql) or die('Die query 2');
+    $sql = " UPDATE material SET `status`= 0 WHERE mat_id = $stock_id";
+    mysqli_query($conn, $sql) or die('die query2'.$sql);
     header("Location: /suthep/stock.php");
 
     die();

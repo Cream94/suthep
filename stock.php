@@ -1,4 +1,4 @@
-<?php
+﻿<?php
   require_once 'database/connector.php';
   $sql = "SELECT * FROM stock as s
     left join material as m on m.mat_id = s.mat_id
@@ -89,13 +89,16 @@ function func_delete(id, mid) {
 
         <?php
         echo '<button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].'); hideLow();" class="btn btn-default open-AddBookDialog btn-sm">แก้ไข</button>
-              <button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].'); hideTop();" class="btn btn-default open-AddBookDialog btn-sm">เบิก</button>
+              <button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].'); hideTop(); $(\'#modal_mat_name2\').val(\''.$row["mat_name"].'\');" class="btn btn-default open-AddBookDialog btn-sm">เบิก</button>
 
               <button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].');callLog();$(\'#stock_id\').val('.$row["stock_id"].');$(\'#modal_mat_id1\').val(\''.$row["mat_id"].'\');
               $(\'#modal_mat_name1\').val(\''.$row["mat_name"].'\');$(\'#modal_number1\').val(\''.$row["number"].'\');
               $(\'#modal_unit1\').val(\''.$row["unit"].'\');$(\'#modal_sup_name1\').val(\''.$row["sup_name"].'\');
               $(\'#modal_date_time1\').val(\''.$row["date_time"].'\')"
               class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">รายละเอียด</button>
+
+              <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["mat_id"].'\');" >ยกเลิก</button>
+
               </td>';
         echo '</tr>';
         $count++; // $count = $count + 1;
@@ -113,10 +116,23 @@ function func_delete(id, mid) {
               "id" : $('#mat_id').val()
             },
             success : function(data) {
+		console.log(data);
                 var material = data.material;
                 var supplier = data.supplier;
                 $('#modal_mat_name').val(material.mat_name);
                 $('#modal_number').val(material.number);
+		var btnSave = $('#modal_save');
+		var ddl2 = $('#inlineRadio2');
+		var ddl3 = $('#inlineRadio3');
+		if (material.number == 0) {
+			ddl2.attr('disabled', 'disabled');
+			ddl3.attr('disabled', 'disabled');
+			btnSave.attr('disabled', 'disabled');
+		} else {
+			ddl2.removeAttr('disabled');
+			ddl3.removeAttr('disabled');
+			btnSave.removeAttr('disabled');
+		}
                 var stockId = material.stock_id;
                 var supSeleted = material.sup_id;
                 var supList = $('#modal_sup_list');
@@ -191,7 +207,7 @@ function func_delete(id, mid) {
           <div class="form-group">
           <label for="mat_name" class="col-sm-2 control-label">ชื่อวัตถุดิบ</label>
           <div class="col-sm-10">
-          <input type="detail" class="form-control" id="modal_mat_name" name="mat_name" value="" placeholder="ชื่อวัตถุดิบ">
+          <input type="text" class="form-control" id="modal_mat_name" name="mat_name" value="" placeholder="ชื่อวัตถุดิบ">
           </div>
           </div>
           <div class="form-group">
@@ -204,6 +220,12 @@ function func_delete(id, mid) {
           </div>
         </div>
         <div id="low-content">
+          <div class="form-group">
+            <label for="mat_name" class="col-sm-2 control-label">ชื่อวัตถุดิบ</label>
+          <div class="col-sm-10">
+            <input type="mat_name" class="form-control" readonly id="modal_mat_name2" name="mat_name" value="" placeholder="ชื่อวัตถุดิบ">
+          </div>
+          </div>
           <div class="form-group">
           <label for="number" class="col-sm-2 control-label">จำนวน</label>
           <div class="col-sm-10">
@@ -234,7 +256,7 @@ function func_delete(id, mid) {
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
-                <button type="submit" class="btn btn-primary">บันทึก</button>
+                <button type="submit" class="btn btn-primary" id="modal_save">บันทึก</button>
       </div>
 </form>
   </div>

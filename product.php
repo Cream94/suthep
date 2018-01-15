@@ -15,7 +15,7 @@
   $sql .= " group by product.prod_id ORDER By product.id DESC";  //เมื่อ add ข้อมูลแล้วจะขึ้นบนสุดของ table
   $query = mysqli_query($conn, $sql);
 
-  $sqlStock = "SELECT * FROM stock, material WHERE stock.mat_id = material.mat_id and stock.number <= 10";
+  $sqlStock = "SELECT * FROM stock, material WHERE stock.mat_id = material.mat_id and stock.number <= 10 and stock.status >0";
   $queryStock = mysqli_query($conn, $sqlStock);
   $rowStock = mysqli_num_rows($queryStock);
 
@@ -235,7 +235,7 @@ function func_recall(id) {
         </table>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
       </div>
     </div>
   </div>

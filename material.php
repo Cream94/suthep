@@ -95,6 +95,9 @@ function func_delete(id) {
               $(\'#modal_sup_address\').val(\''.$row["sup_address"].'\');$(\'#modal_sup_tel\').val(\''.$row["sup_tel"].'\');
               $(\'#modal_sup_fax\').val(\''.$row["sup_fax"].'\');$(\'#modal_email\').val(\''.$row["email"].'\')"
               " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">รายละเอียด</button>
+
+              <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["mat_id"].'\');" >ยกเลิก</button>
+
               </td>';
         echo '</tr>';
         $count++; // $count = $count + 1;/
