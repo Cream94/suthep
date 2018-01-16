@@ -21,7 +21,7 @@
       <center>
         <div class="row">
           <div class="col-md-6 col-md-offset-3 jumbotron well">
-            <h4 style="font-weight: bold;">Edit Form</h4> <br/>
+            <h4 style="font-weight: bold;">แก้ไขข้อมูลลูกค้า</h4> <br/>
             <form class="form-horizontal" action="action/customer_edit.php?id=<?php echo $id;?>" method="post">
             <div class="form-group">
             <label for="cust_name" class="col-sm-2 control-label">ชื่อลูกค้า</label>
@@ -54,8 +54,8 @@
             </div>
             </div>
 
-        <input type="submit" name="Save" class="btn btn-success" value="Save" >
-        <a href="customer.php" class="btn btn-danger">Cancel</a>
+        <input type="submit" name="Save" class="btn btn-success" value="บันทึก" >
+        <a href="customer.php" class="btn btn-danger">ยกเลิก</a>
 
       </form>
       </center>

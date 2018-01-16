@@ -24,15 +24,15 @@
       <center>
         <div class="row">
           <div class="col-md-6 col-md-offset-3 jumbotron well">
-            <h4 style="font-weight: bold;">Edit Form</h4> <br/>
+            <h4 style="font-weight: bold;">แก้ไขข้อมูลชิ้นงานต้นแบบ</h4> <br/>
             <form class="form-horizontal" action="action/product_edit.php?id=<?php echo $id;?>" method="post"  enctype="multipart/form-data">
               <div class="form-group">
-                <label for="pic" class="col-sm-2 control-label">รูปสินค้า</label>
+                <label for="pic" class="col-sm-2 control-label">รูปชิ้นงาน</label>
                 <input type="file" id="exampleInputFile" name="image" accept="image/jpeg">
                 <label style="color: red">* .jpg เท่านั้น</label>
               </div>
             <div class="form-group">
-            <label for="prod_id" class="col-sm-2 control-label">รหัสสินค้า</label>
+            <label for="prod_id" class="col-sm-2 control-label">รหัสชิ้นงาน</label>
             <div class="col-sm-10">
             <input type="id" class="form-control" id="prod_id" name="prod_id" value="<?php echo $row["prod_id"]; ?>" placeholder="รหัสสินค้า">
             </div>
@@ -75,8 +75,8 @@
             </div>
             </div>
 
-        <button type="submit" class="btn btn-success">Save</button>
-        <a href="product.php" class="btn btn-danger">Cancel</a>
+        <button type="submit" class="btn btn-success">บันทึก</button>
+        <a href="product.php" class="btn btn-danger">ยกเลิก</a>
 
       </form>
       </center>

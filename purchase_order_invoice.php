@@ -206,8 +206,8 @@ $supplier = mysqli_fetch_assoc($query2);
       </div>
       <div class="col-md-12" style="margin-top: 10px">
         <center>
-          <a href="purchase_order.php" class="btn btn-danger">Back</a>
-          <a href="purchase_order_print.php?poid=<?=$poid;?>" target="_blank" class="btn btn-warning">Print</a>
+          <a href="purchase_order.php" class="btn btn-danger">ย้อนกลับ</a>
+          <a href="purchase_order_print.php?poid=<?=$poid;?>" target="_blank" class="btn btn-warning">รายงาน</a>
         </center>
       </div>
   </div>

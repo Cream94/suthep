@@ -37,6 +37,11 @@ session_destroy();
               </div>
               </div>
               <div class="form-group">
+                <div class="col-xs-12" align="right">
+                      <li role="presentation" ><a href="recall_password.php">ลืมรหัสผ่าน</a></li>
+                </div>
+              </div>
+              <div class="form-group">
               <div class="col-xs-12" align="center">
               <input type="submit" name="Login" class="btn btn-success" value="Login">
               </div>

@@ -60,8 +60,8 @@ function updateStatus() {
     <label for="sup_id">ชื่อบริษัท/เลขที่เอกสาร</label>
     <input type="text" name="search" class="form-control" id="sup_id" placeholder="ชื่อบริษัท/เลขที่เอกสาร" value="<?=$search;?>">
   </div>
-  <button type="submit" class="btn btn-info">Search</button>
-  <a href="addpurchase_order.php" class="btn btn-success">Add</a>
+  <button type="submit" class="btn btn-info">ค้นหา</button>
+  <a href="addpurchase_order.php" class="btn btn-success">เพิ่ม</a>
 </form>
 </center>
 
@@ -103,17 +103,17 @@ function updateStatus() {
       echo '<td align="center">
                 <button type="button" onclick="$(\'#po_id\').val('.$row["po_id"].');$(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');
                 $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
-                class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
+                class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">แก้ไข</button>
 
-                <a href="/suthep/purchase_order_invoice.php?poid='.$id.'" target="" type="button" class="btn btn-default btn-sm">Detail</a>
+                <a href="/suthep/purchase_order_invoice.php?poid='.$id.'" target="" type="button" class="btn btn-default btn-sm">รายละเอียด</a>
                 </td>';
       } else {
         echo '<td align="center">
                   <button type="button" onclick="$(\'#po_id\').val('.$row["po_id"].');$(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');
                   $(\'#modal_date_time\').val(\''.$row["date_time"].'\');$(\'#status_name\').val(\''.$row["status_name"].'\')"
-                  class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">Edit</button>
+                  class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">แก้ไข</button>
 
-                  <a href="/suthep/purchase_order_invoice.php?poid='.$id.'" target="" type="button" class="btn btn-default btn-sm">Detail</a>'
+                  <a href="/suthep/purchase_order_invoice.php?poid='.$id.'" target="" type="button" class="btn btn-default btn-sm">รายละเอียด</a>'
         ;
       }
       echo '</tr>';
@@ -170,13 +170,13 @@ function updateStatus() {
               </select>
             </div>
             <a class="btn btn-default" id ="btnupdate_status" onclick="updateStatus();">
-              update
+              ยืนยัน
             </a>
           </div>
 
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-warning" data-dismiss="modal">ปิด</button>
         </div>
       </form>
     </div>

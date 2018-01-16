@@ -12,7 +12,7 @@
 
         <div class="row">
           <div class="col-md-6 col-md-offset-3 jumbotron well">
-            <h4 style="font-weight: bold;">Add Form</h4> <br/>
+            <h4 style="font-weight: bold;">เพิ่มผู้ดูแล</h4> <br/>
             <form class="form-horizontal" action="action/admin_add.php" method="post">
             <div class="form-group">
             <label for="admin_name" class="col-sm-2 control-label">ชื่อผู้ดูแล</label>
@@ -56,8 +56,8 @@
           </div>
           </div>
 
-        <button type="submit" class="btn btn-success">Save</button>
-        <a href="admin.php" class="btn btn-danger">Cancel</a>
+        <button type="submit" class="btn btn-success">บันทึก</button>
+        <a href="admin.php" class="btn btn-danger">ยกเลิก</a>
 
       </form>
       </center>
