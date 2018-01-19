@@ -52,7 +52,7 @@ var rank = 1;
 
         <div class="row">
           <div class="col-md-10 col-md-offset-1 jumbotron well">
-            <h4 style="font-weight: bold;">ใบสังผลิตสินค้า</h4> <br/>
+            <h4 style="font-weight: bold;">ใบสังผลิตงาน</h4> <br/>
             <form id="main-form" class="form-horizontal" action="sale_order_confirm.php" method="post">
             <div class="form-group">
             <label for="cust_id" class="col-sm-2 control-label">ชื่อลูกค้า</label>
@@ -66,7 +66,7 @@ var rank = 1;
                  ?>
               </select>
             </div>
-            <label for="prod_id" class="col-sm-1 control-label">รหัสสินค้า</label>
+            <label for="prod_id" class="col-sm-1 control-label">รหัสงาน</label>
             <div class="col-sm-2">
               <select class="form-control" name="prod_id" onchange="callProductName();" id="prod_list" >
                 <?php
@@ -108,7 +108,7 @@ var rank = 1;
                 ชื่อลูกค้า
               </td>
               <td align='center'>
-                รหัสสินค้า
+                รหัสงาน
               </td>
               <td align='center'>
                 รายละเอียด

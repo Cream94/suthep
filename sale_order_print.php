@@ -52,18 +52,11 @@ $customer = mysqli_fetch_assoc($query);
             <h4><b>ใบเสนอราคา/ใบสั่งผลิต</b></h4>
           </div>
       </div>
-      <div class="col-md-4 col-xs-4 col-md-offset-8">
-          <table class="table table-bordered">
-            <tr>
-              <td align="center">สำเนาใบกำกับภาษี/ใบส่งของ</td>
-            </tr>
-          </table>
-      </div>
       <div class="col-md-12 col-xs-12" style="margin-top: 1px">
         <div class="col-md-6 col-xs-6">
           <div class="col-md-12 col-xs-12 border-box">
             <div class="col-md-3 col-xs-3">
-              นามลูกค้า
+              นามผู้สั่ง
             </div>
             <div class="col-md-9 col-xs-9">
               <?=$customer["cust_name"];?>
@@ -85,13 +78,13 @@ $customer = mysqli_fetch_assoc($query);
         <div class="col-md-6 col-xs-6">
           <div class="col-md-12 col-xs-12 border-box">
             <div class="col-md-3 col-xs-3">
-              เลขที่
+              เลขที่เอกสาร
             </div>
             <div class="col-md-9 col-xs-9">
               <?=$customer["so_id"];?>
             </div>
             <div class="col-md-3 col-xs-3">
-              วันที่
+              วันที่สั่งผลิต
             </div>
             <div class="col-md-9 col-xs-9">
               <?php
@@ -101,13 +94,7 @@ $customer = mysqli_fetch_assoc($query);
                ?>
             </div>
             <div class="col-md-3 col-xs-3">
-              กำหนดชำระเงิน
-            </div>
-            <div class="col-md-9 col-xs-9">
-              7 วัน
-            </div>
-            <div class="col-md-3 col-xs-3">
-              ครบกำหนด
+              วันที่ส่งงาน
             </div>
             <div class="col-md-9 col-xs-9">
               <?php
@@ -124,7 +111,7 @@ $customer = mysqli_fetch_assoc($query);
             <table class="table table-bordered">
               <thead>
                 <th style="text-align: center">ลำดับ</th>
-                <th style="text-align: center">รหัสสินค้า</th>
+                <th style="text-align: center">รหัสงาน</th>
                 <th style="text-align: center">รายละเอียด</th>
                 <th style="text-align: center">จำนวน</th>
                 <th style="text-align: center">นน./ชิ้น</th>
@@ -175,37 +162,27 @@ $customer = mysqli_fetch_assoc($query);
           </div>
         </div>
         <div class="col-md-12 col-xs-12" style="margin-top: 8px">
-          <div class="col-md-3 col-xs-3">
+          <div class="col-md-4 col-xs-4">
             <div class="col-md-12 col-xs-12 border-box">
               <div class="col-md-12 col-xs-12">
-                ผู้รับสินค้า...............................
+                ผู้รับงาน...............................
               </div>
               <div class="col-md-12 col-xs-12">
                 วันที่...................................
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-xs-3">
+          <div class="col-md-4 col-xs-4">
             <div class="col-md-12 col-xs-12 border-box">
               <div class="col-md-12 col-xs-12">
-                ผู้ส่งสินค้า...............................
+                ผู้สั่งผลิต...............................
               </div>
               <div class="col-md-12 col-xs-12">
                 วันที่...................................
               </div>
             </div>
           </div>
-          <div class="col-md-3 col-xs-3">
-            <div class="col-md-12 col-xs-12 border-box">
-              <div class="col-md-12 col-xs-12">
-                ผู้รับเงิน.................................
-              </div>
-              <div class="col-md-12 col-xs-12">
-                วันที่...................................
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3 col-xs-3">
+          <div class="col-md-4 col-xs-4">
             <div class="col-md-12 col-xs-12 border-box">
               <div class="col-md-12 col-xs-12">
                 ผู้อนุมัติ.................................

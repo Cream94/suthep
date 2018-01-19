@@ -35,13 +35,13 @@ $rowCustomer = mysqli_fetch_assoc($queryCust);
       <h4><?=$rowCustomer["cust_address"]; ?></h4>
     </div>
     <div class="col-md-12" align="left">
-      <h5>รายการสินค้า</h5>
+      <h5>รายการที่สั่งผลิต</h5>
     </div>
     <div class="col-md-12">
       <table class="table table-striped table-hover">
         <thead>
           <th>ลำดับ</th>
-          <th>รหัสสินค้า</th>
+          <th>รหัสงาน</th>
           <th>รายละเอียด</th>
           <th style="width: 50px">จำนวน</th>
           <th>ราคา/ชิ้น</th>
@@ -83,7 +83,7 @@ $rowCustomer = mysqli_fetch_assoc($queryCust);
         </tbody>
       </table>
       <center>
-      <button type="submit" class="btn btn-success">Confirm</button>
+      <button type="submit" class="btn btn-success">ยืนยัน</button>
     </dvi>
   </div>
   <script>

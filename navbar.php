@@ -37,6 +37,7 @@ if (!isset($_SESSION["login_id"])) {
             <li><a href="supplier.php">ผู้ผลิต</a></li>
             <li><a href="material.php">วัตถุดิบ</a></li>
             <li><a href="stock.php">คลังวัตถุดิบ</a></li>
+            <li><a href="vat.php">การตั่งค่าภาษี</a></li>
           </ul>
         </li>
 
@@ -44,7 +45,7 @@ if (!isset($_SESSION["login_id"])) {
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">สั่งซื้อ & สั่งผลิต <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="purchase_order.php">สั่งซื้อวัตถุดิบ</a></li>
-            <li><a href="sale_order.php">สั่งผลิตสินค้า</a></li>
+            <li><a href="sale_order.php">สั่งผลิตงาน</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="account.php">บัญชี</a></li>
           </ul>

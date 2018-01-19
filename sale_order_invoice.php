@@ -15,6 +15,12 @@ $sql2 = "SELECT * FROM sale_order as so
 $query = mysqli_query($conn, $sql1);
 $query2 = mysqli_query($conn, $sql2);
 $customer = mysqli_fetch_assoc($query);
+
+$sqlvat = "SELECT * FROM config as c
+  left join vat as v on c.content_id = v.id and c.type = 'vat' ";
+$queryvat = mysqli_query($conn, $sqlvat);
+$vatRow = mysqli_fetch_assoc($queryvat);
+
 ?>
 
 <!DOCTYPE html>
@@ -49,21 +55,14 @@ $customer = mysqli_fetch_assoc($query);
             <h5>9/2 หมู่ 2 ถ.พุทธมณฑลสาย 4 ต.กระทุ่มล้ม อ.สามพราน จ.นครปฐม 73220 <br/>
                 โทร.02-12345678 แฟ๊กซ์.02-12345678
             </h5><br/>
-            <h4><b>ใบเสนอราคา/ใบสั่งผลิต</b></h4>
+            <h4><b>ใบเสนอราคา/ใบสั่งผลิตงาน</b></h4>
           </div>
-      </div>
-      <div class="col-md-4 col-md-offset-8">
-          <table class="table table-bordered">
-            <tr>
-              <td align="center">สำเนาใบกำกับภาษี/ใบส่งของ</td>
-            </tr>
-          </table>
       </div>
       <div class="col-md-12" style="margin-top: 1px">
         <div class="col-md-6">
           <div class="col-md-12  border-box">
             <div class="col-md-3">
-              นามลูกค้า
+              นามผู้สั่ง
             </div>
             <div class="col-md-9">
               <?=$customer["cust_name"];?>
@@ -85,13 +84,13 @@ $customer = mysqli_fetch_assoc($query);
         <div class="col-md-6">
           <div class="col-md-12  border-box">
             <div class="col-md-3">
-              เลขที่
+              เลขที่เอกสาร
             </div>
             <div class="col-md-9">
               <?=$customer["so_id"];?>
             </div>
             <div class="col-md-3">
-              วันที่
+              วันที่สั่งผลิต
             </div>
             <div class="col-md-9">
               <?php
@@ -101,13 +100,7 @@ $customer = mysqli_fetch_assoc($query);
                ?>
             </div>
             <div class="col-md-3">
-              กำหนดชำระเงิน
-            </div>
-            <div class="col-md-9">
-              7 วัน
-            </div>
-            <div class="col-md-3">
-              ครบกำหนด
+              วันที่ส่งงาน
             </div>
             <div class="col-md-9">
               <?php
@@ -124,7 +117,7 @@ $customer = mysqli_fetch_assoc($query);
             <table class="table table-bordered">
               <thead>
                 <th style="text-align: center">ลำดับ</th>
-                <th style="text-align: center">รหัสสินค้า</th>
+                <th style="text-align: center">รหัสงาน</th>
                 <th style="text-align: center">รายละเอียด</th>
                 <th style="text-align: center">จำนวน</th>
                 <th style="text-align: center">นน./ชิ้น</th>
@@ -156,15 +149,15 @@ $customer = mysqli_fetch_assoc($query);
                   <td align='right'><?=number_format($total, 2);?></td>
                 </tr>
                 <tr>
-                  <td colspan="7" align="right"><strong>ภาษีมูลเพิ่ม7%</strong></td>
-                  <td align='right'><?php echo number_format($total*7/100, 2) ?></td>
+                  <td colspan="7" align="right"><strong>ภาษีมูลเพิ่ม <?php echo $vatRow["vat"]; ?> %</strong></td>
+                  <td align='right'><?php echo number_format($total * $vatRow["vat"] / 100, 2) ?></td>
                 </tr>
                 <tr>
-                  <td colspan="6" align="center"><script>document.write(ArabicNumberToText('<?=number_format((($total * 7 / 100)+($total + $vat)), 2);?>'));</script></td>
+                  <td colspan="6" align="center"><script>document.write(ArabicNumberToText('<?=number_format((($total * $vatRow["vat"] / 100)+($total)), 2);?>'));</script></td>
                   <td align="right"><strong>ยอมรวมสุทธิ</strong></td>
                   <td align='right'>
                     <?php
-                    $vat = $total * 7 / 100;
+                    $vat = $total * $vatRow["vat"] / 100;
                     $net = $total + $vat;
                     echo number_format($net, 2);
                     ?>
@@ -175,37 +168,27 @@ $customer = mysqli_fetch_assoc($query);
           </div>
         </div>
         <div class="col-md-12" style="margin-top: 8px">
-          <div class="col-md-3">
+          <div class="col-md-4">
             <div class="col-md-12  border-box">
               <div class="col-md-12">
-                ผู้รับสินค้า...............................
+                ผู้รับงาน...............................
               </div>
               <div class="col-md-12">
                 วันที่...................................
               </div>
             </div>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <div class="col-md-12  border-box">
               <div class="col-md-12">
-                ผู้ส่งสินค้า...............................
+                ผู้สั่งผลิต...............................
               </div>
               <div class="col-md-12">
                 วันที่...................................
               </div>
             </div>
           </div>
-          <div class="col-md-3">
-            <div class="col-md-12  border-box">
-              <div class="col-md-12">
-                ผู้รับเงิน.................................
-              </div>
-              <div class="col-md-12">
-                วันที่...................................
-              </div>
-            </div>
-          </div>
-          <div class="col-md-3">
+          <div class="col-md-4">
             <div class="col-md-12  border-box">
               <div class="col-md-12">
                 ผู้อนุมัติ.................................

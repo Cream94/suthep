@@ -2,7 +2,20 @@
   session_start();
   require_once 'database/connector.php';
   $prodid = $_GET["prodid"];
-  $sql = "SELECT *, product.price as pprice ,product.status as pstatus FROM product, material, customer  ";
+  $page = isset($_GET["page"]) ? $_GET["page"] : 1;
+
+  $per_page = 20;
+  if ($page > 1) {
+    $current_page = $per_page * $page;
+  } else {
+    $current_page = 0;
+  }
+  $sqlpage = " SELECT * FROM product ";
+  $querypage = mysqli_query($conn, $sqlpage);
+  $total_recorde = mysqli_num_rows($querypage);
+  $total_page = ceil($total_recorde / $per_page);
+
+  $sql = "SELECT *, product.price as pprice ,product.status as pstatus FROM product, material, customer   ";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
   if ($search != "") {
     $sql .= " WHERE (product.prod_id like '%$search%' or product.prod_detail like '%$search%') and product.material_id = material.mat_id ";
@@ -12,13 +25,12 @@
   if ($_SESSION["login_super_admin"]==0) {
     $sql .= " and product.status = 1 ";
   }
-  $sql .= " group by product.prod_id ORDER By product.id DESC";  //เมื่อ add ข้อมูลแล้วจะขึ้นบนสุดของ table
+  $sql .= " group by product.prod_id ORDER By product.id DESC limit $current_page, $per_page";  //เมื่อ add ข้อมูลแล้วจะขึ้นบนสุดของ table
   $query = mysqli_query($conn, $sql);
 
   $sqlStock = "SELECT * FROM stock, material WHERE stock.mat_id = material.mat_id and stock.number <= 10 and stock.status >0";
   $queryStock = mysqli_query($conn, $sqlStock);
   $rowStock = mysqli_num_rows($queryStock);
-
 
 ?>
 
@@ -103,7 +115,7 @@ function func_recall(id) {
       $count = 1;
       while ($row = mysqli_fetch_array($query)) {
         echo '<tr>';
-        echo '<td align="center">'.$count.'</td>';
+        echo '<td align="center">'.($current_page + $count).'</td>';
         echo '<td align="center"><img src="image/'.$row["prod_id"].'.jpg" width="50px" height="50px"></td>';
         echo '<td align="center">'.$row["prod_id"].'</td>';
         echo '<td>'.$row["prod_detail"].'</td>';
@@ -141,6 +153,25 @@ function func_recall(id) {
 
 
 </table>
+    <div align="center">
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li>
+            <a href="?page=Previous" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              </a>
+              </li>
+              <?php for($i=1;$i<=$total_page;$i++){ ?>
+              <li class=""><a href="?page=<?php echo $i; ?>" ><?php echo $i; ?></a></li>
+              <li>
+              <?php } ?>
+              <a href="?page=Next" aria-label="Next">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
 </body>
 </html>
 

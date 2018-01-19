@@ -49,7 +49,7 @@ $customer = mysqli_fetch_assoc($query);
             <h5>9/2 หมู่ 2 ถ.พุทธมณฑลสาย 4 ต.กระทุ่มล้ม อ.สามพราน จ.นครปฐม 73220 <br/>
                 โทร.02-12345678 แฟ๊กซ์.02-12345678
             </h5><br/>
-            <h4><b>ใบส่งสินค้า/ใบแจ้งหนี้</b></h4>
+            <h4><b>ใบส่งงาน/ใบแจ้งหนี้</b></h4>
           </div>
       </div>
 
@@ -79,7 +79,7 @@ $customer = mysqli_fetch_assoc($query);
         <div class="col-md-6 col-xs-6">
           <div class="col-md-12 col-xs-12  border-box">
             <div class="col-md-3 col-xs-3">
-              เลขที่
+              เลขที่เอกสาร
             </div>
             <div class="col-md-9 col-xs-9">
               <?=$customer["so_id"];?>
@@ -174,7 +174,7 @@ $customer = mysqli_fetch_assoc($query);
             <div class="col-md-12  col-xs-12 border-box">
               <br/><hr>
               <div class="col-md-12 col-xs-12" align="center">
-                ผู้รับสินค้า
+                ผู้รับงาน
               </div>
             </div>
           </div>
@@ -182,7 +182,7 @@ $customer = mysqli_fetch_assoc($query);
             <div class="col-md-12  col-xs-12 border-box">
               <br/><hr>
               <div class="col-md-12 col-xs-12" align="center">
-                ผู้ส่งสินค้า
+                ผู้ส่งงาน
               </div>
             </div>
           </div>
@@ -201,13 +201,13 @@ $customer = mysqli_fetch_assoc($query);
                   </label>
                 </div>
             <div class="col-md-12  col-xs-12">
-                ธนาคาร..........................................................
+                ธนาคาร..................................................
             </div>
             <div class="col-md-12 col-xs-12">
-                เลขที่.......................วันที่...............................
+                เลขที่.....................วันที่............................
             </div>
             <div class="col-md-12 col-xs-12">
-                ผู้รับเงิน..........................................................
+                ผู้รับเงิน..................................................
             </div>
           </div>
         </div>

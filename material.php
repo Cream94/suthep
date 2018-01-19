@@ -2,16 +2,18 @@
   require_once 'database/connector.php';
   $matid = $_GET["matid"];
 
-  $sql = "SELECT * FROM material as m
-  left join supplier as s on s.sup_id = m.sup_id ";
+  // $sql = "SELECT * FROM material as m
+  // left join supplier as s on s.sup_id = m.sup_id
+  // left join stock as st on st.m.mat_id = m.mat_id ";
+
+  $sql = "SELECT * FROM material as m, supplier as su, stock as st";
   $wh = "";
   $search = isset($_GET["search"]) ? $_GET["search"] : "";
   if ($search != "") {
     $wh .= " and m.mat_name like '%$search%' or s.sup_name like '%$search%'";
   }
-  $sql .= " WHERE m.status = 1".$wh;
-  $sql .= " order by mat_id DESC";
-
+  $sql .= " WHERE m.sup_id = su.sup_id and st.mat_id = m.mat_id and m.status = 1".$wh;
+  $sql .= " order by m.mat_id DESC";
   $query = mysqli_query($conn, $sql);
 ?>
 
@@ -87,18 +89,46 @@ function func_delete(id) {
         echo '<td>'.$row["sup_name"].'</td>';
         echo '<td>'.$row["sup_address"].'</td>';
         $id = $row["mat_id"];
-        echo '<td align="center"><a href="editmaterial.php?id='.$id.'" class="btn btn-default btn-sm">แก้ไข</a>
+        $numberStock = $row["number"];
+        $number = 0;
 
-              <button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].');$(\'#modal_mat_id\').val(\''.$row["mat_id"].'\');
-              $(\'#modal_mat_name\').val(\''.$row["mat_name"].'\');$(\'#modal_price\').val(\''.$row["price"].'\');
-              $(\'#modal_unit\').val(\''.$row["unit"].'\');$(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');
-              $(\'#modal_sup_address\').val(\''.$row["sup_address"].'\');$(\'#modal_sup_tel\').val(\''.$row["sup_tel"].'\');
-              $(\'#modal_sup_fax\').val(\''.$row["sup_fax"].'\');$(\'#modal_email\').val(\''.$row["email"].'\')"
-              " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">รายละเอียด</button>
+        if ($_SESSION["login_super_admin"] == 1) {
+            if ($numberStock > 0) {
+              echo '<td align="center"><a href="editmaterial.php?id='.$id.'" class="btn btn-default btn-sm">แก้ไข</a>
 
-              <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["mat_id"].'\');" >ยกเลิก</button>
+                    <button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].');$(\'#modal_mat_id\').val(\''.$row["mat_id"].'\');
+                    $(\'#modal_mat_name\').val(\''.$row["mat_name"].'\');$(\'#modal_price\').val(\''.$row["price"].'\');
+                    $(\'#modal_unit\').val(\''.$row["unit"].'\');$(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');
+                    $(\'#modal_sup_address\').val(\''.$row["sup_address"].'\');$(\'#modal_sup_tel\').val(\''.$row["sup_tel"].'\');
+                    $(\'#modal_sup_fax\').val(\''.$row["sup_fax"].'\');$(\'#modal_email\').val(\''.$row["email"].'\')"
+                    " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">รายละเอียด</button>
+                    </td>';
+            } else {
+              echo '<td align="center"><a href="editmaterial.php?id='.$id.'" class="btn btn-default btn-sm">แก้ไข</a>
 
-              </td>';
+                    <button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].');$(\'#modal_mat_id\').val(\''.$row["mat_id"].'\');
+                    $(\'#modal_mat_name\').val(\''.$row["mat_name"].'\');$(\'#modal_price\').val(\''.$row["price"].'\');
+                    $(\'#modal_unit\').val(\''.$row["unit"].'\');$(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');
+                    $(\'#modal_sup_address\').val(\''.$row["sup_address"].'\');$(\'#modal_sup_tel\').val(\''.$row["sup_tel"].'\');
+                    $(\'#modal_sup_fax\').val(\''.$row["sup_fax"].'\');$(\'#modal_email\').val(\''.$row["email"].'\')"
+                    " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">รายละเอียด</button>
+
+                    <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["mat_id"].'\');" >ยกเลิก</button>
+
+                    </td>';
+            }
+        } else  {
+              echo '<td align="center"><a href="editmaterial.php?id='.$id.'" class="btn btn-default btn-sm">แก้ไข</a>
+
+                    <button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].');$(\'#modal_mat_id\').val(\''.$row["mat_id"].'\');
+                    $(\'#modal_mat_name\').val(\''.$row["mat_name"].'\');$(\'#modal_price\').val(\''.$row["price"].'\');
+                    $(\'#modal_unit\').val(\''.$row["unit"].'\');$(\'#modal_sup_name\').val(\''.$row["sup_name"].'\');
+                    $(\'#modal_sup_address\').val(\''.$row["sup_address"].'\');$(\'#modal_sup_tel\').val(\''.$row["sup_tel"].'\');
+                    $(\'#modal_sup_fax\').val(\''.$row["sup_fax"].'\');$(\'#modal_email\').val(\''.$row["email"].'\')"
+                    " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">รายละเอียด</button>
+                    </td>';
+        }
+
         echo '</tr>';
         $count++; // $count = $count + 1;/
       }

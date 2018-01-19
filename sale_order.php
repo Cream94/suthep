@@ -60,13 +60,13 @@ function updateStatus() {
   <div class="row">
 <form class="form-inline"  method="get" action="sale_order.php">
   <div class="form-group">
-    <label for="cust_name">ชื่อบริษัท/เลขที่ใบสั่งสินค้า</label>
-    <input type="text" name="search" class="form-control" id="cust_name" placeholder="ชื่อบริษัท/เลขที่ใบสั่งสินค้า" value="<?=$search;?>">
+    <label for="cust_name">ชื่อบริษัท/เลขที่ใบสั่งงาน</label>
+    <input type="text" name="search" class="form-control" id="cust_name" placeholder="ชื่อบริษัท/เลขที่ใบสั่งงาน" value="<?=$search;?>">
   </div>
   <button type="submit" class="btn btn-info">ค้นหา</button>
   <a href="addsale_order.php" class="btn btn-success">เพิ่ม</a>
 
-  
+
 
 </form>
 </center>
@@ -85,13 +85,13 @@ function updateStatus() {
       ชื่อบริษัท/ชื่อลูกค้า
     </td>
     <td align='center'>
-      วันที่สั่งซื้อสินค้า
+      วันที่สั่งผลิตงาน
     </td>
     <td align='center'>
       จำนวนวันในการผลิต
     </td>
     <td align='center'>
-      วันที่ครบกำหนดส่งสินค้า
+      วันที่ครบกำหนดส่งงาน
     </td>
     <td align='center'>
       สถานะ
@@ -146,7 +146,7 @@ function updateStatus() {
                             " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">แก้ไข</button>
 
                             <a href="/suthep/deposit_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบเสร็จรับเงินค่ามัดจำ</a>
-                            <a href="/suthep/deposit_product_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบส่งสินค้า</a>
+                            <a href="/suthep/deposit_product_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบส่งงาน</a>
                             <a href="/suthep/deposit_bill_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบเสร็จรับเงิน</a>';
       } else if ($deposit == 2){
 
@@ -156,7 +156,7 @@ function updateStatus() {
                             " class="btn btn-default open-AddBookDialog btn-sm" data-toggle="modal" data-target="#myModal">แก้ไข</button>
 
                             <a href="/suthep/sale_order_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบเสนอราคา</a>
-                            <a href="/suthep/max_product_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบส่งสินค้า</a>
+                            <a href="/suthep/max_product_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบส่งงาน</a>
                             <a href="/suthep/max_bill_invoice.php?soid='.$id.'" target="" type="button" class="btn btn-default btn-sm">ใบเสร็จรับเงิน</a>';
       }
 
@@ -177,7 +177,7 @@ function updateStatus() {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูลการสั่งผลิตสินค้า</h4>
+        <h4 class="modal-title" id="myModalLabel">แก้ไขข้อมูลการสั่งผลิตงาน</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" id="formModal" action="" method="post">
@@ -188,7 +188,7 @@ function updateStatus() {
           </div>
           </div>
           <div class="form-group">
-            <label for="date_time" class="col-sm-3 control-label">วันที่สั่งผลิตสินค้า</label>
+            <label for="date_time" class="col-sm-3 control-label">วันที่สั่งผลิตงาน</label>
           <div class="col-sm-5">
             <input type="detail" class="form-control" readonly id="modal_date_time" name="date_time" value="" placeholder="วันที่สั่งซื้อสินค้า">
           </div>

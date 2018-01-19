@@ -22,7 +22,7 @@
       <div class="col-md-12 col-xs-12" >
         <div class="form-group" align="center">
           <h3>บริษัท สุเทพ การหล่อ จำกัด</h3>
-          <h4><b>รายงานข้อมูลสินค้า</b></h4>
+          <h4><b>รายงานข้อมูลชิ้นงานต้นแบบ</b></h4>
         </div><br/>
       </div>
 
@@ -31,8 +31,8 @@
           <table class="table table-bordered">
             <thead>
               <th style="text-align: center">ลำดับ</th>
-              <th style="text-align: center">รูปสินค้า</th>
-              <th style="text-align: center">รหัสสินค้า</th>
+              <th style="text-align: center">รูปชิ้นงานต้นแบบ</th>
+              <th style="text-align: center">รหัสชิ้นงานต้นแบบ</th>
               <th style="text-align: center">รายละเอียด</th>
               <th style="text-align: center">ราคา</th>
               <th style="text-align: center">น้ำหนัก</th>

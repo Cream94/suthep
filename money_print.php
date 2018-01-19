@@ -49,7 +49,7 @@ $customer = mysqli_fetch_assoc($query);
             <h5>9/2 หมู่ 2 ถ.พุทธมณฑลสาย 4 ต.กระทุ่มล้ม อ.สามพราน จ.นครปฐม 73220 <br/>
                 โทร.02-12345678 แฟ๊กซ์.02-12345678
             </h5><br/>
-            <h4><b>ใบค้างส่งสินค้า/ใบเสร็จรับเงิน</b></h4>
+            <h4><b>ใบสั่งผลิตงาน/ใบค้างส่งสินค้า/ใบเสร็จรับเงิน</b></h4>
           </div>
       </div>
 
@@ -101,7 +101,7 @@ $customer = mysqli_fetch_assoc($query);
             <table class="table table-bordered">
               <thead>
                 <th style="text-align: center">ลำดับ</th>
-                <th style="text-align: center">รหัสสินค้า</th>
+                <th style="text-align: center">รหัสงาน</th>
                 <th style="text-align: center">รายละเอียด</th>
                 <th style="text-align: center">จำนวน</th>
                 <th style="text-align: center">นน./ชิ้น</th>
@@ -154,22 +154,17 @@ $customer = mysqli_fetch_assoc($query);
         <div class="col-md-12 col-xs-12" style="margin-top: 8px">
           <div class="col-md-4 col-xs-4">
             <div class="col-md-12 col-xs-12 border-box">
-              <div class="col-md-12 col-xs-12">
-                ในนาม
-              </div>
               <br/><hr>
-              <div class="col-md-12 col-xs-12" align="center">
-                ผู้มีอำนาจลงนาม
+              <div class="col-md-12" align="center">
+                ผู้สั่งผลิต
               </div>
             </div>
           </div>
           <div class="col-md-4 col-xs-4">
             <div class="col-md-12 col-xs-12 border-box">
-              <div class="col-md-12 col-xs-12"><br/>
-                จัดเตรียมโดย..............................................
-              </div>
-              <div class="col-md-12 col-xs-12"><br/>
-                ตรวจสอบโดย..............................................
+              <br/><hr>
+              <div class="col-md-12 col-xs-12" align="center">
+                ผู้รับงาน
               </div>
             </div>
           </div>
@@ -184,17 +179,17 @@ $customer = mysqli_fetch_assoc($query);
                     <input type="checkbox" id="inlineCheckbox1" value="option1"> เงินสด
                   </label>
                   <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox2" value="option2"> เงินเชื่อ
+                    <input type="checkbox" id="inlineCheckbox2" value="option2"> เช็ค
                   </label>
                 </div>
             <div class="col-md-12 col-xs-12">
-                ธนาคาร..........................................................
+                ธนาคาร...............................................
             </div>
             <div class="col-md-12 col-xs-12">
-                เลขที่.......................วันที่...............................
+                เลขที่...................วันที่..........................
             </div>
             <div class="col-md-12 col-xs-12">
-                ผู้รับเงิน..........................................................
+                ผู้รับเงิน..............................................
             </div>
           </div>
         </div>

@@ -49,7 +49,7 @@ $customer = mysqli_fetch_assoc($query);
             <h5>9/2 หมู่ 2 ถ.พุทธมณฑลสาย 4 ต.กระทุ่มล้ม อ.สามพราน จ.นครปฐม 73220 <br/>
                 โทร.02-12345678 แฟ๊กซ์.02-12345678
             </h5><br/>
-            <h4><b>ใบค้างส่งสินค้า/ใบเสร็จรับเงินค่ามัดจำ</b></h4>
+            <h4><b>ใบสั่งผลิตงาน/ใบค้างส่งงาน/ใบเสร็จรับเงินค่ามัดจำ</b></h4>
           </div>
       </div>
 
@@ -57,7 +57,7 @@ $customer = mysqli_fetch_assoc($query);
         <div class="col-md-6">
           <div class="col-md-12  border-box">
             <div class="col-md-3">
-              นามผู้ซื้อ
+              นามลูกค้า
             </div>
             <div class="col-md-9">
               <?=$customer["cust_name"];?>
@@ -79,7 +79,7 @@ $customer = mysqli_fetch_assoc($query);
         <div class="col-md-6">
           <div class="col-md-12  border-box">
             <div class="col-md-3">
-              เลขที่
+              เลขที่เอกสาร
             </div>
             <div class="col-md-9">
               <?=$customer["so_id"];?>
@@ -100,41 +100,58 @@ $customer = mysqli_fetch_assoc($query);
           <div>
             <table class="table table-bordered">
               <thead>
-                <th style="text-align: center; width: 10%">ลำดับที่</th>
-                <th style="text-align: center">รายการ</th>
+                <th style="text-align: center">ลำดับ</th>
+                <th style="text-align: center">รหัสงาน</th>
+                <th style="text-align: center">รายละเอียด</th>
+                <th style="text-align: center">จำนวน</th>
+                <th style="text-align: center">นน./ชิ้น</th>
+                <th style="text-align: center">นน.รวม</th>
+                <th style="text-align: center">หน่วยละ</th>
                 <th style="text-align: center">จำนวนเงิน</th>
               </thead>
               <tbody>
                 <?php
+                  $count = 1;
                   $total = 0;
                   while ($row = mysqli_fetch_array($query2)) {
+                    echo "<tr>";
+                    echo "<td align='center'>$count</td>";
+                    echo "<td>".$row["prod_id"]."</td>";
+                    echo "<td>".$row["prod_detail"]."</td>";
+                    echo "<td align='right'>".$row["number"]."</td>";
+                    echo "<td align='right'>".$row["weight"]."</td>";
+                    echo "<td align='right'>".number_format($row["number"] * $row["weight"], 2)."</td>";
+                    echo "<td align='right'>".$row["price"]."</td>";
+                    echo "<td align='right'>".number_format(($row["number"] * $row["weight"])* $row["price"], 2)."</td>";
                     $total += (($row["number"] * $row["weight"])* $row["price"]);
+                    echo "</tr>";
+                    $count++;
                   }
                 ?>
                 <tr>
                   <td>
-                    1
+
                   </td>
-                  <td>
-                    รับเงินมัดจำตามใบสั่งขายเลขที่ <?php echo $soid; ?>
+                  <td colspan="6">
+                    รับเงินมัดจำตามใบสั่งขายเลขที่ <?php echo $soid; ?> (50%)
                   </td>
-                  <td align='right'>
+                  <td colspan="7" align='right'>
                     <?php
                     echo number_format($total * (50/100), 2);
                     ?>
                   </td>
                 </tr>
                 <tr>
-                  <td colspan="2" align="right"><strong>รวมเงิน</strong></td>
+                  <td colspan="7" align="right"><strong>รวมเงิน</strong></td>
                   <td align='right'><?=number_format($total * (50/100), 2);?></td>
                 </tr>
                 <tr>
-                  <td colspan="2" align="right"><strong>ภาษีมูลเพิ่ม7%</strong></td>
+                  <td colspan="7" align="right"><strong>ภาษีมูลเพิ่ม7%</strong></td>
                   <td align='right'><?php echo number_format(($total * (50/100)) *7/100, 2) ?></td>
                 </tr>
                 <tr>
 
-                  <td  colspan="2" align="right"><strong>ยอมรวมสุทธิ</strong></td>
+                  <td  colspan="7" align="right"><strong>ยอมรวมสุทธิ</strong></td>
                   <td align='right'>
                     <?php
                     $vat =($total * (50/100)) *7/100;
@@ -144,22 +161,30 @@ $customer = mysqli_fetch_assoc($query);
                   </td>
                 </tr>
                 <tr>
-                  <td colspan="3" align="center"><script>document.write(ArabicNumberToText('<?=number_format($net, 2);?>'));</script></td>
+                  <td colspan="7" align="center"><script>document.write(ArabicNumberToText('<?=number_format($net, 2);?>'));</script></td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
         <div class="col-md-12" style="margin-top: 8px">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="col-md-12  border-box">
               <br/><hr>
               <div class="col-md-12" align="center">
-                ผู้รับเงิน
+                ผู้สั่งผลิต
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
+            <div class="col-md-12  border-box">
+              <br/><hr>
+              <div class="col-md-12" align="center">
+                ผู้รับงาน
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
             <div class="col-md-12  border-box">
               <div class="col-md-12">
                 ชำระโดย
@@ -170,7 +195,7 @@ $customer = mysqli_fetch_assoc($query);
                     <input type="checkbox" id="inlineCheckbox1" value="option1"> เงินสด
                   </label>
                   <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox2" value="option2"> เงินเชื่อ
+                    <input type="checkbox" id="inlineCheckbox2" value="option2"> เช็ค
                   </label>
                 </div>
             <div class="col-md-12">

@@ -88,6 +88,7 @@ function func_delete(id, mid) {
         <td align="center">
 
         <?php
+        if ($_SESSION["login_super_admin"] == 1) {
         echo '<button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].'); hideLow();" class="btn btn-default open-AddBookDialog btn-sm">แก้ไข</button>
               <button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].'); hideTop(); $(\'#modal_mat_name2\').val(\''.$row["mat_name"].'\');" class="btn btn-default open-AddBookDialog btn-sm">เบิก</button>
 
@@ -97,9 +98,20 @@ function func_delete(id, mid) {
               $(\'#modal_date_time1\').val(\''.$row["date_time"].'\')"
               class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">รายละเอียด</button>
 
-              <button type="button" class="btn btn-danger btn-sm" onclick="func_delete(\''.$row["mat_id"].'\');" >ยกเลิก</button>
 
               </td>';
+              ;
+            } else {
+              echo '<button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].'); hideLow();" class="btn btn-default open-AddBookDialog btn-sm">แก้ไข</button>
+                    <button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].'); hideTop(); $(\'#modal_mat_name2\').val(\''.$row["mat_name"].'\');" class="btn btn-default open-AddBookDialog btn-sm">เบิก</button>
+
+                    <button type="button" onclick="$(\'#mat_id\').val('.$row["mat_id"].');callLog();$(\'#stock_id\').val('.$row["stock_id"].');$(\'#modal_mat_id1\').val(\''.$row["mat_id"].'\');
+                    $(\'#modal_mat_name1\').val(\''.$row["mat_name"].'\');$(\'#modal_number1\').val(\''.$row["number"].'\');
+                    $(\'#modal_unit1\').val(\''.$row["unit"].'\');$(\'#modal_sup_name1\').val(\''.$row["sup_name"].'\');
+                    $(\'#modal_date_time1\').val(\''.$row["date_time"].'\')"
+                    class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal1">รายละเอียด</button>'
+                    ;
+        }
         echo '</tr>';
         $count++; // $count = $count + 1;
       }

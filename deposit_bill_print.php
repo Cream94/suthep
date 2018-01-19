@@ -39,7 +39,7 @@ $customer = mysqli_fetch_assoc($query);
 <body>
   <?php include 'navbar.php' ?>
   <div class="container">
-      <div class="col-md-12  col-xs-12" >
+      <div class="col-md-12 col-xs-12" >
         <div class="col-md-1 col-xs-1" >
           <img alt="Brand" src="logosuthep.png" width="220%" height="220%">
         </div>
@@ -77,9 +77,9 @@ $customer = mysqli_fetch_assoc($query);
           </div>
         </div>
         <div class="col-md-6 col-xs-6">
-          <div class="col-md-12 col-xs-12  border-box">
+          <div class="col-md-12  col-xs-12 border-box">
             <div class="col-md-3 col-xs-3">
-              เลขที่
+              เลขที่เอกสาร
             </div>
             <div class="col-md-9 col-xs-9">
               <?=$customer["so_id"];?>
@@ -100,23 +100,36 @@ $customer = mysqli_fetch_assoc($query);
           <div>
             <table class="table table-bordered">
               <thead>
-                <th style="text-align: center; width: 10%">ลำดับที่</th>
+                <th style="text-align: center">ลำดับที่</th>
                 <th style="text-align: center">รายการ</th>
+                <th style="text-align: center">จำนวน</th>
+                <th style="text-align: center">หน่วย</th>
+                <th style="text-align: center">ราคา/หน่วย</th>
                 <th style="text-align: center">จำนวนเงิน</th>
               </thead>
               <tbody>
                 <?php
+                  $count = 1;
                   $total = 0;
                   while ($row = mysqli_fetch_array($query2)) {
+                    echo "<tr>";
+                    echo "<td align='center'>$count</td>";
+                    echo "<td>".$row["prod_id"]." ".$row["prod_detail"]." ".$row["weight"]."</td>";
+                    echo "<td align='right'>".$row["number"]."</td>";
+                    echo "<td align='right'>ชิ้น</td>";
+                    echo "<td align='right'>".$row["price"]."</td>";
+                    echo "<td align='right'>".number_format(($row["number"] * $row["weight"])* $row["price"], 2)."</td>";
                     $total += (($row["number"] * $row["weight"])* $row["price"]);
+                    echo "</tr>";
+                    $count++;
                   }
                 ?>
                 <tr>
                   <td>
-                    1
+
                   </td>
-                  <td>
-                    รับเงินค้างชำระส่วนที่เหลือของเอกสารสั่งซื้อเลขที่ <?php echo $soid; ?>
+                  <td colspan="4">
+                    เงินมัดจำ 50% (-)
                   </td>
                   <td align="right">
                     <?php
@@ -125,16 +138,16 @@ $customer = mysqli_fetch_assoc($query);
                   </td>
                 </tr>
                 <tr>
-                  <td colspan="2" align="right"><strong>รวมเงิน</strong></td>
+                  <td colspan="5" align="right"><strong>รวมเงิน</strong></td>
                   <td align='right'><?=number_format($total * (50/100), 2);?></td>
                 </tr>
                 <tr>
-                  <td colspan="2" align="right"><strong>ภาษีมูลเพิ่ม7%</strong></td>
+                  <td colspan="5" align="right"><strong>ภาษีมูลเพิ่ม7%</strong></td>
                   <td align='right'><?php echo number_format(($total * (50/100)) *7/100, 2) ?></td>
                 </tr>
                 <tr>
 
-                  <td  colspan="2" align="right"><strong>ยอมรวมสุทธิ</strong></td>
+                  <td  colspan="5" align="right"><strong>ยอมรวมสุทธิ</strong></td>
                   <td align='right'>
                     <?php
                     $vat =($total * (50/100)) *7/100;
@@ -144,22 +157,30 @@ $customer = mysqli_fetch_assoc($query);
                   </td>
                 </tr>
                 <tr>
-                  <td colspan="3" align="center"><script>document.write(ArabicNumberToText('<?=number_format($net, 2);?>'));</script></td>
+                  <td colspan="5" align="center"><script>document.write(ArabicNumberToText('<?=number_format($net, 2);?>'));</script></td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
         <div class="col-md-12 col-xs-12" style="margin-top: 8px">
-          <div class="col-md-6 col-xs-6">
+          <div class="col-md-4 col-xs-4">
             <div class="col-md-12  col-xs-12 border-box">
               <br/><hr>
               <div class="col-md-12 col-xs-12" align="center">
-                ผู้รับเงิน
+                ผู้ส่งงาน
               </div>
             </div>
           </div>
-          <div class="col-md-6 col-xs-6">
+          <div class="col-md-4 col-xs-4">
+            <div class="col-md-12  col-xs-12 border-box">
+              <br/><hr>
+              <div class="col-md-12 col-xs-12" align="center">
+                ผู้รับงาน
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-xs-4">
             <div class="col-md-12  col-xs-12 border-box">
               <div class="col-md-12 col-xs-12">
                 ชำระโดย
@@ -170,26 +191,27 @@ $customer = mysqli_fetch_assoc($query);
                     <input type="checkbox" id="inlineCheckbox1" value="option1"> เงินสด
                   </label>
                   <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox2" value="option2"> เงินเชื่อ
+                    <input type="checkbox" id="inlineCheckbox2" value="option2"> เช็ค
                   </label>
                 </div>
             <div class="col-md-12 col-xs-12">
-                ธนาคาร..........................................................
+                ธนาคาร..................................................
             </div>
             <div class="col-md-12 col-xs-12">
-                เลขที่.......................วันที่...............................
+                เลขที่...................วันที่.............................
             </div>
             <div class="col-md-12 col-xs-12">
-                ผู้รับเงิน..........................................................
+                ผู้รับเงิน..................................................
             </div>
           </div>
         </div>
 
       </body>
 
-          <script>
-            $(document).ready(function(){
-              window.print();
-            })
-          </script>
+      <script>
+        $(document).ready(function(){
+          window.print();
+        })
+      </script>
+
       </html>

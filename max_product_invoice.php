@@ -49,7 +49,7 @@ $customer = mysqli_fetch_assoc($query);
             <h5>9/2 หมู่ 2 ถ.พุทธมณฑลสาย 4 ต.กระทุ่มล้ม อ.สามพราน จ.นครปฐม 73220 <br/>
                 โทร.02-12345678 แฟ๊กซ์.02-12345678
             </h5><br/>
-            <h4><b>ใบส่งสินค้า/ใบแจ้งหนี้</b></h4>
+            <h4><b>ใบส่งงาน/ใบแจ้งหนี้</b></h4>
           </div>
       </div>
 
@@ -79,7 +79,7 @@ $customer = mysqli_fetch_assoc($query);
         <div class="col-md-6">
           <div class="col-md-12  border-box">
             <div class="col-md-3">
-              เลขที่
+              เลขที่เอกสาร
             </div>
             <div class="col-md-9">
               <?=$customer["so_id"];?>
@@ -152,7 +152,7 @@ $customer = mysqli_fetch_assoc($query);
             <div class="col-md-12  border-box">
               <br/><hr>
               <div class="col-md-12" align="center">
-                ผู้รับสินค้า
+                ผู้รับงาน
               </div>
             </div>
           </div>
@@ -160,7 +160,7 @@ $customer = mysqli_fetch_assoc($query);
             <div class="col-md-12  border-box">
               <br/><hr>
               <div class="col-md-12" align="center">
-                ผู้ส่งสินค้า
+                ผู้ส่งงาน
               </div>
             </div>
           </div>
@@ -175,7 +175,7 @@ $customer = mysqli_fetch_assoc($query);
                     <input type="checkbox" id="inlineCheckbox1" value="option1"> เงินสด
                   </label>
                   <label class="checkbox-inline">
-                    <input type="checkbox" id="inlineCheckbox2" value="option2"> เงินเชื่อ
+                    <input type="checkbox" id="inlineCheckbox2" value="option2"> เช็ค
                   </label>
                 </div>
             <div class="col-md-12">
