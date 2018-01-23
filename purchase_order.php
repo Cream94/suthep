@@ -76,7 +76,7 @@ function updateStatus() {
       เลขที่เอกสาร
     </td>
     <td align='center'>
-      ชื่อบริษัทผู้ผลิต
+      ชื่อบริษัทตัวแทนจำหน่าย
     </td>
     <td align='center'>
       วันที่สั่งซื้อวัตถุดิบ
@@ -138,7 +138,7 @@ function updateStatus() {
       <div class="modal-body">
         <form class="form-horizontal" id="formModal" action="" method="post">
           <div class="form-group">
-            <label for="sup_name" class="col-sm-3 control-label">ชื่อบริษัทผู้ผลิต</label>
+            <label for="sup_name" class="col-sm-3 control-label">ชื่อบริษัทตัวแทนจำหน่าย</label>
           <div class="col-sm-9">
             <input type="detail" class="form-control" readonly id="modal_sup_name" name="sup_name" value="" placeholder="ชื่อบริษัทผู้ผลิต">
           </div>

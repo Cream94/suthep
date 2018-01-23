@@ -34,7 +34,7 @@ if (!isset($_SESSION["login_id"])) {
           <ul class="dropdown-menu">
             <li><a href="product.php">ชิ้นงานต้นแบบ</a></li>
             <li><a href="customer.php">ลูกค้า</a></li>
-            <li><a href="supplier.php">ผู้ผลิต</a></li>
+            <li><a href="supplier.php">ตัวแทนจำหน่าย</a></li>
             <li><a href="material.php">วัตถุดิบ</a></li>
             <li><a href="stock.php">คลังวัตถุดิบ</a></li>
             <li><a href="vat.php">การตั่งค่าภาษี</a></li>

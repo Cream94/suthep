@@ -36,8 +36,8 @@ function func_delete(id) {
   <div class="row">
 <form class="form-inline">
   <div class="form-group">
-    <label for="sup_name">ชื่อผู้ผลิต</label>
-    <input type="text" name="search" class="form-control" id="sup_name" placeholder="ชื่อผู้ผลิต" value="<?=$search;?>">
+    <label for="sup_name">ชื่อตัวแทนจำหน่าย</label>
+    <input type="text" name="search" class="form-control" id="sup_name" placeholder="ชื่อตัวแทนจำหน่าย" value="<?=$search;?>">
   </div>
   <button type="submit" class="btn btn-info">ค้นหา</button>
   <a href="addsupplier.php" class="btn btn-success">เพิ่ม</a>
@@ -52,7 +52,7 @@ function func_delete(id) {
       ลำดับ
     </td>
     <td align='center'>
-      ชื่อผู้ผลิต
+      ชื่อตัวแทนจำหน่าย
     </td>
     <td align='center'>
       ที่อยู่
@@ -115,18 +115,18 @@ function func_delete(id) {
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">รายละเอียดข้อมูลผู้ผลิต</h4>
+        <h4 class="modal-title" id="myModalLabel">รายละเอียดข้อมูลตัวแทนจำหน่าย</h4>
       </div>
       <div class="modal-body">
         <form class="form-horizontal" id="formModal" action="" method="post">
           <div class="form-group">
-            <label for="sup_id" class="col-sm-2 control-label">รหัสผู้ผลิต</label>
+            <label for="sup_id" class="col-sm-2 control-label">รหัสตัวแทนจำหน่าย</label>
           <div class="col-sm-4">
             <input type="detail" class="form-control" readonly id="modal_sup_id" name="sup_id" value="" placeholder="รหัสผู้ผลิต">
           </div>
           </div>
           <div class="form-group">
-            <label for="sup_name" class="col-sm-2 control-label">ชื่อผู้ผลิต</label>
+            <label for="sup_name" class="col-sm-2 control-label">ชื่อตัวแทนจำหน่าย</label>
           <div class="col-sm-10">
             <input type="detail" class="form-control" readonly id="modal_sup_name" name="sup_name" value="" placeholder="ชื่อผู้ผลิต">
           </div>

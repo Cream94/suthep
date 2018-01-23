@@ -15,6 +15,11 @@ $sql2 = "SELECT * FROM sale_order as so
 $query = mysqli_query($conn, $sql1);
 $query2 = mysqli_query($conn, $sql2);
 $customer = mysqli_fetch_assoc($query);
+
+$sqlvat = "SELECT * FROM config as c
+  left join vat as v on c.content_id = v.id and c.type = 'vat' ";
+$queryvat = mysqli_query($conn, $sqlvat);
+$vatRow = mysqli_fetch_assoc($queryvat);
 ?>
 
 <!DOCTYPE html>
@@ -133,15 +138,15 @@ $customer = mysqli_fetch_assoc($query);
                   <td align='right'><?=number_format($total, 2);?></td>
                 </tr>
                 <tr>
-                  <td colspan="7" align="right"><strong>ภาษีมูลเพิ่ม7%</strong></td>
-                  <td align='right'><?php echo number_format($total*7/100, 2) ?></td>
+                  <td colspan="7" align="right"><strong>ภาษีมูลเพิ่ม<?php echo $vatRow["vat"]; ?>%</strong></td>
+                  <td align='right'><?php echo number_format($total* $vatRow["vat"]/100, 2) ?></td>
                 </tr>
                 <tr>
-                  <td colspan="6" align="center"><script>document.write(ArabicNumberToText('<?=number_format((($total * 7 / 100)+($total + $vat)), 2);?>'));</script></td>
+                  <td colspan="6" align="center"><script>document.write(ArabicNumberToText('<?=number_format((($total * $vatRow["vat"] / 100)+($total + $vat)), 2);?>'));</script></td>
                   <td align="right"><strong>ยอมรวมสุทธิ</strong></td>
                   <td align='right'>
                     <?php
-                    $vat = $total * 7 / 100;
+                    $vat = $total* $vatRow["vat"] / 100;
                     $net = $total + $vat;
                     echo number_format($net, 2);
                     ?>

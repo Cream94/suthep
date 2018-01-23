@@ -18,10 +18,10 @@
       <center>
         <div class="row">
           <div class="col-md-6 col-md-offset-3 jumbotron well">
-            <h4 style="font-weight: bold;">Edit Form</h4> <br/>
+            <h4 style="font-weight: bold;">แก้ไขข้อมูลตัวแทนจำหน่าย</h4> <br/>
             <form class="form-horizontal" action="action/supplier_edit.php?id=<?php echo $id;?>" method="post">
             <div class="form-group">
-            <label for="sup_name" class="col-sm-2 control-label">ชื่อผู้ผลิต</label>
+            <label for="sup_name" class="col-sm-2 control-label">ชื่อตัวแทนจำหน่าย</label>
             <div class="col-sm-10">
             <input type="id" class="form-control" id="sup_name" name="sup_name" value="<?php echo $row["sup_name"]; ?>" placeholder="ชื่อผู้ผลิต">
             </div>
@@ -51,8 +51,8 @@
             </div>
             </div>
 
-        <button type="submit" class="btn btn-success">Save</button>
-        <a href="supplier.php" class="btn btn-danger">Cancel</a>
+        <button type="submit" class="btn btn-success">บันทึก</button>
+        <a href="supplier.php" class="btn btn-danger">ยกเลิก</a>
 
       </form>
       </center>

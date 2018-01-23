@@ -49,10 +49,10 @@ var rank = 1;
 
         <div class="row">
           <div class="col-md-10 col-md-offset-1 jumbotron well">
-            <h4 style="font-weight: bold;">ใบสังซื้อสินค้า</h4> <br/>
+            <h4 style="font-weight: bold;">ใบสังซื้อวัตถุดิบ</h4> <br/>
             <form id="main-form" class="form-horizontal" action="purchase_order_confirm.php" method="post">
             <div class="form-group">
-            <label for="sup_id" class="col-sm-2 control-label">ชื่อผู้ผลิต</label>
+            <label for="sup_id" class="col-sm-2 control-label">ชื่อตัวแทนจำหน่าย</label>
             <div class="col-sm-2">
               <select class="form-control" name="sup_id" onchange="callProductName();" id="sup_list">
                 <?php
